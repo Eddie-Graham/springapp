@@ -31,7 +31,6 @@ $(document).ready(function(){
 
 </head>
 <body>
-<div>TEST</div>
 <div id="time" style="color:#FFFFFF"></div>
 
 
