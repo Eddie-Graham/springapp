@@ -1,5 +1,7 @@
 package springapp.dbcon;
 
+import java.sql.Connection;
+
 public interface DbCon {
 	
 	public static final String DRIVER_CLASS_NAME = "org.postgresql.Driver";

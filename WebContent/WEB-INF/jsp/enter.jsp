@@ -16,7 +16,28 @@ html {
      position:absolute;
      bottom:0;
      right:0;
-     font-size: 800%;
+     font-size: 700%;
+     color:#FFFFFF;
+}
+
+#enter{
+     position:absolute;
+     bottom:0;
+     left:0;
+}
+
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+#enterBtn{
+	font-size: 700%;
+	color:#FFFFFF;
 }
 </style>
 
@@ -31,7 +52,8 @@ $(document).ready(function(){
 
 </head>
 <body>
-<div id="time" style="color:#FFFFFF"></div>
+<div id="time"></div>
+<div id="enter"><button type="button" id="enterBtn" onclick="location.href = '/springapp/mainMenu.html';">Enter</button></div>
 
 
 </body>
