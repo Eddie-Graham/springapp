@@ -44,13 +44,13 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/util.js"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script> 
+<script src="http://malsup.github.com/jquery.form.js"></script>
 
 <jsp:invoke fragment="head" />
 </head>
 <body>
 	<div id="headerBar">
-		<div id=title>Fish for Likes</div>
+		<div id=title>Fishing for Likes</div>
 		<jsp:invoke fragment="header" />
 	</div>
 	<div id="body">

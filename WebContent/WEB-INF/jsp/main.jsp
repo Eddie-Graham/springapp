@@ -27,23 +27,24 @@
     </jsp:attribute>
 	<jsp:attribute name="left">
 	
-	<c:choose>
-    <c:when test="${empty LoggedInUser}">
-        <form id="login" action="login.html" method="post">
-			Email<br> <input type="text" name="email"> <br>
-			Password<br> <input type="text" name="password">
-			<input type="submit" value="Submit">
-		</form>
-    </c:when>    
-    <c:otherwise>
-       Logged in as ${LoggedInUser}
-    </c:otherwise>
-	</c:choose>
-	
+		<c:choose>
+    	<c:when test="${empty loggedInUser}">
+        	<form id="login" action="login.html" method="post">
+				Email<br> <input type="text" name="email"> <br>
+				Password<br> <input type="text" name="password">
+				<input type="submit" value="Login">
+			</form>
+    	</c:when>    
+    	<c:otherwise>
+       		Logged in as ${loggedInUser}
+       
+			<form action="logout.html">
+    			<input type="submit" value="Logout">
+			</form>
+    	</c:otherwise>
+		</c:choose>
     </jsp:attribute>
 	<jsp:body>
-	<div id="time"></div>
-	
-	<div id="test">fff</div>
+		<div id="time"></div>
     </jsp:body>
 </t:genericpage>
