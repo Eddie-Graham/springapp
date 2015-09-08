@@ -15,9 +15,7 @@ public class DbConImpl implements DbCon {
 
 			Class.forName(DRIVER_CLASS_NAME);
 
-			Connection c = DriverManager.getConnection(HOST + DB_NAME,
-					           						   USERNAME,
-					           						   PASSWORD);
+			Connection c = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 						
 			Statement stmt = c.createStatement();
 			
@@ -26,7 +24,6 @@ public class DbConImpl implements DbCon {
 			rs = stmt.executeQuery(query);	
 			
 			c.close();
-
 
 		} catch (Exception e) {
 
