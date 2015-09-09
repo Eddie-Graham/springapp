@@ -6,8 +6,25 @@
 	<jsp:attribute name="head">
 	
 	<script>
+
 		$(document).ready(function() {
+			
 			updateClock("time");
+
+			$("#register").click(function(e) {
+				
+				e.preventDefault();
+				
+				$.ajax({
+					type : "GET",
+					url : "register.html",
+					
+					success : function(result) {
+						
+						$("#body").html(result); 
+					}
+				});
+			});
 
 			/* $("#login").ajaxForm({url: '/springapp/login.html', type: 'post'}) */
 
@@ -31,20 +48,19 @@
     	<c:when test="${empty loggedInUser}">
         	<form id="login" action="login.html" method="post">
 				Email<br> <input type="text" name="email"> <br>
-				Password<br> <input type="text" name="password">
-				<input type="submit" value="Login">
+				Password<br> <input type="text" name="password"> <input type="submit" value="Login">
 			</form>
+			 <br>
+			<input type="submit" id="register" value="Register Here">
     	</c:when>    
     	<c:otherwise>
        		Logged in as ${loggedInUser}
        
-			<form action="logout.html">
-    			<input type="submit" value="Logout">
-			</form>
+			<input type="button" onclick="location.href='logout.html';" value="Logout" />
     	</c:otherwise>
 		</c:choose>
     </jsp:attribute>
 	<jsp:body>
-		<div id="time"></div>
+		
     </jsp:body>
 </t:genericpage>

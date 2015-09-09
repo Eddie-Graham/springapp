@@ -36,10 +36,21 @@
 }
 
 #title {
-	font-size: 40px;
-	text-align: center;
+	position: absolute; 
 	color: #FFFFFF;
+	right: 35%;
+	top: 5%;
+	font-size: 250%;
 }
+
+#time{
+	position: absolute; 
+	color: #FFFFFF;
+	right: 0;
+	top: 5%;
+	font-size: 150%;
+}
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -51,6 +62,7 @@
 <body>
 	<div id="headerBar">
 		<div id=title>Fishing for Likes</div>
+		<div id="time"></div>
 		<jsp:invoke fragment="header" />
 	</div>
 	<div id="body">

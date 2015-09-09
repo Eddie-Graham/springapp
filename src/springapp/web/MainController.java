@@ -1,6 +1,5 @@
 package springapp.web;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,7 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import springapp.dbcon.DbConImpl;
+import springapp.domain.User;
+import springapp.service.DbService;
 
 @Controller
 public class MainController {
@@ -29,28 +29,17 @@ public class MainController {
 		String email = (String) request.getParameter("email");
 		String password = (String) request.getParameter("password");
 		
-		String query = "select * from users where email = '" + email + "';";			
-	
-		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
-		
-		String username = "";
-		String passwordStr = "";
-		
-		while (rs.next()) {
-			username = rs.getString("username");
-            passwordStr = rs.getString("password");
-            break;
-        }
+		User user = DbService.getUserByEmail(email);
 		
 		ModelAndView mav = new ModelAndView("main");
 		
-		if(username.isEmpty() || !password.equals(passwordStr)){
+		if(user == null || !password.equals(user.getPassword())){
 			return mav;
 		}
 		
-		System.out.println("Logged in as : " + username);
+		request.getSession().setAttribute("loggedInUser", user.getUsername());
 		
-		request.getSession().setAttribute("loggedInUser", username);
+		System.out.println("Logged in as : " + user.getUsername());
 	    
 	    return mav;
 	}
@@ -64,5 +53,35 @@ public class MainController {
 		
 	    return mav;
 	}
-
+	
+	@RequestMapping(value="/register.html")
+	public ModelAndView register(HttpServletRequest request){
+		
+		ModelAndView mav = new ModelAndView("register");
+		
+	    return mav;
+	}
+	
+	@RequestMapping(value="/submitRegister.html")
+	public ModelAndView submitRegister(HttpServletRequest request) throws SQLException{
+		
+		String username = (String) request.getParameter("username");
+		String email = (String) request.getParameter("email");
+		String password = (String) request.getParameter("password");
+		String confirmPassword = (String) request.getParameter("confirmPassword");
+		
+		ModelAndView mav = new ModelAndView("main");
+		
+		if(!password.equals(confirmPassword))
+			return mav;
+		
+		User user = new User(username, email, password);
+		
+		boolean successful = DbService.createUser(user);
+		
+		if(successful)
+			request.getSession().setAttribute("loggedInUser", user.getUsername());
+		
+	    return mav;
+	}
 }
