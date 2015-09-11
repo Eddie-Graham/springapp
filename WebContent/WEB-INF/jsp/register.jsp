@@ -9,4 +9,4 @@
 				<input type="password" id="confirmPassword" name="confirmPassword"> <div id='confirmPasswordError'></div><br>
 				
 </form>
-<button onclick="checkRegInput()">Register</button>
+<button onclick="checkRegistrationInput()">Register</button>

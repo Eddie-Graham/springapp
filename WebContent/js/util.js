@@ -32,7 +32,7 @@ function timeFormatting(element){
 	return element;
 }
 
-function checkRegInput() {
+function checkRegistrationInput() {
 	
 	var username = $('#username').val();
 	var email = $('#email').val();
@@ -46,7 +46,7 @@ function checkRegInput() {
 	var waitingForEmailResponse = false;
 	var finishedMethod = false;
 	
-	///////////////////////////////////////
+	//////////////////////////////////////
 	// USERNAME CHECK                   //
 	//////////////////////////////////////
 	

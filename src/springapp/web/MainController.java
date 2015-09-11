@@ -15,7 +15,7 @@ import springapp.service.DbService;
 public class MainController {
 	
 	@RequestMapping(value="/main.html")
-	public ModelAndView enterView(HttpServletRequest request){
+	public ModelAndView enterMain(HttpServletRequest request){
 	    
 		ModelAndView mav = new ModelAndView("main");
 		
@@ -23,34 +23,30 @@ public class MainController {
 	}
 
 	@RequestMapping(value="/login.html")
-	public ModelAndView login(HttpServletRequest request) throws SQLException{
+	public String login(HttpServletRequest request) throws SQLException{
 		
 		String email = (String) request.getParameter("email");
 		String password = (String) request.getParameter("password");
 		
 		User user = DbService.getUserByEmail(email);
 		
-		ModelAndView mav = new ModelAndView("main");
-		
 		if(user == null || !password.equals(user.getPassword())){
-			return mav;
+			return "redirect:main.html";
 		}
 		
 		request.getSession().setAttribute("loggedInUser", user.getUsername());
 		
 		System.out.println("Logged in as : " + user.getUsername());
 	    
-	    return mav;
+		return "redirect:main.html";
 	}
 	
 	@RequestMapping(value="/logout.html")
-	public ModelAndView logout(HttpServletRequest request){
+	public String logout(HttpServletRequest request){
 	    
 		request.getSession().removeAttribute("loggedInUser");
 		
-		ModelAndView mav = new ModelAndView("main");
-		
-	    return mav;
+		return "redirect:main.html";
 	}
 	
 	@RequestMapping(value="/register.html")
@@ -88,14 +84,12 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/submitRegister.html")
-	public ModelAndView submitRegister(HttpServletRequest request) throws SQLException{
+	public String submitRegister(HttpServletRequest request) throws SQLException{
 		
 		String username = (String) request.getParameter("username");
 		String email = (String) request.getParameter("email");
 		String password = (String) request.getParameter("password");
 		//String confirmPassword = (String) request.getParameter("confirmPassword");
-		
-		ModelAndView mav = new ModelAndView("main");
 		
 		User user = new User(username, email, password);
 		
@@ -105,6 +99,6 @@ public class MainController {
 		
 		System.out.println("User with username " + user.getUsername() + " registered");
 		
-	    return mav;
+		return "redirect:main.html";
 	}
 }

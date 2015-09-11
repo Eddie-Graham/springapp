@@ -62,7 +62,7 @@
 </head>
 <body>
 	<div id="headerBar">
-		<div id=title>Fishing For Likes</div>
+		<div id=title>Fishing for Likes</div>
 		<div id="time"></div>
 		<jsp:invoke fragment="header" />
 	</div>
