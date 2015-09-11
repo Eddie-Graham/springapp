@@ -1,4 +1,4 @@
-<form id="registerForm" action="submitRegister.html" method="post">
+<form id="registerForm" action="submitRegistration.html" method="post">
 				Username<br> 
 				<input type="text" id="username" name="username"> <div id='usernameError'></div><br>
 				Email<br> 

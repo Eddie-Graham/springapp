@@ -83,7 +83,7 @@ public class MainController {
 	    return "NOT UNIQUE";
 	}
 	
-	@RequestMapping(value="/submitRegister.html")
+	@RequestMapping(value="/submitRegistration.html")
 	public String submitRegister(HttpServletRequest request) throws SQLException{
 		
 		String username = (String) request.getParameter("username");
