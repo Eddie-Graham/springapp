@@ -3,9 +3,10 @@
 <%@attribute name="left" fragment="true"%>
 <%@attribute name="head" fragment="true"%>
 
+<!DOCTYPE html>
 <html>
 <head>
-<title>Fish for Likes</title>
+<title>Fishing for Likes</title>
 
 <style>
 #headerBar {
@@ -61,7 +62,7 @@
 </head>
 <body>
 	<div id="headerBar">
-		<div id=title>Fishing for Likes</div>
+		<div id=title>Fishing For Likes</div>
 		<div id="time"></div>
 		<jsp:invoke fragment="header" />
 	</div>

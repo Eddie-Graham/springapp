@@ -27,18 +27,30 @@ public class DbService {
 		return null;
 	}
 	
-	public static boolean createUser(User user) throws SQLException{
-		
-		User userTest = getUserByEmail(user.getEmail());
-		
-		if(userTest != null)
-			return false;
+	public static User getUserByUsername(String username) throws SQLException {
+
+		String query = "select * from users where username = '" + username + "';";
+
+		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+
+		String email = "";
+		String passwordStr = "";
+
+		while (rs.next()) {
+			email = rs.getString("email");
+			passwordStr = rs.getString("password");
+
+			return new User(username, email, passwordStr);
+		}
+
+		return null;
+	}
+	
+	public static void createUser(User user) throws SQLException{
 		
 		String query = "insert into users values('" + user.getUsername() + "', '" + user.getEmail() + "', '"
 				+ user.getPassword() + "');";		
 		
 		DbConImpl.makeConnectionAndExecuteQuery(query);
-		
-		return true;
 	}
 }

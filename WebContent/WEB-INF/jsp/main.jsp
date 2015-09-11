@@ -19,26 +19,14 @@
 					type : "GET",
 					url : "register.html",
 					
-					success : function(result) {
+					success : function(response) {
 						
-						$("#body").html(result); 
+						$("#body").html(response); 
 					}
 				});
 			});
-
-			/* $("#login").ajaxForm({url: '/springapp/login.html', type: 'post'}) */
-
-			/* $("#login").ajaxForm({
-				url : 'login.html',
-				type : 'get',
-				beforeSubmit : function() {
-
-				},
-				success : function(response) {
-					alert("hi");
-				}
-			}); */
 		});
+		
 	</script>
       
     </jsp:attribute>
@@ -46,12 +34,14 @@
 	
 		<c:choose>
     	<c:when test="${empty loggedInUser}">
-        	<form id="login" action="login.html" method="post">
+        	<form id="loginForm" action="login.html" method="post">
 				Email<br> <input type="text" name="email"> <br>
-				Password<br> <input type="text" name="password"> <input type="submit" value="Login">
+				Password<br> <input type="password" name="password"> <input type="submit" value="Login">
 			</form>
 			 <br>
+			 Not Registered?
 			<input type="submit" id="register" value="Register Here">
+			
     	</c:when>    
     	<c:otherwise>
        		Logged in as ${loggedInUser}

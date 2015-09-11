@@ -7,6 +7,11 @@ import java.sql.Statement;
 
 public class DbConImpl implements DbCon {
 
+	/**
+	 * Run a query for which results are expected.
+	 * @param query
+	 * @return
+	 */
 	public static ResultSet makeConnectionAndRunQuery(String query){
 		
 		ResultSet rs = null;
@@ -35,6 +40,10 @@ public class DbConImpl implements DbCon {
 		
 	}
 	
+	/**
+	 * Execute query which does not return a result.
+	 * @param query
+	 */
 	public static void makeConnectionAndExecuteQuery(String query){
 		
 		try {

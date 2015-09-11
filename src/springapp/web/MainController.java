@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.User;
@@ -23,8 +24,6 @@ public class MainController {
 
 	@RequestMapping(value="/login.html")
 	public ModelAndView login(HttpServletRequest request) throws SQLException{
-		
-		System.out.println("Sesh: "+ request.getSession().getAttribute("LoggedInUser"));
 		
 		String email = (String) request.getParameter("email");
 		String password = (String) request.getParameter("password");
@@ -62,25 +61,49 @@ public class MainController {
 	    return mav;
 	}
 	
+	@RequestMapping(value="/checkUniqueEmail.html")
+	public @ResponseBody String checkUniqueEmail(HttpServletRequest request) throws SQLException{
+		
+		String email = request.getParameter("email");
+		
+		User user = DbService.getUserByEmail(email);
+		
+		if(user == null)
+			return "UNIQUE";
+		
+	    return "NOT UNIQUE";
+	}
+	
+	@RequestMapping(value="/checkUniqueUsername.html")
+	public @ResponseBody String checkUniqueUsername(HttpServletRequest request) throws SQLException{
+		
+		String username = request.getParameter("username");
+		
+		User user = DbService.getUserByUsername(username);
+		
+		if(user == null)
+			return "UNIQUE";
+		
+	    return "NOT UNIQUE";
+	}
+	
 	@RequestMapping(value="/submitRegister.html")
 	public ModelAndView submitRegister(HttpServletRequest request) throws SQLException{
 		
 		String username = (String) request.getParameter("username");
 		String email = (String) request.getParameter("email");
 		String password = (String) request.getParameter("password");
-		String confirmPassword = (String) request.getParameter("confirmPassword");
+		//String confirmPassword = (String) request.getParameter("confirmPassword");
 		
 		ModelAndView mav = new ModelAndView("main");
 		
-		if(!password.equals(confirmPassword))
-			return mav;
-		
 		User user = new User(username, email, password);
 		
-		boolean successful = DbService.createUser(user);
+		DbService.createUser(user);
+
+		request.getSession().setAttribute("loggedInUser", user.getUsername());
 		
-		if(successful)
-			request.getSession().setAttribute("loggedInUser", user.getUsername());
+		System.out.println("User with username " + user.getUsername() + " registered");
 		
 	    return mav;
 	}
