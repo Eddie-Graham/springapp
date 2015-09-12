@@ -1,6 +1,9 @@
 package springapp.web;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import springapp.domain.Post;
 import springapp.domain.User;
 import springapp.service.DbService;
 
@@ -84,7 +88,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/submitRegistration.html")
-	public String submitRegister(HttpServletRequest request) throws SQLException{
+	public String submitRegistration(HttpServletRequest request) throws SQLException{
 		
 		String username = (String) request.getParameter("username");
 		String email = (String) request.getParameter("email");
@@ -100,5 +104,16 @@ public class MainController {
 		System.out.println("User with username " + user.getUsername() + " registered");
 		
 		return "redirect:main.html";
+	}
+	
+	@RequestMapping(value="/viewPosts.html")
+	public ModelAndView viewPosts(HttpServletRequest request) throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = DbService.getPostsByTimestamp();
+		
+		ModelAndView mav = new ModelAndView("posts");
+		mav.addObject("posts", posts);
+		
+	    return mav;
 	}
 }

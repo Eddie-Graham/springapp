@@ -2,8 +2,12 @@ package springapp.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.util.ArrayList;
 
 import springapp.dbcon.DbConImpl;
+import springapp.domain.Post;
 import springapp.domain.User;
 
 public class DbService {
@@ -33,12 +37,9 @@ public class DbService {
 
 		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
 
-		String email = "";
-		String passwordStr = "";
-
 		while (rs.next()) {
-			email = rs.getString("email");
-			passwordStr = rs.getString("password");
+			String email = rs.getString("email");
+			String passwordStr = rs.getString("password");
 
 			return new User(username, email, passwordStr);
 		}
@@ -52,5 +53,26 @@ public class DbService {
 				+ user.getPassword() + "');";		
 		
 		DbConImpl.makeConnectionAndExecuteQuery(query);
+	}
+	
+	public static ArrayList<Post> getPostsByTimestamp() throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = new ArrayList<Post>();
+		
+		String query = "select * from posts order by timestamp desc;";
+		
+		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+		
+		while (rs.next()) {
+			String text = rs.getString("text");
+			int likes = Integer.parseInt(rs.getString("likes"));
+			int dislikes = Integer.parseInt(rs.getString("dislikes"));
+			Timestamp timestamp = Utils.getTimestamp(rs.getString("timestamp"));
+			String username = rs.getString("username");
+			
+			posts.add(new Post(text, likes, dislikes, timestamp, username));
+		}
+		
+		return posts;
 	}
 }

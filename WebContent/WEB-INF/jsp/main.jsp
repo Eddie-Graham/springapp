@@ -10,6 +10,16 @@
 		$(document).ready(function() {
 			
 			updateClock("time");
+			
+			$.ajax({
+				type : "GET",
+				url : "viewPosts.html",
+				
+				success : function(response) {
+					
+					$("#body").html(response); 
+				}
+			});
 
 			$("#register").click(function(e) {
 				
