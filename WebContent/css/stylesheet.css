@@ -43,8 +43,62 @@
 	font-size: 150%;
 }
 
+/* POST DIV */
+
 #postDiv{
-	background: #F8F8F8;
+    box-sizing:border-box;
+    position: relative;
     border: 1px solid #1975D1;
-    padding: .3cm .3cm .3cm .3cm;
+    width: 90%;
+    height: 120px;
+}
+
+#postText{
+    box-sizing:border-box;
+    padding: 5px;
+    position: absolute;
+    border: 1px solid #1975D1;
+    left: 10px;
+    top: 10px;
+    width: 75%;
+    height: 50%;
+}
+
+#postUsername{
+    box-sizing:border-box;
+    position: absolute;
+    border: 1px solid #1975D1;
+    left: 10px;
+    bottom: 10px;
+    width: 75%;
+    height: 20%;
+}
+
+#postLikesDislikes{
+    box-sizing:border-box;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 50%;
+    width: 18%;
+}
+
+#postLikes{
+    box-sizing:border-box;
+    position: absolute;
+    border: 1px solid #1975D1;
+    top: 0;
+    left: 0;
+    right: 0;
+    height 40%;
+}
+
+#postDislikes{
+    box-sizing:border-box;
+    position: absolute;
+    border: 1px solid #1975D1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height 40%;
 }
