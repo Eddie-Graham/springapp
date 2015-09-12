@@ -116,4 +116,17 @@ public class MainController {
 		
 	    return mav;
 	}
+	
+	@RequestMapping(value="/submitPost.html")
+	public String submitPost(HttpServletRequest request) throws SQLException, ParseException{
+		
+		String postText = request.getParameter("postText");
+		String username = (String) request.getSession().getAttribute("loggedInUser");
+		
+		DbService.submitPost(postText, username);
+		
+		return "redirect:viewPosts.html";
+	}
+		
+	    
 }

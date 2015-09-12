@@ -21,20 +21,6 @@
 				}
 			});
 
-			$("#register").click(function(e) {
-				
-				e.preventDefault();
-				
-				$.ajax({
-					type : "GET",
-					url : "register.html",
-					
-					success : function(response) {
-						
-						$("#body").html(response); 
-					}
-				});
-			});
 		});
 		
 	</script>
@@ -50,8 +36,8 @@
 			</form>
 			 <br>
 			 Not Registered?
-			<input type="submit" id="register" value="Register Here">
-			
+			<!-- <input type="submit" id="register" value="Register Here"> -->
+			<button onclick="loadRegisterPage()">Register</button>
     	</c:when>    
     	<c:otherwise>
        		Logged in as ${loggedInUser}
@@ -61,6 +47,6 @@
 		</c:choose>
     </jsp:attribute>
 	<jsp:body>
-		
+	
     </jsp:body>
 </t:genericpage>

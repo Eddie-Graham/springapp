@@ -75,4 +75,11 @@ public class DbService {
 		
 		return posts;
 	}
+	
+	public static void submitPost(String postText, String username){
+		
+		String query = "insert into posts (text, username) values ('" + postText + "', '" + username + "');";
+		
+		DbConImpl.makeConnectionAndExecuteQuery(query);
+	}
 }

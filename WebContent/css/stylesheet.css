@@ -4,16 +4,18 @@
 	right: 0;
 	top: 0;
 	height: 20%;
-	background: #1975D1;
+	background-color: #1975D1;
 }
 
 #leftBar {
+	box-sizing:border-box;
+    padding: 5px;
 	position: fixed;
 	left: 0;
 	bottom: 0;
 	top: 20%;
 	width: 20%;
-	background: #B2D1F0;
+	background-color: #B2D1F0;
 }
 
 #body {
@@ -22,25 +24,51 @@
 	right: 0;
 	top: 20%;
 	bottom: 0;
-	background: #FFFFFF;
-	padding: .3cm .3cm .3cm .3cm;
+	background-color: #FFFFFF;
+}
+
+#postsPanel{
+	box-sizing:border-box;
+    padding: 15px;
+	position: fixed;
+	top: 35%;
+	right: 0;
+	left: 20%;
+	bottom: 0;
 	overflow: scroll;
+}
+
+#submitPostPanel{
+	box-sizing:border-box;
+    padding: 15px;
+	position: fixed;
+	background-color: #1975D1;
+	top: 20%;
+	right: 0;
+	left: 20%;
+	height: 15%;
+	
 }
 
 #title {
 	position: absolute; 
 	color: #FFFFFF;
-	right: 35%;
-	top: 5%;
+	right: 37%;
+	top: 10px;
 	font-size: 250%;
 }
 
 #time{
 	position: absolute; 
 	color: #FFFFFF;
-	right: 0;
-	top: 5%;
+	right: 10px;
+	top: 10px;
 	font-size: 150%;
+}
+
+#submitPostText{
+	position: relative;
+	width: 100%;
 }
 
 /* POST DIV */
@@ -49,8 +77,9 @@
     box-sizing:border-box;
     position: relative;
     border: 1px solid #1975D1;
-    width: 90%;
-    height: 120px;
+    width: 100%;
+    height: 90px;
+    background-color: #B2D1F0;
 }
 
 #postText{
@@ -62,12 +91,12 @@
     top: 10px;
     width: 75%;
     height: 50%;
+    background-color: #F0F6FC;
 }
 
 #postUsername{
     box-sizing:border-box;
     position: absolute;
-    border: 1px solid #1975D1;
     left: 10px;
     bottom: 10px;
     width: 75%;
@@ -86,7 +115,6 @@
 #postLikes{
     box-sizing:border-box;
     position: absolute;
-    border: 1px solid #1975D1;
     top: 0;
     left: 0;
     right: 0;
@@ -96,7 +124,6 @@
 #postDislikes{
     box-sizing:border-box;
     position: absolute;
-    border: 1px solid #1975D1;
     bottom: 0;
     left: 0;
     right: 0;

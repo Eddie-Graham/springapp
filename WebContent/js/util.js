@@ -162,3 +162,31 @@ function checkRegistrationInput() {
 	}
 	
 }
+
+function loadRegisterPage(){
+	
+	$.ajax({
+		type : "GET",
+		url : "register.html",
+		
+		success : function(response) {
+			
+			$("#body").html(response); 
+		}
+	});
+}
+
+function submitPost(){
+	
+	var postText = $("#submitPostText").val();
+	
+	$.ajax({
+		type : "GET",
+		url : "submitPost.html",
+		data: {"postText": postText},
+		success : function(response) {
+			
+			$("#body").html(response); 
+		}
+	});
+}

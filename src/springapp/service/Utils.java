@@ -10,9 +10,7 @@ public class Utils {
 	
 	public static Timestamp getTimestamp(String timestampStr) throws ParseException{
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-	    Date parsedDate = dateFormat.parse(timestampStr);
-	    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+        Timestamp timestamp = Timestamp.valueOf(timestampStr);
 	    
 	    return timestamp;
 	}
