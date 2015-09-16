@@ -1,0 +1,48 @@
+#loginFormDiv{
+	position: absolute;
+	top: 45%;
+	left: 100px;
+	color: #FFFFFF;
+	font-size: 120%;
+}
+
+#title{
+	position: absolute;
+	top: 10%;
+	left: 100px;
+	color: #FFFFFF;
+	font-size: 250%;
+}
+
+html{
+	background: url(/springapp/images/background.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+
+#notRegisteredDiv{
+	font-size: 80%;
+}
+
+#registerDiv{
+	position: absolute;
+	top: 45%;
+	left: 350px;
+	color: #FFFFFF;
+	font-size: 80%;
+}
+
+#usernameError, #emailError, #passwordError, #confirmPasswordError, #loginEmailError, #loginPasswordError{
+	float: left;
+	color: #FF0000;
+	font-size: 120%;
+	font-weight: bold;
+}
+
+input[type="text"] {
+    float: left;
+}
+
+input[type="password"] {
+    float: left;
+}
+

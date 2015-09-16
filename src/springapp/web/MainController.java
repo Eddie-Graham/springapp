@@ -25,24 +25,32 @@ public class MainController {
 		
 	    return mav;
 	}
+	
+	@RequestMapping(value="/loginPage.html")
+	public ModelAndView loginPage(HttpServletRequest request){
+	    
+		ModelAndView mav = new ModelAndView("loginPage");
+		
+	    return mav;
+	}
 
 	@RequestMapping(value="/login.html")
-	public String login(HttpServletRequest request) throws SQLException{
+	public @ResponseBody String login(HttpServletRequest request) throws SQLException{
 		
-		String email = (String) request.getParameter("email");
-		String password = (String) request.getParameter("password");
+		String email = (String) request.getParameter("loginEmail");
+		String password = (String) request.getParameter("loginPassword");
 		
 		User user = DbService.getUserByEmail(email);
 		
 		if(user == null || !password.equals(user.getPassword())){
-			return "redirect:main.html";
+			return "FAILED";
 		}
 		
 		request.getSession().setAttribute("loggedInUser", user.getUsername());
 		
 		System.out.println("Logged in as : " + user.getUsername());
 	    
-		return "redirect:main.html";
+		return "SUCCESS";
 	}
 	
 	@RequestMapping(value="/logout.html")

@@ -4,16 +4,18 @@
 <%@attribute name="head" fragment="true"%>
 
 <!DOCTYPE html>
-
 <html>
-
 <head>
 <title>Fishing for Likes</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/util.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
+
 <jsp:invoke fragment="head" />
 </head>
-
 <body>
 	<div id="headerBar">
 		<div id=title>Fishing for Likes</div>
@@ -27,5 +29,4 @@
 		<jsp:invoke fragment="left" />
 	</div>
 </body>
-
 </html>
