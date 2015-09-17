@@ -26,90 +26,10 @@ public class MainController {
 	    return mav;
 	}
 	
-	@RequestMapping(value="/loginPage.html")
-	public ModelAndView loginPage(HttpServletRequest request){
-	    
-		ModelAndView mav = new ModelAndView("loginPage");
-		
-	    return mav;
-	}
-
-	@RequestMapping(value="/login.html")
-	public @ResponseBody String login(HttpServletRequest request) throws SQLException{
-		
-		String email = (String) request.getParameter("loginEmail");
-		String password = (String) request.getParameter("loginPassword");
-		
-		User user = DbService.getUserByEmail(email);
-		
-		if(user == null || !password.equals(user.getPassword())){
-			return "FAILED";
-		}
-		
-		request.getSession().setAttribute("loggedInUser", user.getUsername());
-		
-		System.out.println("Logged in as : " + user.getUsername());
-	    
-		return "SUCCESS";
-	}
-	
 	@RequestMapping(value="/logout.html")
 	public String logout(HttpServletRequest request){
 	    
 		request.getSession().removeAttribute("loggedInUser");
-		
-		return "redirect:main.html";
-	}
-	
-	@RequestMapping(value="/register.html")
-	public ModelAndView register(HttpServletRequest request){
-		
-		ModelAndView mav = new ModelAndView("register");
-		
-	    return mav;
-	}
-	
-	@RequestMapping(value="/checkUniqueEmail.html")
-	public @ResponseBody String checkUniqueEmail(HttpServletRequest request) throws SQLException{
-		
-		String email = request.getParameter("email");
-		
-		User user = DbService.getUserByEmail(email);
-		
-		if(user == null)
-			return "UNIQUE";
-		
-	    return "NOT UNIQUE";
-	}
-	
-	@RequestMapping(value="/checkUniqueUsername.html")
-	public @ResponseBody String checkUniqueUsername(HttpServletRequest request) throws SQLException{
-		
-		String username = request.getParameter("username");
-		
-		User user = DbService.getUserByUsername(username);
-		
-		if(user == null)
-			return "UNIQUE";
-		
-	    return "NOT UNIQUE";
-	}
-	
-	@RequestMapping(value="/submitRegistration.html")
-	public String submitRegistration(HttpServletRequest request) throws SQLException{
-		
-		String username = (String) request.getParameter("username");
-		String email = (String) request.getParameter("email");
-		String password = (String) request.getParameter("password");
-		//String confirmPassword = (String) request.getParameter("confirmPassword");
-		
-		User user = new User(username, email, password);
-		
-		DbService.createUser(user);
-
-		request.getSession().setAttribute("loggedInUser", user.getUsername());
-		
-		System.out.println("User with username " + user.getUsername() + " registered");
 		
 		return "redirect:main.html";
 	}
@@ -135,6 +55,4 @@ public class MainController {
 		
 		return "redirect:viewPosts.html";
 	}
-		
-	    
 }

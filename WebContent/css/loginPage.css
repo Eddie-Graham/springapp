@@ -6,6 +6,18 @@
 	font-size: 120%;
 }
 
+#registrationSuccessMsg{
+	position: absolute;
+	top: 45%;
+	left: 350px;
+	color: #FFFFFF;
+	font-size: 80%;
+	color: #00FF00;
+	font-size: 120%;
+	font-weight: bold;
+	display: none;
+}
+
 #title{
 	position: absolute;
 	top: 10%;
@@ -23,12 +35,13 @@ html{
 	font-size: 80%;
 }
 
-#registerDiv{
+#registrationFormDiv{
 	position: absolute;
 	top: 45%;
 	left: 350px;
 	color: #FFFFFF;
 	font-size: 80%;
+	display: none;
 }
 
 #usernameError, #emailError, #passwordError, #confirmPasswordError, #loginEmailError, #loginPasswordError{

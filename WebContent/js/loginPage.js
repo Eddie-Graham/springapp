@@ -1,16 +1,16 @@
 function loadRegisterPage(){
 	
-	$.ajax({
-		type : "GET",
-		url : "register.html",
-		
-		success : function(response) {
-			
-			$('#loginEmailError').empty();
-			$('#loginPasswordError').empty();
-			$("#registerDiv").html(response); 
-		}
-	});
+	$('#loginEmailError').hide();
+	$('#loginPasswordError').hide();
+	
+	$('#usernameError').hide();
+	$('#emailError').hide();
+	$('#passwordError').hide();
+	$('#confirmPasswordError').hide();
+	
+	$('#registrationSuccessMsg').hide();
+	
+	$("#registrationFormDiv").show();
 }
 
 function checkRegistrationInput() {
@@ -26,6 +26,11 @@ function checkRegistrationInput() {
 	var waitingForUsernameResponse = false;
 	var waitingForEmailResponse = false;
 	var finishedMethod = false;
+	
+	$('#usernameError').show();
+	$('#emailError').show();
+	$('#passwordError').show();
+	$('#confirmPasswordError').show();
 	
 	//////////////////////////////////////
 	// USERNAME CHECK                   //
@@ -146,30 +151,25 @@ function checkRegistrationInput() {
 	if(legitUsername && legitEmail && legitPasswords && finishedMethod && !waitingForUsernameResponse && !waitingForEmailResponse){
 		$("#registerForm").submit();
 	}
-	
-}
-
-
-function attemptLogin() {
-	
-	alert("yoo");
-
-	$("#loginForm").ajaxForm({
-		url : 'login.html',
-		type : 'GET',
-		beforeSubmit : function() {
-		},
-		success : function(response) {
-			alert("hi");
-		}
-	});
 }
 
 $(document).ready(function() {
+	
+	//////////////////////////////////////
+	// LOGIN FORM SUBMIT                //
+	//////////////////////////////////////
 
-	$("#loginForm").submit(function() {
+	$("#loginForm").submit(function(e) {
 		
-		$("#registerDiv").empty();
+		e.preventDefault();
+		
+		$('#registrationSuccessMsg').hide();
+		
+		$("#registrationFormDiv").hide();
+		
+		$('#loginEmailError').show();
+		$('#loginPasswordError').show();
+		
 		var loginEmail = $('#loginEmail').val();
 		var loginPassword = $('#loginPassword').val();
 		var emptyInput = false;
@@ -211,4 +211,26 @@ $(document).ready(function() {
 
 		return false;
 	});
+	
+	//////////////////////////////////////
+	// REGISTER FORM SUBMIT             //
+	//////////////////////////////////////
+	
+	$('#registerForm').on('submit', function(e) {
+
+        e.preventDefault();
+
+        $.ajax({
+			type : "POST",
+			url : 'submitRegistration.html',
+			data : $("#registerForm").serialize(), 
+			success : function(response) {
+				
+				if(response == 'SUCCESS'){
+					$('#registrationFormDiv').hide();
+					$('#registrationSuccessMsg').show();					
+				}	
+			}
+		});
+    });
 });
