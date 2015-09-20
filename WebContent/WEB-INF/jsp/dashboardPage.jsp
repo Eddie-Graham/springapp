@@ -4,9 +4,11 @@
 
 <t:genericpage>
 	<jsp:attribute name="head">
+	<!-- <script src="js/dashboardPage.js"></script> -->
     </jsp:attribute>
     
-	<jsp:attribute name="left">
+	<jsp:attribute name="leftBar">
+	<div> Welcome ${loggedInUser}!</div>
     </jsp:attribute>
     
 	<jsp:body>

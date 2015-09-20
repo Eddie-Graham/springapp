@@ -8,22 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.Post;
-import springapp.domain.User;
 import springapp.service.DbService;
 
 @Controller
-public class MainController {
-	
-	@RequestMapping(value="/main.html")
-	public ModelAndView enterMain(HttpServletRequest request){
+public class DashboardPageController {
+
+	@RequestMapping(value="/dashboardPage.html")
+	public ModelAndView enterDashboardPage(HttpServletRequest request){
 	    
-		ModelAndView mav = new ModelAndView("main");
-		
-	    return mav;
+		if(request.getSession().getAttribute("loggedInUser") == null)
+			return new ModelAndView("redirect:loginPage.html");
+
+	    return new ModelAndView("dashboardPage");
 	}
 	
 	@RequestMapping(value="/logout.html")
@@ -31,7 +30,7 @@ public class MainController {
 	    
 		request.getSession().removeAttribute("loggedInUser");
 		
-		return "redirect:main.html";
+		return "redirect:dashboardPage.html";
 	}
 	
 	@RequestMapping(value="/viewPosts.html")

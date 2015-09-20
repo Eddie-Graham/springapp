@@ -3,10 +3,10 @@ function loadRegisterPage(){
 	$('#loginEmailError').hide();
 	$('#loginPasswordError').hide();
 	
-	$('#usernameError').hide();
-	$('#emailError').hide();
-	$('#passwordError').hide();
-	$('#confirmPasswordError').hide();
+	$('#usernameError').html("");
+	$('#emailError').html("");
+	$('#passwordError').html("");
+	$('#confirmPasswordError').html("");
 	
 	$('#registrationSuccessMsg').hide();
 	
@@ -16,7 +16,11 @@ function loadRegisterPage(){
 function checkRegistrationInput() {
 	
 	var username = $('#username').val();
+	username = username.trim();
+	
 	var email = $('#email').val();
+	email = email.trim();
+	
 	var password = $('#password').val();
 	var confirmPassword = $('#confirmPassword').val();
 	
@@ -79,6 +83,11 @@ function checkRegistrationInput() {
 	}
 	
 	else if(email.indexOf("@") < 0){
+		$('#emailError').html("Please enter valid email");
+		legitEmail = false;
+	}
+	
+	else if(email.indexOf(" ") > -1){
 		$('#emailError').html("Please enter valid email");
 		legitEmail = false;
 	}
@@ -171,7 +180,9 @@ $(document).ready(function() {
 		$('#loginPasswordError').show();
 		
 		var loginEmail = $('#loginEmail').val();
+		loginEmail = loginEmail.trim();
 		var loginPassword = $('#loginPassword').val();
+		
 		var emptyInput = false;
 		
 		if(loginEmail == ""){
@@ -204,7 +215,7 @@ $(document).ready(function() {
 				}
 				
 				else if(response == "SUCCESS"){
-					window.location = "main.html";
+					window.location = "dashboardPage.html";
 				}
 			}
 		});

@@ -14,7 +14,7 @@ public class DbService {
 
 	public static User getUserByEmail(String email) throws SQLException{
 		
-		String query = "select * from users where email = '" + email + "';";			
+		String query = "select * from users where LOWER(email) = LOWER('" + email + "');";			
 		
 		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
 		
@@ -33,7 +33,7 @@ public class DbService {
 	
 	public static User getUserByUsername(String username) throws SQLException {
 
-		String query = "select * from users where username = '" + username + "';";
+		String query = "select * from users where LOWER(username) = LOWER('" + username + "');";
 
 		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
 

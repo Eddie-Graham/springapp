@@ -16,11 +16,12 @@ import springapp.service.DbService;
 public class LoginPageController {
 
 	@RequestMapping(value="/loginPage.html")
-	public ModelAndView loginPage(HttpServletRequest request){
-	    
-		ModelAndView mav = new ModelAndView("loginPage");
+	public ModelAndView enterLoginPage(HttpServletRequest request){
 		
-	    return mav;
+		if(request.getSession().getAttribute("loggedInUser") != null)
+			return new ModelAndView("redirect:dashboardPage.html");
+		
+	    return new ModelAndView("loginPage");
 	}
 	
 	@RequestMapping(value="/login.html")

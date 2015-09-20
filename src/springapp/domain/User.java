@@ -39,6 +39,6 @@ public class User {
 	
 	public String toString(){
 		
-		return username + " " + email;
+		return "username: " + username + "\nemail: " + email;
 	}
 }
