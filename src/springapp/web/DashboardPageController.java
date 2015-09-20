@@ -30,11 +30,11 @@ public class DashboardPageController {
 	    
 		request.getSession().removeAttribute("loggedInUser");
 		
-		return "redirect:dashboardPage.html";
+		return "redirect:loginPage.html";
 	}
 	
-	@RequestMapping(value="/viewPosts.html")
-	public ModelAndView viewPosts(HttpServletRequest request) throws SQLException, ParseException{
+	@RequestMapping(value="/postsByTimestamp.html")
+	public ModelAndView postsByTimestamp(HttpServletRequest request) throws SQLException, ParseException{
 		
 		ArrayList<Post> posts = DbService.getPostsByTimestamp();
 		
@@ -52,6 +52,6 @@ public class DashboardPageController {
 		
 		DbService.submitPost(postText, username);
 		
-		return "redirect:viewPosts.html";
+		return "redirect:postsByTimestamp.html";
 	}
 }
