@@ -16,11 +16,7 @@
 	<jsp:body>
 		<div id="submitPostDiv"> <textarea id="postText" name="postText"></textarea> <button id="postBtn" type="button" onclick="submitPost()">Post</button> </div>
 		<div id="postsDiv">
-			<div id="left">
-				<!-- <div id="postContainer">
-					<div id="post">TEST</div>
-				</div> -->
-			</div>
+			<div id="left"></div>
 			<div id="right"></div>
 		</div>
     </jsp:body>

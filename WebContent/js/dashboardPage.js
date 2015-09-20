@@ -2,15 +2,9 @@ $(document).ready(function() {
 	
 	updateClock("time");
 	
-	$.ajax({
-		type : "GET",
-		url : "postsByTimestamp.html",
-		
-		success : function(response) {
-			
-			$("#left").html(response); 
-		}
-	});
+	refreshPostsByTimestamp();
+	
+	refreshPostsByLikes();
 });
 
 function updateClock(id) {
@@ -59,6 +53,33 @@ function submitPost(){
 		type : "GET",
 		url : "submitPost.html",
 		data: {"postText": postText},
+		success : function(response) {
+
+			refreshPostsByLikes();
+			$("#left").html(response); 
+		}
+	});
+}
+
+function refreshPostsByLikes(){
+	
+	$.ajax({
+		type : "GET",
+		url : "postsByLikes.html",
+		
+		success : function(response) {
+			
+			$("#right").html(response); 
+		}
+	});
+}
+
+function refreshPostsByTimestamp(){
+	
+	$.ajax({
+		type : "GET",
+		url : "postsByTimestamp.html",
+		
 		success : function(response) {
 			
 			$("#left").html(response); 

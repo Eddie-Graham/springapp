@@ -76,6 +76,27 @@ public class DbService {
 		return posts;
 	}
 	
+	public static ArrayList<Post> getPostsByLikes() throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = new ArrayList<Post>();
+		
+		String query = "select * from posts order by likes desc;";
+		
+		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+		
+		while (rs.next()) {
+			String text = rs.getString("text");
+			int likes = Integer.parseInt(rs.getString("likes"));
+			int dislikes = Integer.parseInt(rs.getString("dislikes"));
+			Timestamp timestamp = Utils.getTimestamp(rs.getString("timestamp"));
+			String username = rs.getString("username");
+			
+			posts.add(new Post(text, likes, dislikes, timestamp, username));
+		}
+		
+		return posts;
+	}
+	
 	public static void submitPost(String postText, String username){
 		
 		String query = "insert into posts (text, username) values ('" + postText + "', '" + username + "');";

@@ -44,6 +44,17 @@ public class DashboardPageController {
 	    return mav;
 	}
 	
+	@RequestMapping(value="/postsByLikes.html")
+	public ModelAndView postsByLikes(HttpServletRequest request) throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = DbService.getPostsByLikes();
+		
+		ModelAndView mav = new ModelAndView("posts");
+		mav.addObject("posts", posts);
+		
+	    return mav;
+	}
+	
 	@RequestMapping(value="/submitPost.html")
 	public String submitPost(HttpServletRequest request) throws SQLException, ParseException{
 		

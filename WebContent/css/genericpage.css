@@ -30,7 +30,10 @@
 	right: 0;
 	top: 15%;
 	bottom: 0;
-	padding: 1%;
+	-webkit-box-sizing: border-box;
+	padding-top: 1%;
+	padding-right: 1%;
+	padding-left: 1%;
 }
 
 #time{
