@@ -7,6 +7,7 @@ password varchar(255) NOT NULL
 
 CREATE TABLE Posts
 (
+id SERIAL UNIQUE,
 text varchar(255) NOT NULL,
 likes int NOT NULL DEFAULT 0,
 dislikes int NOT NULL DEFAULT 0,

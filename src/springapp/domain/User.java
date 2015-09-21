@@ -10,7 +10,6 @@ public class User {
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		
 	}
 
 	public String getUsername() {
@@ -39,6 +38,6 @@ public class User {
 	
 	public String toString(){
 		
-		return "username: " + username + "\nemail: " + email;
+		return "\nusername: " + username + "\nemail: " + email;
 	}
 }

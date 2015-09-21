@@ -2,20 +2,36 @@ package springapp.domain;
 
 import java.sql.Timestamp;
 
+import springapp.service.Utils;
+
 public class Post {
 	
+	private int id;
 	private String text;
 	private int likes;
 	private int dislikes;
 	private Timestamp timestamp;
+	private String timeString;
+	private String dateString;
 	private String username;
 	
-	public Post(String text, int likes, int dislikes, Timestamp timestamp, String username){
+	public Post(int id, String text, int likes, int dislikes, Timestamp timestamp, String username){
+		this.id = id;
 		this.text = text;
 		this.likes = likes;
 		this.dislikes = dislikes;
 		this.timestamp = timestamp;
+		this.timeString = Utils.getTimeString(timestamp);
+		this.dateString = Utils.getDateString(timestamp);
 		this.username = username;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getText() {
@@ -49,6 +65,22 @@ public class Post {
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
+	
+	public String getTimeString() {
+		return timeString;
+	}
+
+	public void setTimeString(String timeString) {
+		this.timeString = timeString;
+	}
+
+	public String getDateString() {
+		return dateString;
+	}
+
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
 
 	public String getUsername() {
 		return username;
@@ -60,6 +92,7 @@ public class Post {
 	
 	public String toString(){
 		
-		return text + " " + likes + " " + dislikes + " " + timestamp + " " + username;
+		return "\nid: " + id + "\ntext: " + text + "\nlikes: " + likes + "\ndislikes: " + dislikes + "\ntimestamp: "
+				+ timestamp + "\nusername: " + username;
 	}
 }

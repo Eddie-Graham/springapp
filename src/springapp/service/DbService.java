@@ -64,13 +64,14 @@ public class DbService {
 		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
 		
 		while (rs.next()) {
+			int id = Integer.parseInt(rs.getString("id"));
 			String text = rs.getString("text");
 			int likes = Integer.parseInt(rs.getString("likes"));
 			int dislikes = Integer.parseInt(rs.getString("dislikes"));
 			Timestamp timestamp = Utils.getTimestamp(rs.getString("timestamp"));
 			String username = rs.getString("username");
 			
-			posts.add(new Post(text, likes, dislikes, timestamp, username));
+			posts.add(new Post(id, text, likes, dislikes, timestamp, username));
 		}
 		
 		return posts;
@@ -85,13 +86,14 @@ public class DbService {
 		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
 		
 		while (rs.next()) {
+			int id = Integer.parseInt(rs.getString("id"));
 			String text = rs.getString("text");
 			int likes = Integer.parseInt(rs.getString("likes"));
 			int dislikes = Integer.parseInt(rs.getString("dislikes"));
 			Timestamp timestamp = Utils.getTimestamp(rs.getString("timestamp"));
 			String username = rs.getString("username");
 			
-			posts.add(new Post(text, likes, dislikes, timestamp, username));
+			posts.add(new Post(id, text, likes, dislikes, timestamp, username));
 		}
 		
 		return posts;
