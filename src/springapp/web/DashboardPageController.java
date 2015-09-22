@@ -41,7 +41,7 @@ public class DashboardPageController {
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
 		
-	    return mav;
+		return mav;
 	}
 	
 	@RequestMapping(value="/postsByLikes.html")
@@ -52,7 +52,7 @@ public class DashboardPageController {
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
 		
-	    return mav;
+		return mav;
 	}
 	
 	@RequestMapping(value="/submitPost.html")

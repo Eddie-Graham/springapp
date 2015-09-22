@@ -21,7 +21,7 @@ public class LoginPageController {
 		if(request.getSession().getAttribute("loggedInUser") != null)
 			return new ModelAndView("redirect:dashboardPage.html");
 		
-	    return new ModelAndView("loginPage");
+		return new ModelAndView("loginPage");
 	}
 	
 	@RequestMapping(value="/login.html")
@@ -46,14 +46,6 @@ public class LoginPageController {
 		return "SUCCESS";
 	}
 	
-	@RequestMapping(value="/register.html")
-	public ModelAndView register(HttpServletRequest request){
-		
-		ModelAndView mav = new ModelAndView("register");
-		
-	    return mav;
-	}
-	
 	@RequestMapping(value="/checkUniqueEmail.html")
 	public @ResponseBody String checkUniqueEmail(HttpServletRequest request) throws SQLException{
 		
@@ -66,7 +58,7 @@ public class LoginPageController {
 		if(user == null)
 			return "UNIQUE";
 		
-	    return "NOT UNIQUE";
+		return "NOT UNIQUE";
 	}
 	
 	@RequestMapping(value="/checkUniqueUsername.html")
@@ -81,7 +73,7 @@ public class LoginPageController {
 		if(user == null)
 			return "UNIQUE";
 		
-	    return "NOT UNIQUE";
+		return "NOT UNIQUE";
 	}
 	
 	@RequestMapping(value="/submitRegistration.html")
@@ -99,8 +91,6 @@ public class LoginPageController {
 		User user = new User(username, email, password);
 		
 		DbService.createUser(user);
-
-		request.getSession().setAttribute("loggedInUser", user.getUsername());
 		
 		System.out.println("User with username " + user.getUsername() + " registered");
 		
