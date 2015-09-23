@@ -14,10 +14,10 @@
 
 			<div id="postRight">
 				<div id="likes">
-					<c:out value="${post.likes}"/> Likes
+					<div id="likes_${post.id}"><c:out value="${post.likes}"/></div> <input type="button" onclick="incrementLikes(${post.id})" value="Like" />
 				</div>
 				<div id="dislikes">
-					<c:out value="${post.dislikes}"/> Dislikes
+					<div id="dislikes_${post.id}"><c:out value="${post.dislikes}"/></div> <input type="button" onclick="decrementLikes(${post.id})" value="Dislike" />
 				</div>
 			</div>
 		</div>

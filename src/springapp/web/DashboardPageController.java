@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.Post;
+import springapp.domain.User;
 import springapp.service.DbService;
 
 @Controller
@@ -64,5 +66,25 @@ public class DashboardPageController {
 		DbService.submitPost(postText, username);
 		
 		return "redirect:postsByTimestamp.html";
+	}
+	
+	@RequestMapping(value="/incrementLikes.html")
+	public @ResponseBody String incrementLikes(HttpServletRequest request) throws SQLException{
+		
+		int postId = Integer.parseInt(request.getParameter("postId"));
+		
+		DbService.incrementLikes(postId);
+		
+		return "SUCCESS";
+	}
+	
+	@RequestMapping(value="/decrementLikes.html")
+	public @ResponseBody String decrementLikes(HttpServletRequest request) throws SQLException{
+		
+		int postId = Integer.parseInt(request.getParameter("postId"));
+		
+		DbService.decrementLikes(postId);
+		
+		return "SUCCESS";
 	}
 }

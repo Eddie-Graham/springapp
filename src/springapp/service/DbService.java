@@ -105,4 +105,18 @@ public class DbService {
 		
 		DbConImpl.makeConnectionAndExecuteQuery(query);
 	}
+	
+	public static void incrementLikes(int postId){
+		
+		String query = "update posts set likes = likes + 1 where Id =" + postId + ";";
+		
+		DbConImpl.makeConnectionAndExecuteQuery(query);
+	}
+	
+	public static void decrementLikes(int postId){
+		
+		String query = "update posts set dislikes = dislikes - 1 where Id =" + postId + ";";
+		
+		DbConImpl.makeConnectionAndExecuteQuery(query);
+	}
 }

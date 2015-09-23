@@ -86,3 +86,45 @@ function refreshPostsByTimestamp(){
 		}
 	});
 }
+
+function incrementLikes(postId){
+	
+	$.ajax({
+		type : "GET",
+		url : "incrementLikes.html",
+		data: {"postId": postId},
+		success : function(response) {
+			
+			if(response != 'SUCCESS')
+				return;
+			
+			var likes = $("#likes_" + postId).html();
+			var newLikes = parseInt(likes) + 1;
+			
+			$("#likes_" + postId).html(newLikes); 
+			
+			refreshPostsByLikes();
+		}
+	});
+}
+
+function decrementLikes(postId){
+	
+	$.ajax({
+		type : "GET",
+		url : "decrementLikes.html",
+		data: {"postId": postId},
+		success : function(response) {
+			
+			if(response != 'SUCCESS')
+				return;
+			
+			var dislikes = $("#dislikes_" + postId).html();
+			var newDislikes = parseInt(dislikes) - 1;
+			
+			$("#dislikes_" + postId).html(newDislikes); 
+			
+			refreshPostsByLikes();
+		}
+	});
+}

@@ -8,9 +8,9 @@ public class Utils {
 	
 	public static Timestamp getTimestamp(String timestampStr) throws ParseException{
 		
-        Timestamp timestamp = Timestamp.valueOf(timestampStr);
+		Timestamp timestamp = Timestamp.valueOf(timestampStr);
 	    
-	    return timestamp;
+        return timestamp;
 	}
 	
 	public static String getDateString(Timestamp timestamp){
