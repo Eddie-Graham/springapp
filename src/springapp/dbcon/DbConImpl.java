@@ -24,7 +24,7 @@ public class DbConImpl implements DbCon {
 						
 			Statement stmt = c.createStatement();
 			
-			System.out.println("Executing query: " + query);
+			System.out.println("Running query: " + query);
 			
 			rs = stmt.executeQuery(query);	
 			

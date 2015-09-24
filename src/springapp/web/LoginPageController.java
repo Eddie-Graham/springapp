@@ -39,7 +39,9 @@ public class LoginPageController {
 			return "FAILED";
 		}
 		
+		// logged in attributes
 		request.getSession().setAttribute("loggedInUser", user.getUsername());
+		request.getSession().setAttribute("loggedInUserId", user.getId());
 		
 		System.out.println("Logged in as : " + user.getUsername());
 	    

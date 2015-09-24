@@ -1,5 +1,6 @@
 package springapp.web;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class DashboardPageController {
 		if(request.getSession().getAttribute("loggedInUser") == null)
 			return new ModelAndView("redirect:loginPage.html");
 
-	    return new ModelAndView("dashboardPage");
+		return new ModelAndView("dashboardPage");
 	}
 	
 	@RequestMapping(value="/logout.html")
@@ -71,9 +72,18 @@ public class DashboardPageController {
 	@RequestMapping(value="/incrementLikes.html")
 	public @ResponseBody String incrementLikes(HttpServletRequest request) throws SQLException{
 		
-		int postId = Integer.parseInt(request.getParameter("postId"));
+		String userId = (String) request.getSession().getAttribute("loggedInUserId");
+		String postId = request.getParameter("postId");
+		
+		ResultSet rs = DbService.getLikeRecord(userId, postId);
+		
+		// if entry exists in table
+		if(rs.next())
+			return "FAILED";
 		
 		DbService.incrementLikes(postId);
+		
+		DbService.createLikeRecord(userId, postId);
 		
 		return "SUCCESS";
 	}
@@ -81,9 +91,18 @@ public class DashboardPageController {
 	@RequestMapping(value="/decrementLikes.html")
 	public @ResponseBody String decrementLikes(HttpServletRequest request) throws SQLException{
 		
-		int postId = Integer.parseInt(request.getParameter("postId"));
+		String userId = (String) request.getSession().getAttribute("loggedInUserId");
+		String postId = request.getParameter("postId");
+		
+		ResultSet rs = DbService.getDislikeRecord(userId, postId);
+		
+		// if entry exists in table
+		if(rs.next())
+			return "FAILED";
 		
 		DbService.decrementLikes(postId);
+		
+		DbService.createDislikeRecord(userId, postId);
 		
 		return "SUCCESS";
 	}

@@ -95,8 +95,10 @@ function incrementLikes(postId){
 		data: {"postId": postId},
 		success : function(response) {
 			
-			if(response != 'SUCCESS')
+			if(response == 'FAILED'){
+				alert("You have already liked this post");
 				return;
+			}
 			
 			var likes = $("#likes_" + postId).html();
 			var newLikes = parseInt(likes) + 1;
@@ -116,8 +118,10 @@ function decrementLikes(postId){
 		data: {"postId": postId},
 		success : function(response) {
 			
-			if(response != 'SUCCESS')
+			if(response == 'FAILED'){
+				alert("You have already disliked this post");
 				return;
+			}
 			
 			var dislikes = $("#dislikes_" + postId).html();
 			var newDislikes = parseInt(dislikes) - 1;

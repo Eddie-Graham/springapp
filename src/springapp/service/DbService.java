@@ -18,14 +18,12 @@ public class DbService {
 		
 		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
 		
-		String username = "";
-		String passwordStr = "";
-		
 		while (rs.next()) {
-			username = rs.getString("username");
-            passwordStr = rs.getString("password");
+			String id = rs.getString("id");
+			String username = rs.getString("username");
+            String passwordStr = rs.getString("password");
             
-            return new User(username, email, passwordStr);
+            return new User(id, username, email, passwordStr);
         }
 		
 		return null;
@@ -38,10 +36,11 @@ public class DbService {
 		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
 
 		while (rs.next()) {
+			String id = rs.getString("id");
 			String email = rs.getString("email");
 			String passwordStr = rs.getString("password");
 
-			return new User(username, email, passwordStr);
+			return new User(id, username, email, passwordStr);
 		}
 
 		return null;
@@ -49,7 +48,7 @@ public class DbService {
 	
 	public static void createUser(User user) throws SQLException{
 		
-		String query = "insert into users values('" + user.getUsername() + "', '" + user.getEmail() + "', '"
+		String query = "insert into users (username, email, password) values('" + user.getUsername() + "', '" + user.getEmail() + "', '"
 				+ user.getPassword() + "');";		
 		
 		DbConImpl.makeConnectionAndExecuteQuery(query);
@@ -106,17 +105,49 @@ public class DbService {
 		DbConImpl.makeConnectionAndExecuteQuery(query);
 	}
 	
-	public static void incrementLikes(int postId){
+	public static void incrementLikes(String postId){
 		
 		String query = "update posts set likes = likes + 1 where Id =" + postId + ";";
 		
 		DbConImpl.makeConnectionAndExecuteQuery(query);
 	}
 	
-	public static void decrementLikes(int postId){
+	public static void decrementLikes(String postId){
 		
 		String query = "update posts set dislikes = dislikes - 1 where Id =" + postId + ";";
 		
 		DbConImpl.makeConnectionAndExecuteQuery(query);
+	}
+	
+	public static void createLikeRecord(String userId, String postId){
+		
+		String query = "insert into like_Records (user_id, post_id) values ('" + userId + "', '" + postId + "');";
+		
+		DbConImpl.makeConnectionAndExecuteQuery(query);
+	}
+	
+	public static void createDislikeRecord(String userId, String postId){
+		
+		String query = "insert into dislike_Records (user_id, post_id) values ('" + userId + "', '" + postId + "');";
+		
+		DbConImpl.makeConnectionAndExecuteQuery(query);
+	}
+	
+	public static ResultSet getLikeRecord(String userId, String postId){
+		
+		String query = "select * from like_records where user_id = " + userId + " and post_id = " + postId + ";";
+		
+		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+		
+		return rs;
+	}
+
+	public static ResultSet getDislikeRecord(String userId, String postId) {
+		
+		String query = "select * from dislike_records where user_id = " + userId + " and post_id = " + postId + ";";
+		
+		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+		
+		return rs;
 	}
 }

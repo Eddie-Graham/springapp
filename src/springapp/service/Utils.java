@@ -10,7 +10,7 @@ public class Utils {
 		
 		Timestamp timestamp = Timestamp.valueOf(timestampStr);
 	    
-        return timestamp;
+		return timestamp;
 	}
 	
 	public static String getDateString(Timestamp timestamp){
