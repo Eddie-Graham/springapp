@@ -75,11 +75,15 @@ public class DashboardPageController {
 		String userId = (String) request.getSession().getAttribute("loggedInUserId");
 		String postId = request.getParameter("postId");
 		
-		ResultSet rs = DbService.getLikeRecord(userId, postId);
-		
+		ResultSet rsLR = DbService.getLikeRecord(userId, postId);
 		// if entry exists in table
-		if(rs.next())
-			return "FAILED";
+		if(rsLR.next())
+			return "FAILED_LIKED";
+		
+		ResultSet rsDR = DbService.getDislikeRecord(userId, postId);
+		// if entry exists in table
+		if(rsDR.next())
+			return "FAILED_DISLIKED";
 		
 		DbService.incrementLikes(postId);
 		
@@ -94,11 +98,15 @@ public class DashboardPageController {
 		String userId = (String) request.getSession().getAttribute("loggedInUserId");
 		String postId = request.getParameter("postId");
 		
-		ResultSet rs = DbService.getDislikeRecord(userId, postId);
-		
+		ResultSet rsLR = DbService.getLikeRecord(userId, postId);
 		// if entry exists in table
-		if(rs.next())
-			return "FAILED";
+		if(rsLR.next())
+			return "FAILED_LIKED";
+
+		ResultSet rsDR = DbService.getDislikeRecord(userId, postId);
+		// if entry exists in table
+		if(rsDR.next())
+			return "FAILED_DISLIKED";
 		
 		DbService.decrementLikes(postId);
 		

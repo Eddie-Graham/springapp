@@ -21,9 +21,9 @@ public class DbService {
 		while (rs.next()) {
 			String id = rs.getString("id");
 			String username = rs.getString("username");
-            String passwordStr = rs.getString("password");
+			String passwordStr = rs.getString("password");
             
-            return new User(id, username, email, passwordStr);
+			return new User(id, username, email, passwordStr);
         }
 		
 		return null;
