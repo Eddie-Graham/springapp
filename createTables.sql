@@ -1,4 +1,14 @@
-﻿CREATE TABLE Users
+﻿DROP TABLE Like_Records;
+
+DROP TABLE Dislike_Records;
+
+DROP TABLE Posts;
+
+DROP TABLE Users;
+
+----------------------------------
+
+CREATE TABLE Users
 (
 id SERIAL PRIMARY KEY,
 username varchar(255) NOT NULL UNIQUE,
@@ -6,13 +16,16 @@ email varchar(255) NOT NULL UNIQUE,
 password varchar(255) NOT NULL
 );
 
+-- sign in
+insert into users (username, email, password) values('test', 'jamgrah2@aol.com', 'password');
+
 CREATE TABLE Posts
 (
 id SERIAL PRIMARY KEY,
 text varchar(255) NOT NULL,
 likes int NOT NULL DEFAULT 0,
 dislikes int NOT NULL DEFAULT 0,
-timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+timestamp TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'BST'), 
 username varchar(255) NOT NULL,
 FOREIGN KEY (username) REFERENCES Users(username)
 );
