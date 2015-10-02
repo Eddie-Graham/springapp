@@ -1,61 +1,52 @@
-#loginFormDiv{
-	position: absolute;
-	top: 45%;
-	left: 100px;
-	color: #FFFFFF;
-	font-size: 120%;
-}
-
-#registrationSuccessMsg{
-	position: absolute;
-	top: 45%;
-	left: 350px;
-	color: #FFFFFF;
-	font-size: 80%;
-	color: #00FF00;
-	font-size: 120%;
-	font-weight: bold;
-	display: none;
+#container{
+ 	position: fixed;
+ 	top: 0;
+ 	bottom: 0;
+ 	left: 0;
+ 	right: 0;
+ 	overflow: scroll;
 }
 
 #title{
-	position: absolute;
-	top: 10%;
-	left: 100px;
 	color: #FFFFFF;
-	font-size: 250%;
+	position: static;
+	-webkit-box-sizing: border-box;
+/* 	border: 1px solid #000000; */
+	padding: 2%;
 }
 
-html{
+#left{
+	color: #FFFFFF;
+ 	position: static;
+ 	-webkit-box-sizing: border-box;
+/* 	border: 1px solid #000000;  */
+	float: left;
+	padding: 2%;
+ }
+ 
+#right{
+	color: #FFFFFF;
+ 	position: static;
+ 	-webkit-box-sizing: border-box;
+/* 	border: 1px solid #000000;  */
+	padding: 2%;
+ }
+ 
+.formLabel{
+ 	position: static;
+ 	height: 20%;
+ }
+ 
+.form{
+ 	position: static;
+ 	height: 80%;
+ }
+ 
+ html{
 	background: url(/springapp/images/background.jpg) no-repeat center center fixed;
 	background-size: cover;
 }
 
-#notRegisteredDiv{
-	font-size: 80%;
+input[type] {
+    color: #000000;
 }
-
-#registrationFormDiv{
-	position: absolute;
-	top: 45%;
-	left: 350px;
-	color: #FFFFFF;
-	font-size: 80%;
-	display: none;
-}
-
-#usernameError, #emailError, #passwordError, #confirmPasswordError, #loginEmailError, #loginPasswordError{
-	float: left;
-	color: #FF0000;
-	font-size: 120%;
-	font-weight: bold;
-}
-
-input[type="text"] {
-    float: left;
-}
-
-input[type="password"] {
-    float: left;
-}
-

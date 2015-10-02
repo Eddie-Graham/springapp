@@ -1,52 +1,39 @@
-#submitPostDiv{
-	position: static;
-	height: 15%;
-	border: 1px solid #000000;
+#right{
 	-webkit-box-sizing: border-box;
-	padding: 1%;
-}
-
-#postText{
-	position: static;
+ 	border: 1px solid #000000;
 	height: 100%;
+	overflow: scroll;
+	float: left;
+} 
+
+#left{
 	-webkit-box-sizing: border-box;
-	width: 20%;
-	resize: none;
-	font-size: 14pt;
-	float: left;
-}
-
-#postBtn{
-	position: static;
-	float: left;
+ 	border: 1px solid #000000;
 	height: 100%;
+	overflow: scroll;
+	float: left;
+} 
+
+#postSubmitDiv{
+	position: fixed;
+	top: 0;
+	height: 100px;
+	-webkit-box-sizing: border-box;
+ 	border: 1px solid #000000;
+	padding: 2%;
+} 
+
+#main{
+	padding-top: 100px;
+	height: 100%;
+	width: 100%;
+	-webkit-box-sizing: border-box;
 }
 
 #postsDiv{
-	position: static;
 	-webkit-box-sizing: border-box;
-	/* border: 1px solid #000000; */
-	height: 85%;
-	padding-top: 1%;
-}
-
-#left{
-	position: static;
-	float: left;
-	width: 50%;
+ 	border: 1px solid #000000;
 	height: 100%;
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
-	overflow: scroll;
-}
-
-#right{
-	position: static;
-	float: left;
-	width: 50%;
-	height: 100%;
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
 	overflow: scroll;
 }
 
@@ -55,10 +42,10 @@
 	width: 100%;
 	height: 30%;
 	-webkit-box-sizing: border-box;
-	/* border: 1px solid #000000;
+	border: 1px solid #000000;
 	padding-right: 0.5%;
 	padding-top: 0.5%;
-	padding-bottom: 0.5%;  */
+	padding-bottom: 0.5%; 
 	padding: 2%;
 }
 
@@ -66,8 +53,8 @@
 	position: static;
 	width: 100%;
 	height: 100%;
-	/* -webkit-box-sizing: border-box;
-	border: 1px solid #000000; */
+	-webkit-box-sizing: border-box;
+	border: 1px solid #000000;
 }
 
 #text{
@@ -90,8 +77,8 @@
 
 #postLeft{
 	position: static;
-	/* -webkit-box-sizing: border-box;
-	border: 1px solid #000000; */
+	-webkit-box-sizing: border-box;
+	border: 1px solid #000000;
 	height: 100%;
 	width: 80%;
 	float: left;
@@ -99,8 +86,8 @@
 
 #postRight{
 	position: static;
-	/* -webkit-box-sizing: border-box;
-	border: 1px solid #000000; */
+	-webkit-box-sizing: border-box;
+	border: 1px solid #000000;
 	width: 20%;
 	height: 100%;
 	float: left;
@@ -123,3 +110,4 @@
 	height: 50%;
 	padding: 5%;
 }
+

@@ -13,19 +13,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.Post;
-import springapp.domain.User;
 import springapp.service.DbService;
 
 @Controller
-public class DashboardPageController {
+public class HomePageController {
 
-	@RequestMapping(value="/dashboardPage.html")
-	public ModelAndView enterDashboardPage(HttpServletRequest request){
+	@RequestMapping(value="/homePage.html")
+	public ModelAndView enterHomePage(HttpServletRequest request){
 	    
 		if(request.getSession().getAttribute("loggedInUser") == null)
 			return new ModelAndView("redirect:loginPage.html");
 
-		return new ModelAndView("dashboardPage");
+		return new ModelAndView("homePage");
 	}
 	
 	@RequestMapping(value="/logout.html")
@@ -114,4 +113,14 @@ public class DashboardPageController {
 		
 		return "SUCCESS";
 	}
+	
+	@RequestMapping(value="/aboutPage.html")
+	public ModelAndView enterAboutPage(HttpServletRequest request){
+	    
+		if(request.getSession().getAttribute("loggedInUser") == null)
+			return new ModelAndView("redirect:loginPage.html");
+
+		return new ModelAndView("aboutPage");
+	}
+	
 }

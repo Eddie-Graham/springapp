@@ -17,7 +17,7 @@ password varchar(255) NOT NULL
 );
 
 -- sign in
-insert into users (username, email, password) values('test', 'jamgrah2@aol.com', 'password');
+INSERT INTO Users (username, email, password) VALUES ('test', 'jamgrah2@aol.com', 'password');
 
 CREATE TABLE Posts
 (

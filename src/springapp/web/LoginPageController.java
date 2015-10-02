@@ -19,7 +19,7 @@ public class LoginPageController {
 	public ModelAndView enterLoginPage(HttpServletRequest request){
 		
 		if(request.getSession().getAttribute("loggedInUser") != null)
-			return new ModelAndView("redirect:dashboardPage.html");
+			return new ModelAndView("redirect:homePage.html");
 		
 		return new ModelAndView("loginPage");
 	}
@@ -35,9 +35,8 @@ public class LoginPageController {
 		
 		User user = DbService.getUserByEmail(email);
 		
-		if(user == null || !password.equals(user.getPassword())){
+		if(user == null || !password.equals(user.getPassword()))
 			return "FAILED";
-		}
 		
 		// logged in attributes
 		request.getSession().setAttribute("loggedInUser", user.getUsername());
