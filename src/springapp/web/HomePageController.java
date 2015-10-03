@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,9 @@ import springapp.service.DbService;
 
 @Controller
 public class HomePageController {
+	
+	@Autowired
+	private DbService dbService;
 
 	@RequestMapping(value="/homePage.html")
 	public ModelAndView enterHomePage(HttpServletRequest request){
@@ -38,7 +42,7 @@ public class HomePageController {
 	@RequestMapping(value="/postsByTimestamp.html")
 	public ModelAndView postsByTimestamp(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = DbService.getPostsByTimestamp();
+		ArrayList<Post> posts = dbService.getPostsByTimestamp();
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
@@ -49,7 +53,7 @@ public class HomePageController {
 	@RequestMapping(value="/postsByLikes.html")
 	public ModelAndView postsByLikes(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = DbService.getPostsByLikes();
+		ArrayList<Post> posts = dbService.getPostsByLikes();
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
@@ -63,7 +67,7 @@ public class HomePageController {
 		String postText = request.getParameter("postText");
 		String username = (String) request.getSession().getAttribute("loggedInUser");
 		
-		DbService.submitPost(postText, username);
+		dbService.submitPost(postText, username);
 		
 		return "redirect:postsByTimestamp.html";
 	}
@@ -74,19 +78,19 @@ public class HomePageController {
 		String userId = (String) request.getSession().getAttribute("loggedInUserId");
 		String postId = request.getParameter("postId");
 		
-		ResultSet rsLR = DbService.getLikeRecord(userId, postId);
+		ResultSet rsLR = dbService.getLikeRecord(userId, postId);
 		// if entry exists in table
 		if(rsLR.next())
 			return "FAILED_LIKED";
 		
-		ResultSet rsDR = DbService.getDislikeRecord(userId, postId);
+		ResultSet rsDR = dbService.getDislikeRecord(userId, postId);
 		// if entry exists in table
 		if(rsDR.next())
 			return "FAILED_DISLIKED";
 		
-		DbService.incrementLikes(postId);
+		dbService.incrementLikes(postId);
 		
-		DbService.createLikeRecord(userId, postId);
+		dbService.createLikeRecord(userId, postId);
 		
 		return "SUCCESS";
 	}
@@ -97,19 +101,19 @@ public class HomePageController {
 		String userId = (String) request.getSession().getAttribute("loggedInUserId");
 		String postId = request.getParameter("postId");
 		
-		ResultSet rsLR = DbService.getLikeRecord(userId, postId);
+		ResultSet rsLR = dbService.getLikeRecord(userId, postId);
 		// if entry exists in table
 		if(rsLR.next())
 			return "FAILED_LIKED";
 
-		ResultSet rsDR = DbService.getDislikeRecord(userId, postId);
+		ResultSet rsDR = dbService.getDislikeRecord(userId, postId);
 		// if entry exists in table
 		if(rsDR.next())
 			return "FAILED_DISLIKED";
 		
-		DbService.decrementLikes(postId);
+		dbService.decrementLikes(postId);
 		
-		DbService.createDislikeRecord(userId, postId);
+		dbService.createDislikeRecord(userId, postId);
 		
 		return "SUCCESS";
 	}

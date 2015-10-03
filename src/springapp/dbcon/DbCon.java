@@ -1,9 +1,73 @@
 package springapp.dbcon;
 
-public interface DbCon {
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class DbCon{
 	
-	public static final String DRIVER_CLASS_NAME = "org.postgresql.Driver";
-	public static final String URL =  System.getenv("OPENSHIFT_POSTGRESQL_DB_MYURL");
-	public static final String USERNAME = System.getenv("OPENSHIFT_POSTGRESQL_DB_USERNAME");
-	public static final String PASSWORD = System.getenv("OPENSHIFT_POSTGRESQL_DB_PASSWORD");	
+	@Autowired
+	private DataSource dataSource;
+
+	/**
+	 * Run a query for which results are expected.
+	 * @param query
+	 * @return
+	 */
+	public ResultSet makeConnectionAndRunQuery(String query){
+		
+		ResultSet rs = null;
+		
+		try {
+			
+			Connection c = dataSource.getConnection();
+
+			Statement stmt = c.createStatement();
+			
+			System.out.println("Running query: " + query);
+			
+			rs = stmt.executeQuery(query);	
+			
+			c.close();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+		return rs;
+		
+	}
+	
+	/**
+	 * Execute query which does not return a result.
+	 * @param query
+	 */
+	public void makeConnectionAndExecuteQuery(String query){
+		
+		try {
+
+			Connection c = dataSource.getConnection();
+						
+			Statement stmt = c.createStatement();
+			
+			System.out.println("Executing query: " + query);
+			
+			stmt.execute(query);	
+			
+			c.close();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+	}
 }

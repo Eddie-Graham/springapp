@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +15,9 @@ import springapp.service.DbService;
 
 @Controller
 public class LoginPageController {
+	
+	@Autowired
+	private DbService dbService;
 
 	@RequestMapping(value="/loginPage.html")
 	public ModelAndView enterLoginPage(HttpServletRequest request){
@@ -33,7 +37,7 @@ public class LoginPageController {
 		email = email.trim();
 		password = password.trim();
 		
-		User user = DbService.getUserByEmail(email);
+		User user = dbService.getUserByEmail(email);
 		
 		if(user == null || !password.equals(user.getPassword()))
 			return "FAILED";
@@ -54,7 +58,7 @@ public class LoginPageController {
 		
 		email = email.trim();
 		
-		User user = DbService.getUserByEmail(email);
+		User user = dbService.getUserByEmail(email);
 		
 		if(user == null)
 			return "UNIQUE";
@@ -69,7 +73,7 @@ public class LoginPageController {
 		
 		username = username.trim();
 		
-		User user = DbService.getUserByUsername(username);
+		User user = dbService.getUserByUsername(username);
 		
 		if(user == null)
 			return "UNIQUE";
@@ -91,7 +95,7 @@ public class LoginPageController {
 		
 		User user = new User(username, email, password);
 		
-		DbService.createUser(user);
+		dbService.createUser(user);
 		
 		System.out.println("User with username " + user.getUsername() + " registered");
 		

@@ -6,17 +6,24 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import springapp.dbcon.DbConImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import springapp.dbcon.DbCon;
 import springapp.domain.Post;
 import springapp.domain.User;
 
+@Component
 public class DbService {
+	
+	@Autowired
+	private DbCon dbCon;
 
-	public static User getUserByEmail(String email) throws SQLException{
+	public User getUserByEmail(String email) throws SQLException{
 		
 		String query = "select * from users where LOWER(email) = LOWER('" + email + "');";			
-		
-		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
 		while (rs.next()) {
 			String id = rs.getString("id");
@@ -29,11 +36,11 @@ public class DbService {
 		return null;
 	}
 	
-	public static User getUserByUsername(String username) throws SQLException {
+	public User getUserByUsername(String username) throws SQLException {
 
 		String query = "select * from users where LOWER(username) = LOWER('" + username + "');";
 
-		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
 		while (rs.next()) {
 			String id = rs.getString("id");
@@ -46,21 +53,21 @@ public class DbService {
 		return null;
 	}
 	
-	public static void createUser(User user) throws SQLException{
+	public void createUser(User user) throws SQLException{
 		
 		String query = "insert into users (username, email, password) values('" + user.getUsername() + "', '" + user.getEmail() + "', '"
 				+ user.getPassword() + "');";		
 		
-		DbConImpl.makeConnectionAndExecuteQuery(query);
+		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	public static ArrayList<Post> getPostsByTimestamp() throws SQLException, ParseException{
+	public ArrayList<Post> getPostsByTimestamp() throws SQLException, ParseException{
 		
 		ArrayList<Post> posts = new ArrayList<Post>();
 		
 		String query = "select * from posts order by timestamp desc;";
 		
-		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
 		while (rs.next()) {
 			int id = Integer.parseInt(rs.getString("id"));
@@ -76,13 +83,13 @@ public class DbService {
 		return posts;
 	}
 	
-	public static ArrayList<Post> getPostsByLikes() throws SQLException, ParseException{
+	public ArrayList<Post> getPostsByLikes() throws SQLException, ParseException{
 		
 		ArrayList<Post> posts = new ArrayList<Post>();
 		
 		String query = "select * from posts order by likes desc;";
 		
-		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
 		while (rs.next()) {
 			int id = Integer.parseInt(rs.getString("id"));
@@ -98,55 +105,55 @@ public class DbService {
 		return posts;
 	}
 	
-	public static void submitPost(String postText, String username){
+	public void submitPost(String postText, String username){
 		
 		String query = "insert into posts (text, username) values ('" + postText + "', '" + username + "');";
 		
-		DbConImpl.makeConnectionAndExecuteQuery(query);
+		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	public static void incrementLikes(String postId){
+	public void incrementLikes(String postId){
 		
 		String query = "update posts set likes = likes + 1 where Id =" + postId + ";";
 		
-		DbConImpl.makeConnectionAndExecuteQuery(query);
+		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	public static void decrementLikes(String postId){
+	public void decrementLikes(String postId){
 		
 		String query = "update posts set dislikes = dislikes - 1 where Id =" + postId + ";";
 		
-		DbConImpl.makeConnectionAndExecuteQuery(query);
+		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	public static void createLikeRecord(String userId, String postId){
+	public void createLikeRecord(String userId, String postId){
 		
 		String query = "insert into like_Records (user_id, post_id) values ('" + userId + "', '" + postId + "');";
 		
-		DbConImpl.makeConnectionAndExecuteQuery(query);
+		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	public static void createDislikeRecord(String userId, String postId){
+	public void createDislikeRecord(String userId, String postId){
 		
 		String query = "insert into dislike_Records (user_id, post_id) values ('" + userId + "', '" + postId + "');";
 		
-		DbConImpl.makeConnectionAndExecuteQuery(query);
+		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	public static ResultSet getLikeRecord(String userId, String postId){
+	public ResultSet getLikeRecord(String userId, String postId){
 		
 		String query = "select * from like_records where user_id = " + userId + " and post_id = " + postId + ";";
 		
-		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
 		return rs;
 	}
 
-	public static ResultSet getDislikeRecord(String userId, String postId) {
+	public ResultSet getDislikeRecord(String userId, String postId) {
 		
 		String query = "select * from dislike_records where user_id = " + userId + " and post_id = " + postId + ";";
 		
-		ResultSet rs = DbConImpl.makeConnectionAndRunQuery(query);
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
 		return rs;
 	}
