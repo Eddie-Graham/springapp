@@ -13,15 +13,11 @@
 } 
 
 #postSubmitDiv{
-	position: fixed;
-	top: 0;
-	height: 100px;
  	border: 1px solid #000000;
 	padding: 32px;
 } 
 
 #main{
-	padding-top: 100px;
 	height: 100%;
 	width: 100%;
 }

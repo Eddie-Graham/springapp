@@ -34,7 +34,7 @@
 
     <div id="menu">
         <div class="pure-menu">
-            <a class="pure-menu-heading" href="#">Fish !</a>
+            <a class="pure-menu-heading" href="homePage.html">Fish !</a>
 
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="homePage.html" class="pure-menu-link">Home</a></li>
