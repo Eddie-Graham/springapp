@@ -33,13 +33,13 @@
 				</div>
 				
 				<div id="buttons" class="pure-u-1-2">
-					<div id="likeButton" class="pure-u-1 likeButton">
+					<div id="likeButton" class="pure-u-1">
 						<input onclick="incrementLikes(${post.id})" type="image"
 							src="/springapp/images/like.png" width="100%" height="100%"
 							alt="Submit">
 					</div>
 					
-					<div id="dislikeButton" class="pure-u-1 dislikeButton">
+					<div id="dislikeButton" class="pure-u-1">
 						<input onclick="decrementLikes(${post.id})" type="image"
 							src="/springapp/images/dislike.png" width="100%" height="100%"
 							alt="Submit">

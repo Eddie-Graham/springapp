@@ -1,5 +1,4 @@
 #right{
-	-webkit-box-sizing: border-box;
  	border: 1px solid #000000;
 	height: 100%;
 	overflow: scroll;
@@ -7,7 +6,6 @@
 } 
 
 #left{
-	-webkit-box-sizing: border-box;
  	border: 1px solid #000000;
 	height: 100%;
 	overflow: scroll;
@@ -18,7 +16,6 @@
 	position: fixed;
 	top: 0;
 	height: 100px;
-	-webkit-box-sizing: border-box;
  	border: 1px solid #000000;
 	padding: 32px;
 } 
@@ -27,11 +24,9 @@
 	padding-top: 100px;
 	height: 100%;
 	width: 100%;
-	-webkit-box-sizing: border-box;
 }
 
 #postsDiv{
-	-webkit-box-sizing: border-box;
  	border: 1px solid #000000;
 	height: 100%;
 	overflow: scroll;
@@ -41,11 +36,6 @@
 	position: static;
 	width: 100%;
 	height: 180px;
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
-	padding-right: 0.5%;
-	padding-top: 0.5%;
-	padding-bottom: 0.5%; 
 	padding: 2%;
 }
 
@@ -53,32 +43,28 @@
 	position: static;
 	width: 100%;
 	height: 100%;
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
 }
 
 #text{
 	position: static;
-	-webkit-box-sizing: border-box;
 	border: 1px solid #000000;
 	width: 100%;
 	height: 66%;
-	padding: 0.5%;
+	padding: 3%;
+	border-radius: 25px;
 }
 
 #username{
 	position: static;
-	-webkit-box-sizing: border-box;
 	border: 1px solid #000000;
 	width: 100%;
 	height: 34%;
-	padding: 0.5%;
+	padding: 3%;
+	border-radius: 25px;
 }
 
 #postLeft{
 	position: static;
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
 	height: 100%;
 	width: 75%;
 	float: left;
@@ -86,8 +72,6 @@
 
 #postRight{
 	position: static;
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
 	width: 25%;
 	height: 100%;
 	float: left;
@@ -101,15 +85,11 @@
 }
 
 #postStats{
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
 	height: 100%;
 	float: left;
 }
 
 .postLikes{
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
 	height: 30%;
 	text-align: right;
 	vertical-align: middle;
@@ -119,8 +99,6 @@
 }
 
 .postTotal{
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
 	height: 40%;
 	text-align: center;
 	vertical-align: middle;
@@ -129,8 +107,6 @@
 }
 
 .postDislikes{
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
 	height: 30%;
 	text-align: right;
 	vertical-align: middle;
@@ -140,19 +116,15 @@
 }
 
 #buttons{
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
 	height: 100%;
 }
 
-.likeButton{
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
+#likeButton{
 	height: 50%;
+	padding: 7%;
 }
 
-.dislikeButton{
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
+#dislikeButton{
 	height: 50%;
+	padding: 7%;
 }

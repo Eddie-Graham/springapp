@@ -10,16 +10,12 @@
 #title{
 	color: #FFFFFF;
 	position: static;
-	-webkit-box-sizing: border-box;
-/* 	border: 1px solid #000000; */
 	padding: 2%;
 }
 
 #left{
 	color: #FFFFFF;
  	position: static;
- 	-webkit-box-sizing: border-box;
-/* 	border: 1px solid #000000;  */
 	float: left;
 	padding: 2%;
  }
@@ -27,8 +23,6 @@
 #right{
 	color: #FFFFFF;
  	position: static;
- 	-webkit-box-sizing: border-box;
-/* 	border: 1px solid #000000;  */
 	padding: 2%;
  }
  
@@ -49,4 +43,10 @@
 
 input[type] {
     color: #000000;
+}
+
+*{ 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
 }
