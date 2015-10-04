@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 	refreshPostsByTimestamp();
 	
-	refreshPostsByLikes();
+//	refreshPostsByLikes();
 });
 
 function updateClock(id) {
@@ -55,24 +55,24 @@ function submitPost(){
 		data: {"postText": postText},
 		success : function(response) {
 
-			refreshPostsByLikes();
+//			refreshPostsByLikes();
 			$("#left").html(response); 
 		}
 	});
 }
 
-function refreshPostsByLikes(){
-	
-	$.ajax({
-		type : "GET",
-		url : "postsByLikes.html",
-		
-		success : function(response) {
-			
-			$("#right").html(response); 
-		}
-	});
-}
+//function refreshPostsByLikes(){
+//	
+//	$.ajax({
+//		type : "GET",
+//		url : "postsByLikes.html",
+//		
+//		success : function(response) {
+//			
+//			$("#right").html(response); 
+//		}
+//	});
+//}
 
 function refreshPostsByTimestamp(){
 	
@@ -110,7 +110,15 @@ function incrementLikes(postId){
 			
 			$("#likes_" + postId).html(newLikes); 
 			
-			refreshPostsByLikes();
+			var total = $("#total_" + postId).html();
+			var newtotal = parseInt(total) + 1;
+			
+			$("#total_" + postId).html(newtotal); 
+			
+			if(newtotal > 0)
+				$("#total_" + postId).css('color', '#199A19');
+			
+//			refreshPostsByLikes();
 		}
 	});
 }
@@ -138,7 +146,15 @@ function decrementLikes(postId){
 			
 			$("#dislikes_" + postId).html(newDislikes); 
 			
-			refreshPostsByLikes();
+			var total = $("#total_" + postId).html();
+			var newtotal = parseInt(total) - 1;
+			
+			$("#total_" + postId).html(newtotal); 
+			
+			if(newtotal < 0)
+				$("#total_" + postId).css('color', '#FF0000');
+			
+//			refreshPostsByLikes();
 		}
 	});
 }

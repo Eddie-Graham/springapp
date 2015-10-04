@@ -31,7 +31,7 @@ public class DbService {
 			String passwordStr = rs.getString("password");
             
 			return new User(id, username, email, passwordStr);
-        }
+		}
 		
 		return null;
 	}
@@ -74,10 +74,11 @@ public class DbService {
 			String text = rs.getString("text");
 			int likes = Integer.parseInt(rs.getString("likes"));
 			int dislikes = Integer.parseInt(rs.getString("dislikes"));
+			int total = Integer.parseInt(rs.getString("total"));
 			Timestamp timestamp = Utils.getTimestamp(rs.getString("timestamp"));
 			String username = rs.getString("username");
 			
-			posts.add(new Post(id, text, likes, dislikes, timestamp, username));
+			posts.add(new Post(id, text, likes, dislikes, total, timestamp, username));
 		}
 		
 		return posts;
@@ -96,10 +97,11 @@ public class DbService {
 			String text = rs.getString("text");
 			int likes = Integer.parseInt(rs.getString("likes"));
 			int dislikes = Integer.parseInt(rs.getString("dislikes"));
+			int total = Integer.parseInt(rs.getString("total"));
 			Timestamp timestamp = Utils.getTimestamp(rs.getString("timestamp"));
 			String username = rs.getString("username");
 			
-			posts.add(new Post(id, text, likes, dislikes, timestamp, username));
+			posts.add(new Post(id, text, likes, dislikes, total, timestamp, username));
 		}
 		
 		return posts;
@@ -117,6 +119,10 @@ public class DbService {
 		String query = "update posts set likes = likes + 1 where Id =" + postId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
+		
+		String query2 = "update posts set total = total + 1 where Id =" + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	
 	public void decrementLikes(String postId){
@@ -124,6 +130,10 @@ public class DbService {
 		String query = "update posts set dislikes = dislikes - 1 where Id =" + postId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
+		
+		String query2 = "update posts set total = total - 1 where Id =" + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	
 	public void createLikeRecord(String userId, String postId){

@@ -10,16 +10,18 @@ public class Post {
 	private String text;
 	private int likes;
 	private int dislikes;
+	private int total;
 	private Timestamp timestamp;
 	private String timeString;
 	private String dateString;
 	private String username;
 	
-	public Post(int id, String text, int likes, int dislikes, Timestamp timestamp, String username){
+	public Post(int id, String text, int likes, int dislikes, int total, Timestamp timestamp, String username){
 		this.id = id;
 		this.text = text;
 		this.likes = likes;
 		this.dislikes = dislikes;
+		this.total = total;
 		this.timestamp = timestamp;
 		this.timeString = Utils.getTimeString(timestamp);
 		this.dateString = Utils.getDateString(timestamp);
@@ -58,6 +60,14 @@ public class Post {
 		this.dislikes = dislikes;
 	}
 
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}
@@ -92,7 +102,7 @@ public class Post {
 	
 	public String toString(){
 		
-		return "\nid: " + id + "\ntext: " + text + "\nlikes: " + likes + "\ndislikes: " + dislikes + "\ntimestamp: "
-				+ timestamp + "\nusername: " + username;
+		return "\nid: " + id + "\ntext: " + text + "\nlikes: " + likes + "\ndislikes: " + dislikes + "\ntotal: " + total
+				+ "\ntimestamp: " + timestamp + "\nusername: " + username;
 	}
 }

@@ -19,8 +19,8 @@
 	 	</div>
 	 	
 	 	<div id="postsDiv" class="pure-u-1">
-	 		<div id="left" class="pure-u-1 pure-u-lg-1-2"></div>
-	 		<div id="right" class="pure-u-1 pure-u-lg-1-2"></div>
+	 		<div id="left" class="pure-u-1 pure-u-lg-3-4"></div>
+	 		<div id="right" class="pure-u-lg-1-4"></div>
 	 	</div>
 
     </jsp:body>

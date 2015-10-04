@@ -20,7 +20,7 @@
 	height: 100px;
 	-webkit-box-sizing: border-box;
  	border: 1px solid #000000;
-	padding: 2%;
+	padding: 32px;
 } 
 
 #main{
@@ -40,7 +40,7 @@
 #postContainer{
 	position: static;
 	width: 100%;
-	height: 30%;
+	height: 180px;
 	-webkit-box-sizing: border-box;
 	border: 1px solid #000000;
 	padding-right: 0.5%;
@@ -80,7 +80,7 @@
 	-webkit-box-sizing: border-box;
 	border: 1px solid #000000;
 	height: 100%;
-	width: 80%;
+	width: 75%;
 	float: left;
 }
 
@@ -88,26 +88,71 @@
 	position: static;
 	-webkit-box-sizing: border-box;
 	border: 1px solid #000000;
-	width: 20%;
+	width: 25%;
 	height: 100%;
 	float: left;
 }
 
-#likes{
-	position: static;
-	-webkit-box-sizing: border-box;
-	border: 1px solid #000000;
-	width: 100%;
-	height: 50%;
-	padding: 5%;
+@media (max-width: 64em) {
+
+    #right {
+        display: none;
+    }
 }
 
-#dislikes{
-	position: static;
+#postStats{
 	-webkit-box-sizing: border-box;
 	border: 1px solid #000000;
-	width: 100%;
-	height: 50%;
-	padding: 5%;
+	height: 100%;
+	float: left;
 }
 
+.postLikes{
+	-webkit-box-sizing: border-box;
+	border: 1px solid #000000;
+	height: 30%;
+	text-align: right;
+	vertical-align: middle;
+	line-height: 42px; 
+	font-size: 25px;
+	color: #199A19;
+}
+
+.postTotal{
+	-webkit-box-sizing: border-box;
+	border: 1px solid #000000;
+	height: 40%;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 57px; 
+	font-size: 40px;
+}
+
+.postDislikes{
+	-webkit-box-sizing: border-box;
+	border: 1px solid #000000;
+	height: 30%;
+	text-align: right;
+	vertical-align: middle;
+	line-height: 42px; 
+	font-size: 25px;
+	color: #FF0000;
+}
+
+#buttons{
+	-webkit-box-sizing: border-box;
+	border: 1px solid #000000;
+	height: 100%;
+}
+
+.likeButton{
+	-webkit-box-sizing: border-box;
+	border: 1px solid #000000;
+	height: 50%;
+}
+
+.dislikeButton{
+	-webkit-box-sizing: border-box;
+	border: 1px solid #000000;
+	height: 50%;
+}
