@@ -251,7 +251,8 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     }
 }
 
-*{ 
+/* All except #menuLink  */
+:not(#menuLink) {
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
      box-sizing: border-box; 
