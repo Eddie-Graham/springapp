@@ -1,5 +1,10 @@
 $(document).ready(function() {
 	
+	// Dynamic css assignment for responsiveness across devices
+	var divHeight = $("#postSubmitDiv").height();
+	divHeight = divHeight + 64;
+	$("#postsDiv").css('top', divHeight);
+	
 	updateClock("time");
 	
 	refreshPostsByTimestamp();
