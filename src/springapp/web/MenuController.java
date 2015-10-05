@@ -18,7 +18,7 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="/about.html")
-	public ModelAndView enterabout(HttpServletRequest request){
+	public ModelAndView enterAbout(HttpServletRequest request){
 	    
 		if(request.getSession().getAttribute("loggedInUser") == null)
 			return new ModelAndView("redirect:login.html");
@@ -27,7 +27,7 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="/home.html")
-	public ModelAndView enterhome(HttpServletRequest request){
+	public ModelAndView enterHome(HttpServletRequest request){
 	    
 		if(request.getSession().getAttribute("loggedInUser") == null)
 			return new ModelAndView("redirect:login.html");

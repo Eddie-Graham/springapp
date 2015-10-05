@@ -20,7 +20,7 @@ public class LoginController {
 	private DbService dbService;
 
 	@RequestMapping(value="/login.html")
-	public ModelAndView enterlogin(HttpServletRequest request){
+	public ModelAndView enterLogin(HttpServletRequest request){
 		
 		if(request.getSession().getAttribute("loggedInUser") != null)
 			return new ModelAndView("redirect:home.html");
