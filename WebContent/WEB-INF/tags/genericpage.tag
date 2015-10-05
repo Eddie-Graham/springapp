@@ -38,6 +38,7 @@
 
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="homePage.html" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">My Profile</a></li>
                 <li class="pure-menu-item"><a href="aboutPage.html" class="pure-menu-link">About</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
                 <li class="pure-menu-item"><a href="logout.html" class="pure-menu-link">Logout</a></li>

@@ -79,27 +79,6 @@
 	float: left;
 }
 
-@media (min-width: 48em) {
-	
-	#main{
-		left: 150px;
-	}
-}
-
-@media (max-width: 48em) {
-
-    #main{
-		left: 0;
-	}
-}
-
-@media (max-width: 64em) {
-
-    #right {
-        display: none;
-    }
-}
-
 #postStats{
 	height: 100%;
 	float: left;
@@ -120,6 +99,7 @@
 	vertical-align: middle;
 	line-height: 57px; 
 	font-size: 40px;
+	font-weight: bold;
 }
 
 .postDislikes{
@@ -143,4 +123,27 @@
 #dislikeButton{
 	height: 50%;
 	padding: 7%;
+}
+
+/* Parallel with responsive side-bar  */
+@media (min-width: 48em) {
+	
+	#main{
+		left: 150px;
+	}
+}
+
+@media (max-width: 48em) {
+
+    #main{
+		left: 0;
+	}
+}
+
+/* pure.css lg width  */
+@media (max-width: 64em) {
+
+    #right {
+        display: none;
+    }
 }
