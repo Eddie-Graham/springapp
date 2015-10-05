@@ -147,7 +147,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type : "POST",
-			url : 'login.html',
+			url : 'submitLogin.html',
 			data : $("#loginForm").serialize(), 
 			success : function(response) {
 				
@@ -157,7 +157,7 @@ $(document).ready(function() {
 				}
 				
 				if(response == "SUCCESS"){
-					window.location = "homePage.html";
+					window.location = "home.html";
 				}
 			}
 		});

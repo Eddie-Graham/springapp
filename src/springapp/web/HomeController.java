@@ -17,27 +17,10 @@ import springapp.domain.Post;
 import springapp.service.DbService;
 
 @Controller
-public class HomePageController {
+public class HomeController {
 	
 	@Autowired
 	private DbService dbService;
-
-	@RequestMapping(value="/homePage.html")
-	public ModelAndView enterHomePage(HttpServletRequest request){
-	    
-		if(request.getSession().getAttribute("loggedInUser") == null)
-			return new ModelAndView("redirect:loginPage.html");
-
-		return new ModelAndView("homePage");
-	}
-	
-	@RequestMapping(value="/logout.html")
-	public String logout(HttpServletRequest request){
-	    
-		request.getSession().removeAttribute("loggedInUser");
-		
-		return "redirect:loginPage.html";
-	}
 	
 	@RequestMapping(value="/postsByTimestamp.html")
 	public ModelAndView postsByTimestamp(HttpServletRequest request) throws SQLException, ParseException{
@@ -117,14 +100,4 @@ public class HomePageController {
 		
 		return "SUCCESS";
 	}
-	
-	@RequestMapping(value="/aboutPage.html")
-	public ModelAndView enterAboutPage(HttpServletRequest request){
-	    
-		if(request.getSession().getAttribute("loggedInUser") == null)
-			return new ModelAndView("redirect:loginPage.html");
-
-		return new ModelAndView("aboutPage");
-	}
-	
 }

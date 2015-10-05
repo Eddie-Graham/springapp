@@ -14,22 +14,22 @@ import springapp.domain.User;
 import springapp.service.DbService;
 
 @Controller
-public class LoginPageController {
+public class LoginController {
 	
 	@Autowired
 	private DbService dbService;
 
-	@RequestMapping(value="/loginPage.html")
-	public ModelAndView enterLoginPage(HttpServletRequest request){
+	@RequestMapping(value="/login.html")
+	public ModelAndView enterlogin(HttpServletRequest request){
 		
 		if(request.getSession().getAttribute("loggedInUser") != null)
-			return new ModelAndView("redirect:homePage.html");
+			return new ModelAndView("redirect:home.html");
 		
-		return new ModelAndView("loginPage");
+		return new ModelAndView("login");
 	}
 	
-	@RequestMapping(value="/login.html")
-	public @ResponseBody String login(HttpServletRequest request) throws SQLException{
+	@RequestMapping(value="/submitLogin.html")
+	public @ResponseBody String submitLogin(HttpServletRequest request) throws SQLException{
 		
 		String email = (String) request.getParameter("loginEmail");
 		String password = (String) request.getParameter("loginPassword");

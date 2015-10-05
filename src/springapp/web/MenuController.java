@@ -14,25 +14,25 @@ public class MenuController {
 	    
 		request.getSession().removeAttribute("loggedInUser");
 		
-		return "redirect:loginPage.html";
+		return "redirect:login.html";
 	}
 	
-	@RequestMapping(value="/aboutPage.html")
-	public ModelAndView enterAboutPage(HttpServletRequest request){
+	@RequestMapping(value="/about.html")
+	public ModelAndView enterabout(HttpServletRequest request){
 	    
 		if(request.getSession().getAttribute("loggedInUser") == null)
-			return new ModelAndView("redirect:loginPage.html");
+			return new ModelAndView("redirect:login.html");
 
-		return new ModelAndView("aboutPage");
+		return new ModelAndView("about");
 	}
 	
-	@RequestMapping(value="/homePage.html")
-	public ModelAndView enterHomePage(HttpServletRequest request){
+	@RequestMapping(value="/home.html")
+	public ModelAndView enterhome(HttpServletRequest request){
 	    
 		if(request.getSession().getAttribute("loggedInUser") == null)
-			return new ModelAndView("redirect:loginPage.html");
+			return new ModelAndView("redirect:login.html");
 
-		return new ModelAndView("homePage");
+		return new ModelAndView("home");
 	}
 
 }

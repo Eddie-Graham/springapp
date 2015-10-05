@@ -4,8 +4,8 @@
 
 <t:genericpage>
 	<jsp:attribute name="head">
-		<link rel="stylesheet" type="text/css" href="css/homePage.css">
-		<script src="js/homePage.js"></script> 
+		<link rel="stylesheet" type="text/css" href="css/home.css">
+		<script src="js/home.js"></script> 
     </jsp:attribute>
     
 	<jsp:body>
