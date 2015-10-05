@@ -106,59 +106,89 @@ function incrementLikes(postId){
 				return;
 			}
 			
-			if(response == 'FAILED_DISLIKED'){
-				alert("You have already disliked this post.");
-				return;
+			else if(response == 'REVERSED_DISLIKE'){
+				var likes = $("#likes_" + postId).html();
+				var newLikes = parseInt(likes) + 1;
+				$("#likes_" + postId).html(newLikes); 
+				
+				var dislikes = $("#dislikes_" + postId).html();
+				var newDislikes = parseInt(dislikes) + 1;			
+				$("#dislikes_" + postId).html(newDislikes); 
+				
+				var total = $("#total_" + postId).html();
+				var newTotal = parseInt(total) + 2;		
+				$("#total_" + postId).html(newTotal); 
 			}
 			
-			var likes = $("#likes_" + postId).html();
-			var newLikes = parseInt(likes) + 1;
+			else if(response == 'SUCCESS'){
+				var likes = $("#likes_" + postId).html();
+				var newLikes = parseInt(likes) + 1;
+				$("#likes_" + postId).html(newLikes); 
 			
-			$("#likes_" + postId).html(newLikes); 
+				var total = $("#total_" + postId).html();
+				var newTotal = parseInt(total) + 1;		
+				$("#total_" + postId).html(newTotal); 
+			}
 			
-			var total = $("#total_" + postId).html();
-			var newtotal = parseInt(total) + 1;
-			
-			$("#total_" + postId).html(newtotal); 
-			
-			if(newtotal > 0)
+			if(newTotal > 0)
 				$("#total_" + postId).css('color', '#199A19');
+			
+			else if(newTotal < 0)
+				$("#total_" + postId).css('color', '#FF0000');
+			
+			else
+				$("#total_" + postId).css('color', '#777');
 			
 //			refreshPostsByLikes();
 		}
 	});
 }
 
-function decrementLikes(postId){
+function decrementDisikes(postId){
 	
 	$.ajax({
 		type : "GET",
-		url : "decrementLikes.html",
+		url : "decrementDisikes.html",
 		data: {"postId": postId},
 		success : function(response) {
 			
-			if(response == 'FAILED_LIKED'){
-				alert("You have already liked this post.");
-				return;
+			if(response == 'REVERSED_LIKE'){
+				var likes = $("#likes_" + postId).html();
+				var newLikes = parseInt(likes) - 1;
+				$("#likes_" + postId).html(newLikes); 
+				
+				var dislikes = $("#dislikes_" + postId).html();
+				var newDislikes = parseInt(dislikes) - 1;			
+				$("#dislikes_" + postId).html(newDislikes); 
+				
+				var total = $("#total_" + postId).html();
+				var newTotal = parseInt(total) - 2;		
+				$("#total_" + postId).html(newTotal); 
 			}
 			
-			if(response == 'FAILED_DISLIKED'){
+			else if(response == 'FAILED_DISLIKED'){
 				alert("You have already disliked this post.");
 				return;
 			}
 			
-			var dislikes = $("#dislikes_" + postId).html();
-			var newDislikes = parseInt(dislikes) - 1;
+			else if(response == 'SUCCESS'){
+				var dislikes = $("#dislikes_" + postId).html();
+				var newDislikes = parseInt(dislikes) - 1;			
+				$("#dislikes_" + postId).html(newDislikes); 
 			
-			$("#dislikes_" + postId).html(newDislikes); 
+				var total = $("#total_" + postId).html();
+				var newTotal = parseInt(total) - 1;			
+				$("#total_" + postId).html(newTotal); 
+			}
 			
-			var total = $("#total_" + postId).html();
-			var newtotal = parseInt(total) - 1;
+			if(newTotal > 0)
+				$("#total_" + postId).css('color', '#199A19');
 			
-			$("#total_" + postId).html(newtotal); 
-			
-			if(newtotal < 0)
+			else if(newTotal < 0)
 				$("#total_" + postId).css('color', '#FF0000');
+			
+			else
+				$("#total_" + postId).css('color', '#777');
 			
 //			refreshPostsByLikes();
 		}

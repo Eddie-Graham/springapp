@@ -62,14 +62,19 @@ public class HomeController {
 		String postId = request.getParameter("postId");
 		
 		ResultSet rsLR = dbService.getLikeRecord(userId, postId);
-		// if entry exists in table
+		// already liked
 		if(rsLR.next())
 			return "FAILED_LIKED";
 		
 		ResultSet rsDR = dbService.getDislikeRecord(userId, postId);
-		// if entry exists in table
-		if(rsDR.next())
-			return "FAILED_DISLIKED";
+		// already disliked
+		if(rsDR.next()){
+			dbService.removeDislikeRecord(userId, postId);
+			dbService.incrementDislikes(postId);
+			dbService.incrementLikes(postId);
+			dbService.createLikeRecord(userId, postId);
+			return "REVERSED_DISLIKE";
+		}
 		
 		dbService.incrementLikes(postId);
 		
@@ -78,23 +83,28 @@ public class HomeController {
 		return "SUCCESS";
 	}
 	
-	@RequestMapping(value="/decrementLikes.html")
-	public @ResponseBody String decrementLikes(HttpServletRequest request) throws SQLException{
+	@RequestMapping(value="/decrementDisikes.html")
+	public @ResponseBody String decrementDisikes(HttpServletRequest request) throws SQLException{
 		
 		String userId = (String) request.getSession().getAttribute("loggedInUserId");
 		String postId = request.getParameter("postId");
 		
 		ResultSet rsLR = dbService.getLikeRecord(userId, postId);
-		// if entry exists in table
-		if(rsLR.next())
-			return "FAILED_LIKED";
-
+		// already liked
+		if(rsLR.next()){
+			dbService.removeLikeRecord(userId, postId);
+			dbService.decrementLikes(postId);
+			dbService.decrementDislikes(postId);
+			dbService.createDislikeRecord(userId, postId);
+			return "REVERSED_LIKE";
+		}
+			
 		ResultSet rsDR = dbService.getDislikeRecord(userId, postId);
-		// if entry exists in table
+		// already disliked
 		if(rsDR.next())
 			return "FAILED_DISLIKED";
 		
-		dbService.decrementLikes(postId);
+		dbService.decrementDislikes(postId);
 		
 		dbService.createDislikeRecord(userId, postId);
 		

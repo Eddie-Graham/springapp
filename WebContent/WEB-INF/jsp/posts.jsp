@@ -55,7 +55,7 @@
 					</div>
 					
 					<div id="dislikeButton" class="pure-u-1">
-						<input onclick="decrementLikes(${post.id})" type="image"
+						<input onclick="decrementDisikes(${post.id})" type="image"
 							src="/springapp/images/dislike.png" width="100%" height="100%"
 							alt="Submit">
 					</div>
