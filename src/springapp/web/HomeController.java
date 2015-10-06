@@ -63,8 +63,11 @@ public class HomeController {
 		
 		ResultSet rsLR = dbService.getLikeRecord(userId, postId);
 		// already liked
-		if(rsLR.next())
-			return "FAILED_LIKED";
+		if(rsLR.next()){
+			dbService.removeLikeRecord(userId, postId);
+			dbService.decrementLikes(postId);
+			return "UNDO_LIKED";
+		}
 		
 		ResultSet rsDR = dbService.getDislikeRecord(userId, postId);
 		// already disliked
@@ -101,8 +104,11 @@ public class HomeController {
 			
 		ResultSet rsDR = dbService.getDislikeRecord(userId, postId);
 		// already disliked
-		if(rsDR.next())
-			return "FAILED_DISLIKED";
+		if(rsDR.next()){
+			dbService.removeDislikeRecord(userId, postId);
+			dbService.incrementDislikes(postId);
+			return "UNDO_DISLIKED";
+		}
 		
 		dbService.decrementDislikes(postId);
 		

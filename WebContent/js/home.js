@@ -101,12 +101,19 @@ function incrementLikes(postId){
 		data: {"postId": postId},
 		success : function(response) {
 			
-			if(response == 'FAILED_LIKED'){
-				alert("You have already liked this post.");
-				return;
+			if(response == 'UNDO_LIKED'){
+				
+				var likes = $("#likes_" + postId).html();
+				var newLikes = parseInt(likes) - 1;
+				$("#likes_" + postId).html(newLikes);
+				
+				var total = $("#total_" + postId).html();
+				var newTotal = parseInt(total) - 1;		
+				$("#total_" + postId).html(newTotal); 
 			}
 			
 			else if(response == 'REVERSED_DISLIKE'){
+				
 				var likes = $("#likes_" + postId).html();
 				var newLikes = parseInt(likes) + 1;
 				$("#likes_" + postId).html(newLikes); 
@@ -121,6 +128,7 @@ function incrementLikes(postId){
 			}
 			
 			else if(response == 'SUCCESS'){
+				
 				var likes = $("#likes_" + postId).html();
 				var newLikes = parseInt(likes) + 1;
 				$("#likes_" + postId).html(newLikes); 
@@ -153,6 +161,7 @@ function decrementDisikes(postId){
 		success : function(response) {
 			
 			if(response == 'REVERSED_LIKE'){
+				
 				var likes = $("#likes_" + postId).html();
 				var newLikes = parseInt(likes) - 1;
 				$("#likes_" + postId).html(newLikes); 
@@ -166,12 +175,19 @@ function decrementDisikes(postId){
 				$("#total_" + postId).html(newTotal); 
 			}
 			
-			else if(response == 'FAILED_DISLIKED'){
-				alert("You have already disliked this post.");
-				return;
+			else if(response == 'UNDO_DISLIKED'){
+				
+				var dislikes = $("#dislikes_" + postId).html();
+				var newDislikes = parseInt(dislikes) + 1;			
+				$("#dislikes_" + postId).html(newDislikes); 
+				
+				var total = $("#total_" + postId).html();
+				var newTotal = parseInt(total) + 1;		
+				$("#total_" + postId).html(newTotal); 
 			}
 			
 			else if(response == 'SUCCESS'){
+				
 				var dislikes = $("#dislikes_" + postId).html();
 				var newDislikes = parseInt(dislikes) - 1;			
 				$("#dislikes_" + postId).html(newDislikes); 
