@@ -15,15 +15,15 @@
     
     <c:set var="count" value="${count + 1}" scope="page"/>
 
-	<div id="postContainer">
+	<div id="postContainer" style="background-color: ${backgroundColor};">
 
 		<div id="post">
 			<div id="postLeft">
-				<div id="textDiv" style="background-color: ${backgroundColor};">
+				<div id="textDiv">
 					<div id="text">${post.text}</div>
 				</div>
 				<div id="space"></div>
-				<div id="username" style="background-color: ${backgroundColor};">Posted by ${post.username} on
+				<div id="username">Posted by ${post.username} on
 					${post.timeString} &nbsp ${post.dateString}</div>
 			</div>
 
@@ -54,13 +54,13 @@
 					<div id="likeButton" class="pure-u-1">
 						<input onclick="incrementLikes(${post.id})" type="image"
 							src="/springapp/images/like.png" width="100%" height="100%"
-							alt="Submit">
+							alt="Like">
 					</div>
 					
 					<div id="dislikeButton" class="pure-u-1">
 						<input onclick="decrementDisikes(${post.id})" type="image"
 							src="/springapp/images/dislike.png" width="100%" height="100%"
-							alt="Submit">
+							alt="Dislike">
 					</div>
 				</div>
 			</div>
