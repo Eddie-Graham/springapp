@@ -9,19 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MenuController {
 	
-	@RequestMapping(value="/logout.html")
-	public String logout(HttpServletRequest request){
-	    
-		request.getSession().removeAttribute("loggedInUser");
-		
-		return "redirect:login.html";
-	}
-	
 	@RequestMapping(value="/about.html")
 	public ModelAndView enterAbout(HttpServletRequest request){
-	    
-		if(request.getSession().getAttribute("loggedInUser") == null)
-			return new ModelAndView("redirect:login.html");
 
 		return new ModelAndView("about");
 	}
@@ -29,10 +18,6 @@ public class MenuController {
 	@RequestMapping(value="/home.html")
 	public ModelAndView enterHome(HttpServletRequest request){
 	    
-		if(request.getSession().getAttribute("loggedInUser") == null)
-			return new ModelAndView("redirect:login.html");
-
 		return new ModelAndView("home");
 	}
-
 }

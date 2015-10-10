@@ -13,7 +13,9 @@ CREATE TABLE Users
 id SERIAL PRIMARY KEY,
 username varchar(255) NOT NULL UNIQUE,
 email varchar(255) NOT NULL UNIQUE,
-password varchar(255) NOT NULL
+password varchar(255) NOT NULL,
+authority varchar(255) NOT NULL DEFAULT 'ROLE_USER',
+enabled boolean NOT NULL DEFAULT TRUE
 );
 
 -- sign in

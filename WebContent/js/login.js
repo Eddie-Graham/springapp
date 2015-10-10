@@ -131,12 +131,12 @@ $(document).ready(function() {
 		
 		e.preventDefault();
 		
-		var loginEmail = $('#loginEmail').val();
-		loginEmail = loginEmail.trim();
+		var loginUsername = $('#loginUsername').val();
+		loginUsername = loginUsername.trim();
 		var loginPassword = $('#loginPassword').val();
 		
-		if(loginEmail == ""){
-			alert("Please enter email.");
+		if(loginUsername == ""){
+			alert("Please enter username.");
 			return false;
 		}
 		
@@ -145,9 +145,10 @@ $(document).ready(function() {
 			return false;
 		}
 
+		// ajax call to spring security
 		$.ajax({
 			type : "POST",
-			url : 'submitLogin.html',
+			url : 'login.html',
 			data : $("#loginForm").serialize(), 
 			success : function(response) {
 				

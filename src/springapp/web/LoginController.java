@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,33 +24,25 @@ public class LoginController {
 	@RequestMapping(value="/login.html")
 	public ModelAndView enterLogin(HttpServletRequest request){
 		
-		if(request.getSession().getAttribute("loggedInUser") != null)
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String username = auth.getName();
+		
+		if(username != "anonymousUser")
 			return new ModelAndView("redirect:home.html");
 		
 		return new ModelAndView("login");
 	}
 	
-	@RequestMapping(value="/submitLogin.html")
-	public @ResponseBody String submitLogin(HttpServletRequest request) throws SQLException{
+	@RequestMapping(value="/loginSuccess.html")
+	public @ResponseBody String loginSuccess(HttpServletRequest request){
 		
-		String email = (String) request.getParameter("loginEmail");
-		String password = (String) request.getParameter("loginPassword");
-		
-		email = email.trim();
-		password = password.trim();
-		
-		User user = dbService.getUserByEmail(email);
-		
-		if(user == null || !password.equals(user.getPassword()))
-			return "FAILED";
-		
-		// logged in attributes
-		request.getSession().setAttribute("loggedInUser", user.getUsername());
-		request.getSession().setAttribute("loggedInUserId", user.getId());
-		
-		System.out.println("Logged in as : " + user.getUsername());
-	    
 		return "SUCCESS";
+	}
+	
+	@RequestMapping(value="/loginFail.html")
+	public @ResponseBody String loginFail(HttpServletRequest request){
+		
+		return "FAILED";
 	}
 	
 	@RequestMapping(value="/checkUniqueEmail.html")

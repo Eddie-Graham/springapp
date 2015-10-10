@@ -203,4 +203,16 @@ public class DbService {
 		
 		return rs;
 	}
+	
+	public String getUserId(String username) throws SQLException {
+		
+		String query = "select id from users where username = '" + username + "';";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		while (rs.next())
+			return rs.getString("id");
+		
+		return null;
+	}
 }

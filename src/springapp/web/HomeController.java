@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,8 +49,10 @@ public class HomeController {
 	@RequestMapping(value="/submitPost.html")
 	public String submitPost(HttpServletRequest request) throws SQLException, ParseException{
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String username = auth.getName();
+		
 		String postText = request.getParameter("postText");
-		String username = (String) request.getSession().getAttribute("loggedInUser");
 		
 		dbService.submitPost(postText, username);
 		
@@ -58,7 +62,10 @@ public class HomeController {
 	@RequestMapping(value="/incrementLikes.html")
 	public @ResponseBody String incrementLikes(HttpServletRequest request) throws SQLException{
 		
-		String userId = (String) request.getSession().getAttribute("loggedInUserId");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String username = auth.getName();
+	    
+	    String userId = dbService.getUserId(username);
 		String postId = request.getParameter("postId");
 		
 		ResultSet rsLR = dbService.getLikeRecord(userId, postId);
@@ -89,7 +96,10 @@ public class HomeController {
 	@RequestMapping(value="/decrementDisikes.html")
 	public @ResponseBody String decrementDisikes(HttpServletRequest request) throws SQLException{
 		
-		String userId = (String) request.getSession().getAttribute("loggedInUserId");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String username = auth.getName();
+	    
+	    String userId = dbService.getUserId(username);
 		String postId = request.getParameter("postId");
 		
 		ResultSet rsLR = dbService.getLikeRecord(userId, postId);

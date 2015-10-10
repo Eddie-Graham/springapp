@@ -41,7 +41,7 @@
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">My Profile</a></li>
                 <li class="pure-menu-item"><a href="about.html" class="pure-menu-link">About</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
-                <li class="pure-menu-item"><a href="logout.html" class="pure-menu-link">Logout</a></li>
+                <li class="pure-menu-item"><a href="logout" class="pure-menu-link">Logout</a></li>
             </ul>
         </div>
     </div>

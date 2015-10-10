@@ -30,13 +30,13 @@
 				<form id="loginForm" class="pure-form pure-form-aligned">
 					<fieldset>
 						<div class="pure-control-group">
-							<label for="loginEmail">Email</label> <input id="loginEmail"
-								name="loginEmail" type="text" placeholder="Email">
+							<label for="loginUsername">Username</label> <input id="loginUsername"
+								name="username" type="text" placeholder="Username">
 						</div>
 
 						<div class="pure-control-group">
 							<label for="loginPassword">Password</label> <input
-								id="loginPassword" name="loginPassword" type="password"
+								id="loginPassword" name="password" type="password"
 								placeholder="Password">
 						</div>
 
