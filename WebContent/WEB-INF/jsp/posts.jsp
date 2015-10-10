@@ -19,7 +19,10 @@
 
 		<div id="post">
 			<div id="postLeft">
-				<div id="text" style="background-color: ${backgroundColor};">${post.text}</div>
+				<div id="textDiv" style="background-color: ${backgroundColor};">
+					<div id="text">${post.text}</div>
+				</div>
+				<div id="space"></div>
 				<div id="username" style="background-color: ${backgroundColor};">Posted by ${post.username} on
 					${post.timeString} &nbsp ${post.dateString}</div>
 			</div>
