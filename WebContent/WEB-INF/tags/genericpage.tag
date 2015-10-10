@@ -44,6 +44,8 @@
                 <li class="pure-menu-item"><a href="logout" class="pure-menu-link">Logout</a></li>
             </ul>
         </div>
+        
+        <div id="time"></div>
     </div>
 
     <div id="main">
