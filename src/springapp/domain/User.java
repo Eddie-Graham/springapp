@@ -6,12 +6,16 @@ public class User {
 	private String username;
 	private String email;
 	private String password;
+	private String authority;
+	private boolean enabled;
 	
-	public User(String id, String username, String email, String password){
+	public User(String id, String username, String email, String password, String authority, boolean enabled){
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.authority = authority;
+		this.enabled = enabled;
 	}
 	
 	public User(String username, String email, String password){
@@ -51,9 +55,26 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public String getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public String toString(){
 		
-		return "\nid: " + id + "\nusername: " + username + "\nemail: " + email;
+		return "\nid: " + id + "\nusername: " + username + "\nemail: " + email + "\nauthority: " + authority
+				+ "\nenabled: " + enabled;
 	}
 }

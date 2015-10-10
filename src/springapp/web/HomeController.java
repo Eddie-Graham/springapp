@@ -50,7 +50,7 @@ public class HomeController {
 	public String submitPost(HttpServletRequest request) throws SQLException, ParseException{
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String username = auth.getName();
+		String username = auth.getName();
 		
 		String postText = request.getParameter("postText");
 		
@@ -63,9 +63,9 @@ public class HomeController {
 	public @ResponseBody String incrementLikes(HttpServletRequest request) throws SQLException{
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String username = auth.getName();
-	    
-	    String userId = dbService.getUserId(username);
+		String username = auth.getName();
+
+		String userId = dbService.getUserId(username);
 		String postId = request.getParameter("postId");
 		
 		ResultSet rsLR = dbService.getLikeRecord(userId, postId);
@@ -74,7 +74,7 @@ public class HomeController {
 			dbService.removeLikeRecord(userId, postId);
 			dbService.decrementLikes(postId);
 			return "UNDO_LIKED";
-		}
+		}		
 		
 		ResultSet rsDR = dbService.getDislikeRecord(userId, postId);
 		// already disliked
@@ -97,9 +97,9 @@ public class HomeController {
 	public @ResponseBody String decrementDisikes(HttpServletRequest request) throws SQLException{
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String username = auth.getName();
+		String username = auth.getName();
 	    
-	    String userId = dbService.getUserId(username);
+		String userId = dbService.getUserId(username);
 		String postId = request.getParameter("postId");
 		
 		ResultSet rsLR = dbService.getLikeRecord(userId, postId);

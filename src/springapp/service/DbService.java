@@ -28,9 +28,16 @@ public class DbService {
 		while (rs.next()) {
 			String id = rs.getString("id");
 			String username = rs.getString("username");
-			String passwordStr = rs.getString("password");
+			String password = rs.getString("password");
+			String authority = rs.getString("authority");
+			
+			boolean enabled;
+			if(rs.getString("enabled").equals("t"))
+				enabled = true;
+			else
+				enabled = false;
             
-			return new User(id, username, email, passwordStr);
+			return new User(id, username, email, password, authority, enabled);
 		}
 		
 		return null;
@@ -45,9 +52,16 @@ public class DbService {
 		while (rs.next()) {
 			String id = rs.getString("id");
 			String email = rs.getString("email");
-			String passwordStr = rs.getString("password");
-
-			return new User(id, username, email, passwordStr);
+			String password = rs.getString("password");
+			String authority = rs.getString("authority");
+			
+			boolean enabled;
+			if(rs.getString("enabled").equals("t"))
+				enabled = true;
+			else
+				enabled = false;
+            
+			return new User(id, username, email, password, authority, enabled);
 		}
 
 		return null;
