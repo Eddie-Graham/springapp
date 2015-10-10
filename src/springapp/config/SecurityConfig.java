@@ -34,6 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.failureUrl("/loginFail.html")
 			.and()
 				.authorizeRequests()
+					
+					// login requests
 					.antMatchers("/login.html").permitAll()
 					.antMatchers("/checkUniqueUsername.html").permitAll()
 					.antMatchers("/checkUniqueEmail.html").permitAll()
@@ -41,6 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers("/css/login.css").permitAll()
 					.antMatchers("/js/login.js").permitAll()
 					.antMatchers("/images/background.jpg").permitAll()
+					.antMatchers("/loginFail.html").permitAll()
+					.antMatchers("/loginSuccess.html").permitAll()
+					
+					// all other requests
 					.anyRequest().hasRole("USER")
 			.and()
 				.httpBasic()
