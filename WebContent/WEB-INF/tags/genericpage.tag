@@ -34,16 +34,18 @@
 
     <div id="menu">
         <div class="pure-menu">
-            <a class="pure-menu-heading" href="home.html">Fish !</a>
-
+            <a class="pure-menu-heading" href="home.html">Fish !<img id="fish" src="/springapp/images/fish.png" alt="fish"></a>
+		
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="home.html" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">My Profile</a></li>
+                <li class="pure-menu-item"><a href="myprofile.html" class="pure-menu-link">My Profile</a></li>
                 <li class="pure-menu-item"><a href="about.html" class="pure-menu-link">About</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
                 <li class="pure-menu-item"><a href="logout" class="pure-menu-link">Logout</a></li>
             </ul>
         </div>
+        
+        
         
         <div id="time"></div>
     </div>
@@ -56,6 +58,7 @@
 </div>
 
 <script src="js/genericpage.js"></script> 
+<script src="js/clock.js"></script> 
 
 </body>
 </html>
