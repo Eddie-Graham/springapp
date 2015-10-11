@@ -121,6 +121,28 @@ public class DbService {
 		return posts;
 	}
 	
+	public ArrayList<Post> getUsersPostsByTimestamp(String username) throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = new ArrayList<Post>();
+		
+		String query = "select * from posts where username = '" + username + "' order by timestamp desc;";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		while (rs.next()) {
+			int id = Integer.parseInt(rs.getString("id"));
+			String text = rs.getString("text");
+			int likes = Integer.parseInt(rs.getString("likes"));
+			int dislikes = Integer.parseInt(rs.getString("dislikes"));
+			int total = Integer.parseInt(rs.getString("total"));
+			Timestamp timestamp = Utils.getTimestamp(rs.getString("timestamp"));
+			
+			posts.add(new Post(id, text, likes, dislikes, total, timestamp, username));
+		}
+		
+		return posts;
+	}
+	
 	public void submitPost(String postText, String username){
 		
 		String query = "insert into posts (text, username) values ('" + postText + "', '" + username + "');";
@@ -130,44 +152,44 @@ public class DbService {
 	
 	public void incrementLikes(String postId){
 		
-		String query = "update posts set likes = likes + 1 where Id =" + postId + ";";
+		String query = "update posts set likes = likes + 1 where Id = " + postId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
 		
-		String query2 = "update posts set total = total + 1 where Id =" + postId + ";";
+		String query2 = "update posts set total = total + 1 where Id = " + postId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	
 	public void decrementLikes(String postId){
 		
-		String query = "update posts set likes = likes - 1 where Id =" + postId + ";";
+		String query = "update posts set likes = likes - 1 where Id = " + postId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
 		
-		String query2 = "update posts set total = total - 1 where Id =" + postId + ";";
+		String query2 = "update posts set total = total - 1 where Id = " + postId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	
 	public void decrementDislikes(String postId){
 		
-		String query = "update posts set dislikes = dislikes - 1 where Id =" + postId + ";";
+		String query = "update posts set dislikes = dislikes - 1 where Id = " + postId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
 		
-		String query2 = "update posts set total = total - 1 where Id =" + postId + ";";
+		String query2 = "update posts set total = total - 1 where Id = " + postId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	
 	public void incrementDislikes(String postId){
 		
-		String query = "update posts set dislikes = dislikes + 1 where Id =" + postId + ";";
+		String query = "update posts set dislikes = dislikes + 1 where Id = " + postId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
 		
-		String query2 = "update posts set total = total + 1 where Id =" + postId + ";";
+		String query2 = "update posts set total = total + 1 where Id = " + postId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query2);
 	}

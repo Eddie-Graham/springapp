@@ -50,19 +50,35 @@
 					<div id="dislikes_${post.id}" class="pure-u-1 postDislikes">${post.dislikes}</div>
 				</div>
 				
-				<div id="buttons" class="pure-u-1-2">
-					<div id="likeButton" class="pure-u-1">
-						<input onclick="incrementLikes(${post.id})" type="image"
-							src="/springapp/images/like.png" width="100%" height="100%"
-							alt="Like">
-					</div>
-					
-					<div id="dislikeButton" class="pure-u-1">
-						<input onclick="decrementDisikes(${post.id})" type="image"
-							src="/springapp/images/dislike.png" width="100%" height="100%"
-							alt="Dislike">
-					</div>
-				</div>
+				<c:choose>
+					<c:when test="${post.canRate}">
+						<div id="buttons" class="pure-u-1-2">
+							<div id="likeButton" class="pure-u-1">
+								<input onclick="incrementLikes(${post.id})" type="image"
+									src="/springapp/images/like.png" width="100%" height="100%"
+									alt="like">
+							</div>
+
+							<div id="dislikeButton" class="pure-u-1">
+								<input onclick="decrementDisikes(${post.id})" type="image"
+									src="/springapp/images/dislike.png" width="100%" height="100%"
+									alt="dislike">
+							</div>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div id="buttons" class="pure-u-1-2">
+							<div id="likeButton" class="pure-u-1">
+									<img class="images" src="/springapp/images/like.png" alt="like">
+							</div>
+
+							<div id="dislikeButton" class="pure-u-1">
+									<img class="images" src="/springapp/images/dislike.png" alt="dislike">
+							</div>
+						</div>		
+					</c:otherwise>
+				</c:choose>
+				
 			</div>
 		</div>
 	</div>

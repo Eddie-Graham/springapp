@@ -153,7 +153,7 @@ $(document).ready(function() {
 			success : function(response) {
 				
 				if(response == "FAILED"){
-					alert("Invalid email/password combination.");
+					alert("Invalid username/password combination.");
 					return false;
 				}
 				

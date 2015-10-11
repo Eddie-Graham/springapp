@@ -2,6 +2,9 @@ package springapp.domain;
 
 import java.sql.Timestamp;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import springapp.service.Utils;
 
 public class Post {
@@ -15,6 +18,7 @@ public class Post {
 	private String timeString;
 	private String dateString;
 	private String username;
+	private boolean canRate;
 	
 	public Post(int id, String text, int likes, int dislikes, int total, Timestamp timestamp, String username){
 		this.id = id;
@@ -26,6 +30,14 @@ public class Post {
 		this.timeString = Utils.getTimeString(timestamp);
 		this.dateString = Utils.getDateString(timestamp);
 		this.username = username;
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUsername = auth.getName();
+		
+		if(loggedInUsername.equals(username))
+			canRate = false;
+		else
+			canRate = true;
 	}
 	
 	public int getId() {
@@ -100,6 +112,14 @@ public class Post {
 		this.username = username;
 	}
 	
+	public boolean isCanRate() {
+		return canRate;
+	}
+
+	public void setCanRate(boolean canRate) {
+		this.canRate = canRate;
+	}
+
 	public String toString(){
 		
 		return "\nid: " + id + "\ntext: " + text + "\nlikes: " + likes + "\ndislikes: " + dislikes + "\ntotal: " + total
