@@ -42,10 +42,14 @@ public class MyProfileController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String username = auth.getName();
 		
-		ArrayList<Post> posts = dbService.getUsersPostsByTimestamp(username);
+		String noOfPosts = dbService.getNoOfPostsByUser(username);
+		int totalLikes = dbService.getTotalLikes(username);
+		int totalDislikes = dbService.getTotalDislikes(username);
 		
-		ModelAndView mav = new ModelAndView("posts");
-		mav.addObject("posts", posts);
+		ModelAndView mav = new ModelAndView("stats");
+		mav.addObject("noOfPosts", noOfPosts);
+		mav.addObject("totalLikes", totalLikes);
+		mav.addObject("totalDislikes", totalDislikes);
 		
 		return mav;
 	}

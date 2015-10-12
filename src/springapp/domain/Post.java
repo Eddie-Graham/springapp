@@ -123,6 +123,6 @@ public class Post {
 	public String toString(){
 		
 		return "\nid: " + id + "\ntext: " + text + "\nlikes: " + likes + "\ndislikes: " + dislikes + "\ntotal: " + total
-				+ "\ntimestamp: " + timestamp + "\nusername: " + username;
+				+ "\ntimestamp: " + timestamp + "\nusername: " + username + "\ncanRate: " + canRate;
 	}
 }

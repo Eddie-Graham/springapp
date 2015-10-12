@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	
 	getUsersRecentPosts();
+	
+	getUsersStats()
 });
 
 function getUsersRecentPosts(){
@@ -11,6 +13,18 @@ function getUsersRecentPosts(){
 		success : function(response) {
 
 			$("#myRecentPostsDiv").html(response); 
+		}
+	});
+}
+
+function getUsersStats(){
+	
+	$.ajax({
+		type : "GET",
+		url : "getUsersStats.html",
+		success : function(response) {
+
+			$("#statsDiv").html(response); 
 		}
 	});
 }

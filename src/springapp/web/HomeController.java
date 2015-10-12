@@ -46,6 +46,28 @@ public class HomeController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/postsByDislikes.html")
+	public ModelAndView postsByDislikes(HttpServletRequest request) throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = dbService.getPostsByDislikes();
+		
+		ModelAndView mav = new ModelAndView("posts");
+		mav.addObject("posts", posts);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/postsByTotal.html")
+	public ModelAndView postsByTotal(HttpServletRequest request) throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = dbService.getPostsByTotal();
+		
+		ModelAndView mav = new ModelAndView("posts");
+		mav.addObject("posts", posts);
+		
+		return mav;
+	}
+	
 	@RequestMapping(value="/submitPost.html")
 	public String submitPost(HttpServletRequest request) throws SQLException, ParseException{
 		

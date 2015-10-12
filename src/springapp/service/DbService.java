@@ -19,7 +19,7 @@ public class DbService {
 	@Autowired
 	private DbCon dbCon;
 
-	public User getUserByEmail(String email) throws SQLException{
+	public User getUserByEmail(String email) throws SQLException {
 		
 		String query = "select * from users where LOWER(email) = LOWER('" + email + "');";			
 
@@ -67,7 +67,7 @@ public class DbService {
 		return null;
 	}
 	
-	public void createUser(User user) throws SQLException{
+	public void createUser(User user){
 		
 		String query = "insert into users (username, email, password) values('" + user.getUsername() + "', '" + user.getEmail() + "', '"
 				+ user.getPassword() + "');";		
@@ -250,5 +250,98 @@ public class DbService {
 			return rs.getString("id");
 		
 		return null;
+	}
+
+	public ArrayList<Post> getPostsByDislikes() throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = new ArrayList<Post>();
+		
+		String query = "select * from posts order by dislikes;";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		while (rs.next()) {
+			int id = Integer.parseInt(rs.getString("id"));
+			String text = rs.getString("text");
+			int likes = Integer.parseInt(rs.getString("likes"));
+			int dislikes = Integer.parseInt(rs.getString("dislikes"));
+			int total = Integer.parseInt(rs.getString("total"));
+			Timestamp timestamp = Utils.getTimestamp(rs.getString("timestamp"));
+			String username = rs.getString("username");
+			
+			posts.add(new Post(id, text, likes, dislikes, total, timestamp, username));
+		}
+		
+		return posts;
+	}
+
+	public ArrayList<Post> getPostsByTotal() throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = new ArrayList<Post>();
+		
+		String query = "select * from posts order by total desc;";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		while (rs.next()) {
+			int id = Integer.parseInt(rs.getString("id"));
+			String text = rs.getString("text");
+			int likes = Integer.parseInt(rs.getString("likes"));
+			int dislikes = Integer.parseInt(rs.getString("dislikes"));
+			int total = Integer.parseInt(rs.getString("total"));
+			Timestamp timestamp = Utils.getTimestamp(rs.getString("timestamp"));
+			String username = rs.getString("username");
+			
+			posts.add(new Post(id, text, likes, dislikes, total, timestamp, username));
+		}
+		
+		return posts;
+	}
+
+	public String getNoOfPostsByUser(String username) throws SQLException {
+		
+		String query = "select count(username) from posts where username = '" + username + "';";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		while (rs.next()) {
+			String count = rs.getString("count");
+			
+			return count;
+		}
+		
+		return null;
+	}
+
+	public int getTotalLikes(String username) throws SQLException, ParseException{
+		
+		int totalLikes = 0;
+		
+		String query = "select likes from posts where username = '" + username + "';";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		while (rs.next()) {
+			int likes = Integer.parseInt(rs.getString("likes"));
+			totalLikes += likes;
+		}
+		
+		return totalLikes;
+	}
+
+	public int getTotalDislikes(String username) throws SQLException, ParseException{
+		
+		int totalDislikes = 0;
+		
+		String query = "select dislikes from posts where username = '" + username + "';";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		while (rs.next()) {
+			int dislikes = Integer.parseInt(rs.getString("dislikes"));
+			totalDislikes += dislikes;
+		}
+		
+		return totalDislikes;
 	}
 }

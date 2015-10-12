@@ -18,9 +18,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 			
-			auth
-				.jdbcAuthentication()
-					.dataSource(dataSource)
+		auth
+			.jdbcAuthentication()
+				.dataSource(dataSource)
 					.usersByUsernameQuery("select username, password, enabled from users where username=?")
 					.authoritiesByUsernameQuery("select username, authority from users where username=?");
 	}
@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.formLogin()
 				.loginPage("/login.html")
-				.defaultSuccessUrl("/loginSuccess.html")
+				.defaultSuccessUrl("/loginSuccess.html", true)
 				.failureUrl("/loginFail.html")
 			.and()
 				.authorizeRequests()
@@ -50,6 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.anyRequest().hasRole("USER")
 			.and()
 				.httpBasic()
+			.and()	
+				.sessionManagement()
+					.invalidSessionUrl("/login.html")
 			.and()
 				.headers()
 					.frameOptions()

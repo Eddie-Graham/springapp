@@ -6,6 +6,10 @@ $(document).ready(function() {
 	divHeight += 64;
 	$("#postsDiv").css('top', divHeight);
 	
+	divHeight = $("#filter").height();
+	$("#postsList").css('top', divHeight);
+	
+	
 	refreshPostsByTimestamp();
 	
 //	refreshPostsByLikes();
@@ -25,25 +29,39 @@ function submitPost(){
 		data: {"postText": postText},
 		success : function(response) {
 
-//			refreshPostsByLikes();
 			$("#postText").val('');
-			$("#left").html(response); 
+			$("#postsList").html(response); 
 		}
 	});
 }
 
-//function refreshPostsByLikes(){
-//	
-//	$.ajax({
-//		type : "GET",
-//		url : "postsByLikes.html",
-//		
-//		success : function(response) {
-//			
-//			$("#right").html(response); 
-//		}
-//	});
-//}
+function refreshPostsByLikes(){
+	
+	$.ajax({
+		type : "GET",
+		url : "postsByLikes.html",
+		
+		success : function(response) {
+	
+			$("#menuLink1").html("Likes"); 
+			$("#postsList").html(response); 
+		}
+	});
+}
+
+function refreshPostsByDislikes(){
+	
+	$.ajax({
+		type : "GET",
+		url : "postsByDislikes.html",
+		
+		success : function(response) {
+	
+			$("#menuLink1").html("Dislikes"); 
+			$("#postsList").html(response); 
+		}
+	});
+}
 
 function refreshPostsByTimestamp(){
 	
@@ -53,7 +71,22 @@ function refreshPostsByTimestamp(){
 		
 		success : function(response) {
 			
-			$("#left").html(response); 
+			$("#menuLink1").html("Timestamp"); 
+			$("#postsList").html(response); 
+		}
+	});
+}
+
+function refreshPostsByTotal(){
+	
+	$.ajax({
+		type : "GET",
+		url : "postsByTotal.html",
+		
+		success : function(response) {
+			
+			$("#menuLink1").html("Total"); 
+			$("#postsList").html(response); 
 		}
 	});
 }
@@ -111,8 +144,6 @@ function incrementLikes(postId){
 			
 			else
 				$("#total_" + postId).css('color', '#777');
-			
-//			refreshPostsByLikes();
 		}
 	});
 }
@@ -170,8 +201,6 @@ function decrementDisikes(postId){
 			
 			else
 				$("#total_" + postId).css('color', '#777');
-			
-//			refreshPostsByLikes();
 		}
 	});
 }

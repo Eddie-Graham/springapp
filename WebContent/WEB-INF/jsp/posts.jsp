@@ -52,6 +52,7 @@
 				
 				<c:choose>
 					<c:when test="${post.canRate}">
+					
 						<div id="buttons" class="pure-u-1-2">
 							<div id="likeButton" class="pure-u-1">
 								<input onclick="incrementLikes(${post.id})" type="image"
@@ -65,8 +66,10 @@
 									alt="dislike">
 							</div>
 						</div>
+						
 					</c:when>
 					<c:otherwise>
+					
 						<div id="buttons" class="pure-u-1-2">
 							<div id="likeButton" class="pure-u-1">
 									<img class="images" src="/springapp/images/like.png" alt="like">
@@ -76,6 +79,7 @@
 									<img class="images" src="/springapp/images/dislike.png" alt="dislike">
 							</div>
 						</div>		
+						
 					</c:otherwise>
 				</c:choose>
 				
