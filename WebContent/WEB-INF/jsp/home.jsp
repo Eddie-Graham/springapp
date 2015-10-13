@@ -24,7 +24,7 @@
 	 		
 	 		<div id="filter">
 	 			<div class="pure-menu pure-menu-horizontal">
-	 				Filter:  &nbsp&nbsp         
+	 				Sort by:  &nbsp&nbsp         
     				<ul class="pure-menu-list">
         				<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
             				<a id="menuLink1" class="pure-button pure-menu-link">Timestamp</a>

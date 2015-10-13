@@ -20,10 +20,10 @@
 		<div id="post">
 			<div id="postLeft">
 				<div id="textDiv">
-					<div id="text">${post.text}</div>
+					<div id="text"><c:out value="${post.text}" /></div>
 				</div>
 				<div id="space"></div>
-				<div id="username">Posted by ${post.username} on
+				<div id="username">Posted by <c:out value="${post.username}" /> on
 					${post.timeString} &nbsp ${post.dateString}</div>
 			</div>
 
