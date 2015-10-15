@@ -28,5 +28,6 @@
     <context:component-scan base-package="springapp.service"/>
     <context:component-scan base-package="springapp.web"/>
     <context:component-scan base-package="springapp.config"/>
+    <context:component-scan base-package="springapp.domain"/>
     
 </beans>

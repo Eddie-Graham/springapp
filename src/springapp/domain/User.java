@@ -9,7 +9,7 @@ public class User {
 	private String authority;
 	private boolean enabled;
 	
-	public User(String id, String username, String email, String password, String authority, boolean enabled){
+	public User(String id, String username, String email, String password, String authority, boolean enabled) {
 		this.id = id;
 		this.username = username;
 		this.email = email;

@@ -2,11 +2,6 @@ package springapp.domain;
 
 import java.sql.Timestamp;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
-import springapp.service.Utils;
-
 public class Post {
 	
 	private int id;
@@ -17,29 +12,26 @@ public class Post {
 	private Timestamp timestamp;
 	private String timeString;
 	private String dateString;
-	private String username;
+	private String user_id;
 	private boolean canRate;
+	private String username;
 	
-	public Post(int id, String text, int likes, int dislikes, int total, Timestamp timestamp, String username){
+	public Post(int id, String text, int likes, int dislikes, int total, Timestamp timestamp, String timeString,
+			String dateString, String user_id, boolean canRate, String username){
+		
 		this.id = id;
 		this.text = text;
 		this.likes = likes;
 		this.dislikes = dislikes;
 		this.total = total;
 		this.timestamp = timestamp;
-		this.timeString = Utils.getTimeString(timestamp);
-		this.dateString = Utils.getDateString(timestamp);
+		this.timeString = timeString;
+		this.dateString = dateString;
+		this.user_id = user_id;
+		this.canRate = canRate;
 		this.username = username;
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String loggedInUsername = auth.getName();
-		
-		if(loggedInUsername.equals(username))
-			canRate = false;
-		else
-			canRate = true;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -87,7 +79,7 @@ public class Post {
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
-	
+
 	public String getTimeString() {
 		return timeString;
 	}
@@ -104,14 +96,14 @@ public class Post {
 		this.dateString = dateString;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	
+
 	public boolean isCanRate() {
 		return canRate;
 	}
@@ -120,9 +112,17 @@ public class Post {
 		this.canRate = canRate;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String toString(){
 		
 		return "\nid: " + id + "\ntext: " + text + "\nlikes: " + likes + "\ndislikes: " + dislikes + "\ntotal: " + total
-				+ "\ntimestamp: " + timestamp + "\nusername: " + username + "\ncanRate: " + canRate;
+				+ "\ntimestamp: " + timestamp + "\nuser_id: " + user_id + "\ncanRate: " + canRate + "\nusername: " + username;
 	}
 }

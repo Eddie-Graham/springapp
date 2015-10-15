@@ -13,28 +13,37 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.User;
-import springapp.service.DbService;
+import springapp.service.UserManager;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	private DbService dbService;
+	private UserManager userManager;
 
 	@RequestMapping(value="/login.html")
 	public ModelAndView enterLogin(HttpServletRequest request){
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String username = auth.getName();
+		User user =  (User) request.getSession().getAttribute("user");
 		
-		if(username != "anonymousUser")
+		if(user != null)
 			return new ModelAndView("redirect:home.html");
 		
 		return new ModelAndView("login");
 	}
 	
 	@RequestMapping(value="/loginSuccess.html")
-	public @ResponseBody String loginSuccess(HttpServletRequest request){
+	public @ResponseBody String loginSuccess(HttpServletRequest request) throws SQLException{
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+	    
+		User user = userManager.getUserByUsername(username);
+	    
+		////////////////////////////////
+		// set user object in session //
+		////////////////////////////////
+		request.getSession().setAttribute("user", user);
 		
 		return "SUCCESS";
 	}
@@ -52,7 +61,7 @@ public class LoginController {
 		
 		email = email.trim();
 		
-		User user = dbService.getUserByEmail(email);
+		User user = userManager.getUserByEmail(email);
 		
 		if(user == null)
 			return "UNIQUE";
@@ -67,7 +76,7 @@ public class LoginController {
 		
 		username = username.trim();
 		
-		User user = dbService.getUserByUsername(username);
+		User user = userManager.getUserByUsername(username);
 		
 		if(user == null)
 			return "UNIQUE";
@@ -89,7 +98,7 @@ public class LoginController {
 		
 		User user = new User(username, email, password);
 		
-		dbService.createUser(user);
+		userManager.createUser(user);
 		
 		System.out.println("User with username " + user.getUsername() + " registered");
 		

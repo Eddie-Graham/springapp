@@ -29,8 +29,8 @@ likes int NOT NULL DEFAULT 0,
 dislikes int NOT NULL DEFAULT 0,
 total int NOT NULL DEFAULT 0,
 timestamp TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'BST'), 
-username varchar(255) NOT NULL,
-FOREIGN KEY (username) REFERENCES Users(username)
+user_id int NOT NULL,
+FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
 CREATE TABLE Like_Records

@@ -8,26 +8,29 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.Post;
-import springapp.service.DbService;
+import springapp.domain.User;
+import springapp.service.LikeDislikeRecordManager;
+import springapp.service.PostManager;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	private DbService dbService;
+	private PostManager postManager;
+	
+	@Autowired
+	private LikeDislikeRecordManager likeDislikeRecordManager;
 	
 	@RequestMapping(value="/postsByTimestamp.html")
 	public ModelAndView postsByTimestamp(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = dbService.getPostsByTimestamp();
+		ArrayList<Post> posts = postManager.getPostsByTimestamp();
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
@@ -38,7 +41,7 @@ public class HomeController {
 	@RequestMapping(value="/postsByLikes.html")
 	public ModelAndView postsByLikes(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = dbService.getPostsByLikes();
+		ArrayList<Post> posts = postManager.getPostsByLikes();
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
@@ -49,7 +52,7 @@ public class HomeController {
 	@RequestMapping(value="/postsByDislikes.html")
 	public ModelAndView postsByDislikes(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = dbService.getPostsByDislikes();
+		ArrayList<Post> posts = postManager.getPostsByDislikes();
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
@@ -60,7 +63,7 @@ public class HomeController {
 	@RequestMapping(value="/postsByTotal.html")
 	public ModelAndView postsByTotal(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = dbService.getPostsByTotal();
+		ArrayList<Post> posts = postManager.getPostsByTotal();
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
@@ -71,12 +74,12 @@ public class HomeController {
 	@RequestMapping(value="/submitPost.html")
 	public String submitPost(HttpServletRequest request) throws SQLException, ParseException{
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
+		User user =  (User) request.getSession().getAttribute("user");
+		String id = user.getId();
 		
 		String postText = request.getParameter("postText");
 		
-		dbService.submitPost(postText, username);
+		postManager.submitPost(postText, id);
 		
 		return "redirect:postsByTimestamp.html";
 	}
@@ -84,67 +87,63 @@ public class HomeController {
 	@RequestMapping(value="/incrementLikes.html")
 	public @ResponseBody String incrementLikes(HttpServletRequest request) throws SQLException{
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-
-		String userId = dbService.getUserId(username);
+		User user =  (User) request.getSession().getAttribute("user");
+		String userId = user.getId();
 		String postId = request.getParameter("postId");
 		
-		ResultSet rsLR = dbService.getLikeRecord(userId, postId);
+		ResultSet rsLR = likeDislikeRecordManager.getLikeRecord(userId, postId);
 		// already liked
 		if(rsLR.next()){
-			dbService.removeLikeRecord(userId, postId);
-			dbService.decrementLikes(postId);
+			likeDislikeRecordManager.removeLikeRecord(userId, postId);
+			likeDislikeRecordManager.decrementLikes(postId);
 			return "UNDO_LIKED";
 		}		
 		
-		ResultSet rsDR = dbService.getDislikeRecord(userId, postId);
+		ResultSet rsDR = likeDislikeRecordManager.getDislikeRecord(userId, postId);
 		// already disliked
 		if(rsDR.next()){
-			dbService.removeDislikeRecord(userId, postId);
-			dbService.incrementDislikes(postId);
-			dbService.incrementLikes(postId);
-			dbService.createLikeRecord(userId, postId);
+			likeDislikeRecordManager.removeDislikeRecord(userId, postId);
+			likeDislikeRecordManager.incrementDislikes(postId);
+			likeDislikeRecordManager.incrementLikes(postId);
+			likeDislikeRecordManager.createLikeRecord(userId, postId);
 			return "REVERSED_DISLIKE";
 		}
 		
-		dbService.incrementLikes(postId);
+		likeDislikeRecordManager.incrementLikes(postId);
 		
-		dbService.createLikeRecord(userId, postId);
+		likeDislikeRecordManager.createLikeRecord(userId, postId);
 		
 		return "SUCCESS";
 	}
 	
 	@RequestMapping(value="/decrementDisikes.html")
 	public @ResponseBody String decrementDisikes(HttpServletRequest request) throws SQLException{
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
 	    
-		String userId = dbService.getUserId(username);
+		User user =  (User) request.getSession().getAttribute("user");
+		String userId = user.getId();
 		String postId = request.getParameter("postId");
 		
-		ResultSet rsLR = dbService.getLikeRecord(userId, postId);
+		ResultSet rsLR = likeDislikeRecordManager.getLikeRecord(userId, postId);
 		// already liked
 		if(rsLR.next()){
-			dbService.removeLikeRecord(userId, postId);
-			dbService.decrementLikes(postId);
-			dbService.decrementDislikes(postId);
-			dbService.createDislikeRecord(userId, postId);
+			likeDislikeRecordManager.removeLikeRecord(userId, postId);
+			likeDislikeRecordManager.decrementLikes(postId);
+			likeDislikeRecordManager.decrementDislikes(postId);
+			likeDislikeRecordManager.createDislikeRecord(userId, postId);
 			return "REVERSED_LIKE";
 		}
 			
-		ResultSet rsDR = dbService.getDislikeRecord(userId, postId);
+		ResultSet rsDR = likeDislikeRecordManager.getDislikeRecord(userId, postId);
 		// already disliked
 		if(rsDR.next()){
-			dbService.removeDislikeRecord(userId, postId);
-			dbService.incrementDislikes(postId);
+			likeDislikeRecordManager.removeDislikeRecord(userId, postId);
+			likeDislikeRecordManager.incrementDislikes(postId);
 			return "UNDO_DISLIKED";
 		}
 		
-		dbService.decrementDislikes(postId);
+		likeDislikeRecordManager.decrementDislikes(postId);
 		
-		dbService.createDislikeRecord(userId, postId);
+		likeDislikeRecordManager.createDislikeRecord(userId, postId);
 		
 		return "SUCCESS";
 	}
