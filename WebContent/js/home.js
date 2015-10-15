@@ -11,8 +11,6 @@ $(document).ready(function() {
 	
 	
 	refreshPostsByTimestamp();
-	
-//	refreshPostsByLikes();
 });
 
 function submitPost(){

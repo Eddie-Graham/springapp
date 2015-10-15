@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Post {
 	
-	private int id;
+	private String id;
 	private String text;
 	private int likes;
 	private int dislikes;
@@ -16,7 +16,7 @@ public class Post {
 	private boolean canRate;
 	private String username;
 	
-	public Post(int id, String text, int likes, int dislikes, int total, Timestamp timestamp, String timeString,
+	public Post(String id, String text, int likes, int dislikes, int total, Timestamp timestamp, String timeString,
 			String dateString, String user_id, boolean canRate, String username){
 		
 		this.id = id;
@@ -32,11 +32,11 @@ public class Post {
 		this.username = username;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

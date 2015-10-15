@@ -129,7 +129,7 @@ public class PostManager {
 		
 		while (rs.next()) {
 			
-			int id = Integer.parseInt(rs.getString("id"));
+			String id = rs.getString("id");
 			String text = rs.getString("text");
 			int likes = Integer.parseInt(rs.getString("likes"));
 			int dislikes = Integer.parseInt(rs.getString("dislikes"));

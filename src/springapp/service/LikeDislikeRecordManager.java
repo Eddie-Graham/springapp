@@ -35,7 +35,7 @@ public class LikeDislikeRecordManager {
 		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	
-public void decrementDislikes(String postId){
+	public void decrementDislikes(String postId){
 		
 		String query = "update posts set dislikes = dislikes - 1 where Id = " + postId + ";";
 		

@@ -19,7 +19,7 @@ public class UserManager {
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
-		return getUsersFromResultSet(rs);
+		return getUserFromResultSet(rs);
 	}
 	
 	public User getUserById(String id) throws SQLException {
@@ -28,7 +28,7 @@ public class UserManager {
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
-		return getUsersFromResultSet(rs);
+		return getUserFromResultSet(rs);
 	}
 	
 	public User getUserByUsername(String username) throws SQLException {
@@ -37,7 +37,7 @@ public class UserManager {
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
-		return getUsersFromResultSet(rs);
+		return getUserFromResultSet(rs);
 	}
 	
 	public void createUser(User user){
@@ -48,7 +48,7 @@ public class UserManager {
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	private User getUsersFromResultSet(ResultSet rs) throws SQLException {
+	private User getUserFromResultSet(ResultSet rs) throws SQLException {
 		
 		while (rs.next()) {
 			
