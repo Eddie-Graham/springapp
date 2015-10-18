@@ -95,7 +95,7 @@ public class HomeController {
 		// already liked
 		if(rsLR.next()){
 			likeDislikeRecordManager.removeLikeRecord(userId, postId);
-			likeDislikeRecordManager.decrementLikes(postId);
+			postManager.decrementLikes(postId);
 			return "UNDO_LIKED";
 		}		
 		
@@ -103,13 +103,13 @@ public class HomeController {
 		// already disliked
 		if(rsDR.next()){
 			likeDislikeRecordManager.removeDislikeRecord(userId, postId);
-			likeDislikeRecordManager.incrementDislikes(postId);
-			likeDislikeRecordManager.incrementLikes(postId);
+			postManager.incrementDislikes(postId);
+			postManager.incrementLikes(postId);
 			likeDislikeRecordManager.createLikeRecord(userId, postId);
 			return "REVERSED_DISLIKE";
 		}
 		
-		likeDislikeRecordManager.incrementLikes(postId);
+		postManager.incrementLikes(postId);
 		
 		likeDislikeRecordManager.createLikeRecord(userId, postId);
 		
@@ -127,8 +127,8 @@ public class HomeController {
 		// already liked
 		if(rsLR.next()){
 			likeDislikeRecordManager.removeLikeRecord(userId, postId);
-			likeDislikeRecordManager.decrementLikes(postId);
-			likeDislikeRecordManager.decrementDislikes(postId);
+			postManager.decrementLikes(postId);
+			postManager.decrementDislikes(postId);
 			likeDislikeRecordManager.createDislikeRecord(userId, postId);
 			return "REVERSED_LIKE";
 		}
@@ -137,11 +137,11 @@ public class HomeController {
 		// already disliked
 		if(rsDR.next()){
 			likeDislikeRecordManager.removeDislikeRecord(userId, postId);
-			likeDislikeRecordManager.incrementDislikes(postId);
+			postManager.incrementDislikes(postId);
 			return "UNDO_DISLIKED";
 		}
 		
-		likeDislikeRecordManager.decrementDislikes(postId);
+		postManager.decrementDislikes(postId);
 		
 		likeDislikeRecordManager.createDislikeRecord(userId, postId);
 		

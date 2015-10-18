@@ -24,6 +24,50 @@ public class PostManager {
 	@Autowired
 	private UserManager userManager;
 	
+	public void incrementLikes(String postId){
+		
+		String query = "update posts set likes = likes + 1 where Id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+		
+		String query2 = "update posts set total = total + 1 where Id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query2);
+	}
+	
+	public void decrementLikes(String postId){
+		
+		String query = "update posts set likes = likes - 1 where Id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+		
+		String query2 = "update posts set total = total - 1 where Id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query2);
+	}
+	
+	public void decrementDislikes(String postId){
+		
+		String query = "update posts set dislikes = dislikes - 1 where Id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+		
+		String query2 = "update posts set total = total - 1 where Id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query2);
+	}
+	
+	public void incrementDislikes(String postId){
+		
+		String query = "update posts set dislikes = dislikes + 1 where Id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+		
+		String query2 = "update posts set total = total + 1 where Id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query2);
+	}
+	
 	public ArrayList<Post> getPostsByTimestamp() throws SQLException, ParseException{
 		
 		String query = "select * from posts order by timestamp desc;";

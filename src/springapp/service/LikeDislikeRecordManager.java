@@ -13,50 +13,6 @@ public class LikeDislikeRecordManager {
 	@Autowired
 	private DbCon dbCon;
 	
-	public void incrementLikes(String postId){
-		
-		String query = "update posts set likes = likes + 1 where Id = " + postId + ";";
-		
-		dbCon.makeConnectionAndExecuteQuery(query);
-		
-		String query2 = "update posts set total = total + 1 where Id = " + postId + ";";
-		
-		dbCon.makeConnectionAndExecuteQuery(query2);
-	}
-	
-	public void decrementLikes(String postId){
-		
-		String query = "update posts set likes = likes - 1 where Id = " + postId + ";";
-		
-		dbCon.makeConnectionAndExecuteQuery(query);
-		
-		String query2 = "update posts set total = total - 1 where Id = " + postId + ";";
-		
-		dbCon.makeConnectionAndExecuteQuery(query2);
-	}
-	
-	public void decrementDislikes(String postId){
-		
-		String query = "update posts set dislikes = dislikes - 1 where Id = " + postId + ";";
-		
-		dbCon.makeConnectionAndExecuteQuery(query);
-		
-		String query2 = "update posts set total = total - 1 where Id = " + postId + ";";
-		
-		dbCon.makeConnectionAndExecuteQuery(query2);
-	}
-	
-	public void incrementDislikes(String postId){
-		
-		String query = "update posts set dislikes = dislikes + 1 where Id = " + postId + ";";
-		
-		dbCon.makeConnectionAndExecuteQuery(query);
-		
-		String query2 = "update posts set total = total + 1 where Id = " + postId + ";";
-		
-		dbCon.makeConnectionAndExecuteQuery(query2);
-	}
-	
 	public void createLikeRecord(String userId, String postId){
 		
 		String query = "insert into like_Records (user_id, post_id) values ('" + userId + "', '" + postId + "');";

@@ -23,8 +23,11 @@
 					<div id="text"><c:out value="${post.text}" /></div>
 				</div>
 				<div id="space"></div>
-				<div id="username">Posted by <c:out value="${post.username}" /> on
-					${post.timeString} &nbsp ${post.dateString}</div>
+				<div id="username">
+					Posted by 
+					<strong><a href="viewuser.html?id=${post.user_id}" class="links"><c:out value="${post.username}" /></a></strong> 
+					on ${post.timeString} &nbsp ${post.dateString}
+				</div>
 			</div>
 
 			<div id="postRight">
