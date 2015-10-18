@@ -5,14 +5,12 @@
 
 #title{
 	border: 1px solid #000000;
-	line-height: 43px;
-	text-align: center;
+	/* line-height: 43px;
+	text-align: center; */
 }
 
 #titleDiv{
 	border: 1px solid #000000;
-	line-height: 43px;
-	text-align: center;
 	padding: 2%;
 }
 
@@ -24,4 +22,21 @@
 
 #myRecentPostsDiv{
 	border: 1px solid #000000;
+}
+
+/* preserve image aspect ratio  */
+#profileImage{
+	float: left;
+	width:  160px;
+ 	height: auto;
+}
+
+#profileOverview{
+	float:left;
+	padding-left: 2%;
+}
+
+#profileImageDiv{
+	float: left;
+	width: 160px;
 }

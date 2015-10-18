@@ -1,5 +1,7 @@
 package springapp.web;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -28,10 +30,17 @@ public class MenuController {
 		
 		User user =  (User) request.getSession().getAttribute("user");
 		String username = user.getUsername();
+		String id = user.getId();
 		
 		ModelAndView mav = new ModelAndView("myprofile");
 		mav.addObject("username", username);
-	    
+		
+		String path = System.getenv("APP_ROOT") + "/profile_images/" + id + ".png";
+
+		File file = new File(path);
+		if(file.exists())
+		    mav.addObject("imagePath", "profile_images/" + id + ".png");
+
 		return mav;
 	}
 }
