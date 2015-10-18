@@ -13,27 +13,34 @@
 	<div id="titleDiv">
 
 		<div id="title" class="pure-u-1">
-			
-			<!-- <div id="profileImageDiv"> -->
-				<c:choose>
-					<c:when test="${not empty imagePath}">
-					<div id="profileImageDiv">
+
+			<c:choose>
+				<c:when test="${not empty imagePath}">
+				
+					<div id="profileImageDiv" style="width: 160px;">
 						<img id="profileImage" src="${imagePath}" alt="Profile pic">
 					</div>
-					</c:when>
-					<c:otherwise>
-					<div id="profileImageDiv" style="width: 300px; height: 200px; border: 1px solid #000000;">
+				
+				</c:when>
+				<c:otherwise>
+					<div id="profileImageDiv" style="padding-left: 20px; width: 300px; height: 200px; border: 1px solid #000000;">
 						<form method="POST" action="upload.html" enctype="multipart/form-data">
 
-    						No profile image found <input type="file" name="file" />
+							<br>
+    						Upload a profile pic!
+    						<br>
+    						<br>
+    						<div>
+    							<input type="file" name="file" />
+    						</div>
+    						<br>
     						<button type="submit" class="pure-button pure-button-primary">Upload</button>
+    						
 						</form>
-				</div>
-					</c:otherwise>
-				</c:choose>
+					</div>
+				</c:otherwise>
+			</c:choose>
 				
-			<!-- </div> -->
-			
 			<div id="profileOverview">
 				<h3><strong>${username}</strong></h3>
 			</div>

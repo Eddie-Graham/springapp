@@ -39,7 +39,7 @@ public class MenuController {
 
 		File file = new File(path);
 		if(file.exists())
-		    mav.addObject("imagePath", "profile_images/" + id + ".png");
+			mav.addObject("imagePath", "profile_images/" + id + ".png");
 
 		return mav;
 	}
