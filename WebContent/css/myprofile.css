@@ -38,4 +38,9 @@
 
 #profileImageDiv{
 	float: left;
+	overflow: hidden;
+}
+
+#delete{
+	color: red;
 }

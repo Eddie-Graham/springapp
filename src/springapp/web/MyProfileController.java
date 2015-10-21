@@ -90,4 +90,20 @@ public class MyProfileController {
 		
 		return "redirect:myprofile.html";
 	}
+	
+	@RequestMapping(value="/delete.html")
+	public String deleteProfileImage(HttpServletRequest request) {
+
+		User user =  (User) request.getSession().getAttribute("user");
+		String id = user.getId();
+		
+		String path = System.getenv("APP_ROOT") + "/profile_images/" + id + ".png";
+		
+		File f = new File(path);
+		boolean success = f.delete();
+		
+		System.out.println("Deleted file (" + success + "): " + path);
+		
+		return "redirect:myprofile.html";
+	}
 }

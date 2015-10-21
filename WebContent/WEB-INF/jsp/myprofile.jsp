@@ -19,10 +19,12 @@
 				
 					<div id="profileImageDiv" style="width: 160px;">
 						<img id="profileImage" src="${imagePath}" alt="Profile pic">
+						<a id="delete" class="links" href="delete.html">Delete & Change</a>
 					</div>
 				
 				</c:when>
 				<c:otherwise>
+				
 					<div id="profileImageDiv" style="padding-left: 20px; width: 300px; height: 200px; border: 1px solid #000000;">
 						<form method="POST" action="upload.html" enctype="multipart/form-data">
 
@@ -38,6 +40,7 @@
     						
 						</form>
 					</div>
+					
 				</c:otherwise>
 			</c:choose>
 				
