@@ -18,6 +18,20 @@
 	<div id="postContainer" style="background-color: ${backgroundColor};">
 
 		<div id="post">
+		
+			<div id="profileDiv">
+			
+			<c:choose>
+					<c:when test="${post.profileImagePath == ''}">
+						<img id="profilePic" src="images/profile_default.png" alt="Profile pic">
+					</c:when>
+					<c:otherwise>
+						<img id="profilePic" src="${post.profileImagePath}" alt="Profile pic">
+					</c:otherwise>
+			</c:choose>
+				
+			</div>
+		
 			<div id="postLeft">
 				<div id="textDiv">
 					<div id="text"><c:out value="${post.text}" /></div>

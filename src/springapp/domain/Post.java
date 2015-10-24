@@ -15,9 +15,10 @@ public class Post {
 	private String user_id;
 	private boolean canRate;
 	private String username;
+	private String profileImagePath;
 	
 	public Post(String id, String text, int likes, int dislikes, int total, Timestamp timestamp, String timeString,
-			String dateString, String user_id, boolean canRate, String username){
+			String dateString, String user_id, boolean canRate, String username, String profileImagePath){
 		
 		this.id = id;
 		this.text = text;
@@ -30,6 +31,7 @@ public class Post {
 		this.user_id = user_id;
 		this.canRate = canRate;
 		this.username = username;
+		this.profileImagePath = profileImagePath;
 	}
 
 	public String getId() {
@@ -119,10 +121,19 @@ public class Post {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	public String getProfileImagePath() {
+		return profileImagePath;
+	}
+
+	public void setProfileImagePath(String profileImagePath) {
+		this.profileImagePath = profileImagePath;
+	}
 
 	public String toString(){
 		
 		return "\nid: " + id + "\ntext: " + text + "\nlikes: " + likes + "\ndislikes: " + dislikes + "\ntotal: " + total
-				+ "\ntimestamp: " + timestamp + "\nuser_id: " + user_id + "\ncanRate: " + canRate + "\nusername: " + username;
+				+ "\ntimestamp: " + timestamp + "\nuser_id: " + user_id + "\ncanRate: " + canRate + "\nusername: "
+				+ username + "\nprofileImagePath: " + profileImagePath;
 	}
 }

@@ -8,17 +8,22 @@ public class User {
 	private String password;
 	private String authority;
 	private boolean enabled;
+	private boolean hasProfilePic;
 	
-	public User(String id, String username, String email, String password, String authority, boolean enabled) {
+	public User(String id, String username, String email, String password, String authority, boolean enabled,
+			boolean hasProfilePic) {
+		
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.authority = authority;
 		this.enabled = enabled;
+		this.hasProfilePic = hasProfilePic;
 	}
 	
 	public User(String username, String email, String password){
+		
 		this.username = username;
 		this.email = email;
 		this.password = password;
@@ -72,9 +77,17 @@ public class User {
 		this.enabled = enabled;
 	}
 
+	public boolean isHasProfilePic() {
+		return hasProfilePic;
+	}
+
+	public void setHasProfilePic(boolean hasProfilePic) {
+		this.hasProfilePic = hasProfilePic;
+	}
+
 	public String toString(){
 		
 		return "\nid: " + id + "\nusername: " + username + "\nemail: " + email + "\nauthority: " + authority
-				+ "\nenabled: " + enabled;
+				+ "\nenabled: " + enabled + "\nhasProfilePic: " + hasProfilePic;
 	}
 }

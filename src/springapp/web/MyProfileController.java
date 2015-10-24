@@ -22,12 +22,16 @@ import org.springframework.web.servlet.ModelAndView;
 import springapp.domain.Post;
 import springapp.domain.User;
 import springapp.service.PostManager;
+import springapp.service.UserManager;
 
 @Controller
 public class MyProfileController {
 	
 	@Autowired
 	private PostManager postManager;
+	
+	@Autowired
+	private UserManager userManager;
 	
 	@RequestMapping(value="/getUsersRecentPosts.html")
 	public ModelAndView getUsersRecentPosts(HttpServletRequest request) throws SQLException, ParseException{
@@ -85,6 +89,10 @@ public class MyProfileController {
 
 			ImageIO.write(bufferedImage, "png", destination);
 			
+			userManager.setHasProfilePic(true, id);
+			// change object in session
+			user.setHasProfilePic(true);
+			
 			System.out.println("User uploaded profile pic at path: " + path);
 		}
 		
@@ -101,6 +109,10 @@ public class MyProfileController {
 		
 		File f = new File(path);
 		boolean success = f.delete();
+		
+		userManager.setHasProfilePic(false, id);
+		// change object in session
+		user.setHasProfilePic(false);
 		
 		System.out.println("Deleted file (" + success + "): " + path);
 		

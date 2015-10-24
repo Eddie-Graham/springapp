@@ -40,6 +40,13 @@ public class UserManager {
 		return getUserFromResultSet(rs);
 	}
 	
+	public void setHasProfilePic(boolean hasProfilePic, String userId){
+		
+		String query = "update users set hasProfilePic = " + hasProfilePic + " where id = " + userId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+	}
+	
 	public void createUser(User user){
 		
 		String query = "insert into users (username, email, password) values('" + user.getUsername() + "', '" + user.getEmail() + "', '"
@@ -63,8 +70,14 @@ public class UserManager {
 				enabled = true;
 			else
 				enabled = false;
+			
+			boolean hasProfilePic;
+			if(rs.getString("hasProfilePic").equals("t"))
+				hasProfilePic = true;
+			else
+				hasProfilePic = false;
             
-			return new User(id, username, email, password, authority, enabled);
+			return new User(id, username, email, password, authority, enabled, hasProfilePic);
 		}
 		
 		return null;	

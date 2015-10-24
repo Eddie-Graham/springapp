@@ -15,7 +15,8 @@ username varchar(255) NOT NULL UNIQUE,
 email varchar(255) NOT NULL UNIQUE,
 password varchar(255) NOT NULL,
 authority varchar(255) NOT NULL DEFAULT 'ROLE_USER',
-enabled boolean NOT NULL DEFAULT TRUE
+enabled boolean NOT NULL DEFAULT TRUE,
+hasProfilePic boolean NOT NULL DEFAULT FALSE
 );
 
 -- sign in

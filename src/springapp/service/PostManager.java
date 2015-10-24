@@ -185,9 +185,11 @@ public class PostManager {
 			
 			String user_id = rs.getString("user_id");
 			
+			////////////////////////////////////////
+			// Can logged in user rate this post? //
 			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-			User user =  (User) attr.getRequest().getSession().getAttribute("user");
-			String loggedInId = user.getId();
+			User loggedInUser =  (User) attr.getRequest().getSession().getAttribute("user");
+			String loggedInId = loggedInUser.getId();
 
 			boolean canRate;
 			
@@ -195,11 +197,25 @@ public class PostManager {
 				canRate = false;
 			else
 				canRate = true;
+			////////////////////////////////////////
 			
+			// Username                           
 			User postUser = userManager.getUserById(String.valueOf(user_id));
 			String username = postUser.getUsername();
 			
-			posts.add(new Post(id, text, likes, dislikes, total, timestamp, timeString, dateString, user_id, canRate, username));
+			////////////////////////////////////////
+			// Does user have profile pic?        //
+			String profileImagePath = "";
+			
+			User user = userManager.getUserById(user_id);
+			
+			if(user.isHasProfilePic())
+				profileImagePath = "profile_images/" + user_id + ".png";
+			////////////////////////////////////////
+
+			
+			posts.add(new Post(id, text, likes, dislikes, total, timestamp, timeString, dateString, user_id, canRate,
+					username, profileImagePath));
 		}
 		
 		return posts;

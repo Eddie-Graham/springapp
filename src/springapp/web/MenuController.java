@@ -35,12 +35,9 @@ public class MenuController {
 		ModelAndView mav = new ModelAndView("myprofile");
 		mav.addObject("username", username);
 		
-		String path = System.getenv("APP_ROOT") + "/profile_images/" + id + ".png";
-
-		File file = new File(path);
-		if(file.exists())
+		if(user.isHasProfilePic())
 			mav.addObject("imagePath", "profile_images/" + id + ".png");
-
+		
 		return mav;
 	}
 }
