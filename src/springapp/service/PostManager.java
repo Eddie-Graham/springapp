@@ -200,16 +200,14 @@ public class PostManager {
 			////////////////////////////////////////
 			
 			// Username                           
-			User postUser = userManager.getUserById(String.valueOf(user_id));
+			User postUser = userManager.getUserById(user_id);
 			String username = postUser.getUsername();
 			
 			////////////////////////////////////////
 			// Does user have profile pic?        //
 			String profileImagePath = "";
 			
-			User user = userManager.getUserById(user_id);
-			
-			if(user.isHasProfilePic())
+			if(postUser.isHasProfilePic())
 				profileImagePath = "profile_images/" + user_id + ".png";
 			////////////////////////////////////////
 

@@ -5,15 +5,15 @@
 <c:forEach items="${posts}" var="post">
 
 	<c:choose>
-        <c:when test="${count % 2 == 0}">
-           	<c:set var="backgroundColor" value="#FFFFFF"/>
-        </c:when>
-        <c:otherwise>
-        	<c:set var="backgroundColor" value="#E6E6E6"/>
-        </c:otherwise>
-    </c:choose>
+		<c:when test="${count % 2 == 0}">
+			<c:set var="backgroundColor" value="#FFFFFF"/>
+		</c:when>
+		<c:otherwise>
+			<c:set var="backgroundColor" value="#E6E6E6"/>
+		</c:otherwise>
+	</c:choose>
     
-    <c:set var="count" value="${count + 1}" scope="page"/>
+	<c:set var="count" value="${count + 1}" scope="page"/>
 
 	<div id="postContainer" style="background-color: ${backgroundColor};">
 
@@ -21,14 +21,14 @@
 		
 			<div id="profileDiv">
 			
-			<c:choose>
+				<c:choose>
 					<c:when test="${post.profileImagePath == ''}">
 						<img id="profilePic" src="images/profile_default.png" alt="Profile pic">
 					</c:when>
 					<c:otherwise>
 						<img id="profilePic" src="${post.profileImagePath}" alt="Profile pic">
 					</c:otherwise>
-			</c:choose>
+				</c:choose>
 				
 			</div>
 		

@@ -17,7 +17,7 @@
 			<c:choose>
 				<c:when test="${not empty imagePath}">
 				
-					<div id="profileImageDiv" style="width: 160px;">
+					<div id="profileImageDiv" style="width: 160px; text-align: center;">
 						<img id="profileImage" src="${imagePath}" alt="Profile pic">
 						<a id="delete" class="links" href="delete.html">Delete & Change</a>
 					</div>
