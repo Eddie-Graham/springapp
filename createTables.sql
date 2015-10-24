@@ -2,6 +2,8 @@
 
 DROP TABLE Dislike_Records;
 
+DROP TABLE Tags;
+
 DROP TABLE Posts;
 
 DROP TABLE Users;
@@ -47,5 +49,12 @@ CREATE TABLE Dislike_Records
 user_id int NOT NULL,
 post_id int NOT NULL,
 FOREIGN KEY (user_id) REFERENCES Users(id),
+FOREIGN KEY (post_id) REFERENCES Posts(id)
+);
+
+CREATE TABLE Tags
+(
+tag varchar(255) NOT NULL,
+post_id int NOT NULL,
 FOREIGN KEY (post_id) REFERENCES Posts(id)
 );

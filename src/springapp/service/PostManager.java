@@ -95,11 +95,24 @@ public class PostManager {
 		return getPostsFromResultSet(rs);
 	}
 	
-	public void submitPost(String postText, String user_id){
+//	public void submitPost(String postText, String user_id){
+//		
+//		String query = "insert into posts (text, user_id) values ('" + postText + "', '" + user_id + "');";
+//		
+//		dbCon.makeConnectionAndExecuteQuery(query);
+//	}
+	
+	/**
+	 * This method returns the auto generated id field of the inserted post
+	 * @param postText
+	 * @param user_id
+	 * @return
+	 */
+	public String submitPost(String postText, String user_id){
 		
 		String query = "insert into posts (text, user_id) values ('" + postText + "', '" + user_id + "');";
 		
-		dbCon.makeConnectionAndExecuteQuery(query);
+		return dbCon.makeConnectionAndExecuteQueryGettingAutoId(query);
 	}
 	
 	public ArrayList<Post> getPostsByDislikes() throws SQLException, ParseException{

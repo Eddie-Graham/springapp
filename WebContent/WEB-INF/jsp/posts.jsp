@@ -34,7 +34,27 @@
 		
 			<div id="postLeft">
 				<div id="textDiv">
-					<div id="text"><c:out value="${post.text}" /></div>
+					<div id="text">
+					
+					<!-- Split by whitespace, loop and see if token begin with # -->
+					<c:set var="postText" value="${post.text}" scope="page" />
+					
+					<c:set var="splitText" value="${fn:split(postText, ' ')}" />
+					
+					<c:forEach items="${splitText}" var="token">
+						
+						<c:choose>
+							<c:when test="${fn:startsWith(token, '#')}">
+								<strong><a href="viewtag.html" style="color: red;" class="links"><c:out value="${token}" /></a></strong>
+							</c:when>
+							<c:otherwise>
+								<c:out value="${token}" />
+							</c:otherwise>
+						</c:choose>
+						
+					</c:forEach>
+					
+					</div>
 				</div>
 				<div id="space"></div>
 				<div id="username">

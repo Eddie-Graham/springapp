@@ -17,12 +17,16 @@ import springapp.domain.Post;
 import springapp.domain.User;
 import springapp.service.LikeDislikeRecordManager;
 import springapp.service.PostManager;
+import springapp.service.TagManager;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
 	private PostManager postManager;
+	
+	@Autowired
+	private TagManager tagManager;
 	
 	@Autowired
 	private LikeDislikeRecordManager likeDislikeRecordManager;
@@ -79,7 +83,21 @@ public class HomeController {
 		
 		String postText = request.getParameter("postText");
 		
-		postManager.submitPost(postText, id);
+		String postId = postManager.submitPost(postText, id);
+		
+		// Find any tags in post
+		ArrayList<String> tags = new ArrayList<String>();
+		String[] splitPostText = postText.split(" ");
+		
+		for(String token: splitPostText){
+			
+			if(token.startsWith("#"))
+				tags.add(token);
+		}
+		
+		// Insert tags into database
+		for(String tag: tags)
+			tagManager.insertTag(tag, postId);
 		
 		return "redirect:postsByTimestamp.html";
 	}

@@ -70,4 +70,39 @@ public class DbCon{
 
 		}
 	}
+	
+	/**
+	 * Execute query and return auto generated id field
+	 * @param query
+	 */
+	public String makeConnectionAndExecuteQueryGettingAutoId(String query){
+		
+		String autoId = "";
+		
+		try {
+
+			Connection c = dataSource.getConnection();
+						
+			Statement stmt = c.createStatement();
+			
+			System.out.println("Executing query: " + query);
+			
+			stmt.execute(query, Statement.RETURN_GENERATED_KEYS);
+			
+			ResultSet rs = stmt.getGeneratedKeys();  
+	
+		    rs.next();  
+
+		    autoId = rs.getString("id"); 
+			
+			c.close();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+		return autoId;
+	}
 }
