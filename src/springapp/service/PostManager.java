@@ -24,6 +24,9 @@ public class PostManager {
 	@Autowired
 	private UserManager userManager;
 	
+	@Autowired
+	private TagManager tagManager;
+	
 	public void incrementLikes(String postId){
 		
 		String query = "update posts set likes = likes + 1 where Id = " + postId + ";";
@@ -95,13 +98,6 @@ public class PostManager {
 		return getPostsFromResultSet(rs);
 	}
 	
-//	public void submitPost(String postText, String user_id){
-//		
-//		String query = "insert into posts (text, user_id) values ('" + postText + "', '" + user_id + "');";
-//		
-//		dbCon.makeConnectionAndExecuteQuery(query);
-//	}
-	
 	/**
 	 * This method returns the auto generated id field of the inserted post
 	 * @param postText
@@ -127,6 +123,30 @@ public class PostManager {
 	public ArrayList<Post> getPostsByTotal() throws SQLException, ParseException{
 		
 		String query = "select * from posts order by total desc;";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		return getPostsFromResultSet(rs);
+	}
+	
+	public ArrayList<Post> getPostsByTag(String tag) throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = new ArrayList<Post>();
+		ArrayList<String> postIds = tagManager.getPostIdsWithTag(tag);
+		
+		for(String postId: postIds){
+			
+			ArrayList<Post> result = getPostById(postId);
+			Post post = result.get(0);
+			posts.add(post);
+		}
+		
+		return posts;
+	}
+	
+	public ArrayList<Post> getPostById(String id) throws SQLException, ParseException{
+		
+		String query = "select * from posts where id = " + id + ";";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		

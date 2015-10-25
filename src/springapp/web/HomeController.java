@@ -75,6 +75,19 @@ public class HomeController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/postsByTag.html")
+	public ModelAndView postsByTag(HttpServletRequest request) throws SQLException, ParseException{
+		
+		String tag = request.getParameter("tag");
+		
+		ArrayList<Post> posts = postManager.getPostsByTag(tag);
+		
+		ModelAndView mav = new ModelAndView("posts");
+		mav.addObject("posts", posts);
+		
+		return mav;
+	}
+	
 	@RequestMapping(value="/submitPost.html")
 	public String submitPost(HttpServletRequest request) throws SQLException, ParseException{
 		

@@ -146,6 +146,22 @@ function incrementLikes(postId){
 	});
 }
 
+function refreshPostsByTag(tag){
+	
+	$.ajax({
+		type : "GET",
+		url : "postsByTag.html",
+		data: {"tag": tag},
+		success : function(response) {
+	
+			//$("#menuLink1").html("Likes"); 
+			// TODO show user what tag is being viewed etc
+			
+			$("#postsList").html(response); 
+		}
+	});
+}
+
 function decrementDisikes(postId){
 	
 	$.ajax({

@@ -91,9 +91,9 @@ public class DbCon{
 			
 			ResultSet rs = stmt.getGeneratedKeys();  
 	
-		    rs.next();  
+			rs.next();  
 
-		    autoId = rs.getString("id"); 
+			autoId = rs.getString("id"); 
 			
 			c.close();
 
