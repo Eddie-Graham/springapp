@@ -22,6 +22,16 @@ function checkRegistrationInput() {
 		return false;
 	}
 	
+	if(username.length < 4){
+		alert("Username must be atleast 4 characters long.");
+		return false;
+	}
+	
+	if(username.length > 14){
+		alert("Username must not exceed 14 characters.");
+		return false;
+	}
+	
 	waitingForUsernameResponse = true;
 		
 	$.ajax({

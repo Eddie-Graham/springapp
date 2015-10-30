@@ -21,8 +21,8 @@ enabled boolean NOT NULL DEFAULT TRUE,
 hasProfilePic boolean NOT NULL DEFAULT FALSE
 );
 
--- sign in
-INSERT INTO Users (username, email, password) VALUES ('test', 'jamgrah2@aol.com', 'password');
+-- sign in, Password123
+INSERT INTO Users (username, email, password) VALUES ('test', 'jamgrah2@aol.com', '$2a$10$fD/hHGPW/gR0KA4bp.YiUOAiitM/5V3WSfPLWwFVMYpBZdHq/C2ne');
 
 CREATE TABLE Posts
 (

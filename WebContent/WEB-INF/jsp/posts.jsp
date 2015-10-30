@@ -20,19 +20,24 @@
 		<div id="post">
 		
 			<div id="profileDiv">
-			
+				<div id="image">
 				<c:choose>
 					<c:when test="${post.profileImagePath == ''}">
 						<img id="profilePic" src="images/profile_default.png" alt="Profile pic">
 					</c:when>
 					<c:otherwise>
-						<img id="profilePic" src="${post.profileImagePath}" alt="Profile pic">
+						<a href="viewuser.html?id=${post.user_id}"><img id="profilePic" src="${post.profileImagePath}" alt="Profile pic"></a>
 					</c:otherwise>
 				</c:choose>
+				</div>
+				
+				<div id="username">
+					<a href="viewuser.html?id=${post.user_id}" class="links"><strong><c:out value="${post.username}" /></strong></a>
+				</div>
 				
 			</div>
 		
-			<div id="postLeft">
+			<div id="postLeft"> 
 				<div id="textDiv">
 					<div id="text">
 					
@@ -56,12 +61,10 @@
 					
 					</div>
 				</div>
-				<div id="space"></div>
-				<div id="username">
-					Posted by 
-					<strong><a href="viewuser.html?id=${post.user_id}" class="links"><c:out value="${post.username}" /></a></strong> 
-					on ${post.timeString} &nbsp ${post.dateString}
-				</div>
+				
+				<div id="timestamp">
+					${post.timeString} &nbsp ${post.dateString}
+				</div> 
 			</div>
 
 			<div id="postRight">

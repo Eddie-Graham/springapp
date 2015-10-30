@@ -153,9 +153,8 @@ function refreshPostsByTag(tag){
 		url : "postsByTag.html",
 		data: {"tag": tag},
 		success : function(response) {
-	
-			//$("#menuLink1").html("Likes"); 
-			// TODO show user what tag is being viewed etc
+			
+			$("#menuLink1").html("Tag '" + tag + "'"); 
 			
 			$("#postsList").html(response); 
 		}

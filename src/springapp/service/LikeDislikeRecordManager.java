@@ -1,6 +1,7 @@
 package springapp.service;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -57,5 +58,27 @@ public class LikeDislikeRecordManager {
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
 		return rs;
+	}
+	
+	public int getTotalPostsLiked(String userId) throws SQLException {
+		
+		String query = "select count(user_id) from like_records where user_id = " + userId + ";";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		rs.next();
+		
+		return rs.getInt("count");
+	}
+	
+	public int getTotalPostsDisliked(String userId) throws SQLException {
+		
+		String query = "select count(user_id) from dislike_records where user_id = " + userId + ";";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		rs.next();
+		
+		return rs.getInt("count");
 	}
 }

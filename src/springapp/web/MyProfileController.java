@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.Post;
 import springapp.domain.User;
+import springapp.service.LikeDislikeRecordManager;
 import springapp.service.PostManager;
 import springapp.service.UserManager;
 
@@ -32,6 +33,9 @@ public class MyProfileController {
 	
 	@Autowired
 	private UserManager userManager;
+	
+	@Autowired
+	private LikeDislikeRecordManager likeDislikeRecordManager;
 	
 	@RequestMapping(value="/getUsersRecentPosts.html")
 	public ModelAndView getUsersRecentPosts(HttpServletRequest request) throws SQLException, ParseException{
@@ -56,11 +60,15 @@ public class MyProfileController {
 		String noOfPosts = postManager.getNoOfPostsByUser(id);
 		int totalLikes = postManager.getTotalLikes(id);
 		int totalDislikes = postManager.getTotalDislikes(id);
+		int totalPostsLiked = likeDislikeRecordManager.getTotalPostsLiked(id);
+		int totalPostsDisliked = likeDislikeRecordManager.getTotalPostsDisliked(id);
 		
 		ModelAndView mav = new ModelAndView("stats");
 		mav.addObject("noOfPosts", noOfPosts);
 		mav.addObject("totalLikes", totalLikes);
 		mav.addObject("totalDislikes", totalDislikes);
+		mav.addObject("totalPostsLiked", totalPostsLiked);
+		mav.addObject("totalPostsDisliked", totalPostsDisliked);
 		
 		return mav;
 	}

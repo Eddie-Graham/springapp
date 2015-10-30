@@ -1,7 +1,11 @@
-<p>My Stats</p>
+<p><strong>My Stats</strong></p>
 	
-<p>No of posts: ${noOfPosts}</p>
+<p><strong>No of posts:</strong> ${noOfPosts}</p>
 	
-<p>Total likes: ${totalLikes}</p>
+<p><strong>My posts total likes:</strong> ${totalLikes}</p>
 	
-<p>Total dislikes: ${totalDislikes}</p>
+<p><strong>My posts total dislikes:</strong> ${totalDislikes}</p>
+
+<p><strong>Total posts liked:</strong> ${totalPostsLiked}</p>
+
+<p><strong>Total posts disliked:</strong> ${totalPostsDisliked}</p>
