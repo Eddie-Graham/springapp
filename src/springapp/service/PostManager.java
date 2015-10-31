@@ -204,6 +204,10 @@ public class PostManager {
 		
 		ArrayList<Post> posts = new ArrayList<Post>();
 		
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		User loggedInUser =  (User) attr.getRequest().getSession().getAttribute("user");
+		String loggedInId = loggedInUser.getId();
+		
 		while (rs.next()) {
 			
 			String id = rs.getString("id");
@@ -220,10 +224,6 @@ public class PostManager {
 			
 			////////////////////////////////////////
 			// Can logged in user rate this post? //
-			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-			User loggedInUser =  (User) attr.getRequest().getSession().getAttribute("user");
-			String loggedInId = loggedInUser.getId();
-
 			boolean canRate;
 			
 			if(loggedInId.equals(user_id))

@@ -23,7 +23,7 @@
 				<div id="image">
 				<c:choose>
 					<c:when test="${post.profileImagePath == ''}">
-						<img id="profilePic" src="images/profile_default.png" alt="Profile pic">
+						<a href="viewuser.html?id=${post.user_id}"><img id="profilePic" src="images/profile_default.png" alt="Profile pic"></a>
 					</c:when>
 					<c:otherwise>
 						<a href="viewuser.html?id=${post.user_id}"><img id="profilePic" src="${post.profileImagePath}" alt="Profile pic"></a>
