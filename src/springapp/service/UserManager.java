@@ -85,7 +85,7 @@ public class UserManager {
 	
 	public void setLatLong(String userId, String latitude, String longitude){
 		
-		String query = "update users set latitude = " + latitude + ", longitude = " + longitude + " where id =" + userId + ";";
+		String query = "update users set latitude = " + latitude + ", longitude = " + longitude + " where id = " + userId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
