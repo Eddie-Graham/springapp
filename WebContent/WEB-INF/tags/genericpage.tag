@@ -18,7 +18,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- <script src="http://malsup.github.com/jquery.form.js"></script> -->
 
 <jsp:invoke fragment="head" />
 
@@ -41,6 +40,7 @@
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="home.html" class="pure-menu-link">Home</a></li>
                 <li class="pure-menu-item"><a href="myprofile.html" class="pure-menu-link">My Profile</a></li>
+                <li class="pure-menu-item"><a href="usermap.html" class="pure-menu-link">User Map</a></li>
                 <li class="pure-menu-item"><a href="about.html" class="pure-menu-link">About</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
                 <li class="pure-menu-item"><a href="logout" class="pure-menu-link">Logout</a></li>

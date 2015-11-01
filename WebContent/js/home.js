@@ -22,7 +22,7 @@ function submitPost(){
 		return;
 	
 	$.ajax({
-		type : "GET",
+		type : "POST",
 		url : "submitPost.html",
 		data: {"postText": postText},
 		success : function(response) {

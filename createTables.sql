@@ -18,7 +18,9 @@ email varchar(255) NOT NULL UNIQUE,
 password varchar(255) NOT NULL,
 authority varchar(255) NOT NULL DEFAULT 'ROLE_USER',
 enabled boolean NOT NULL DEFAULT TRUE,
-hasProfilePic boolean NOT NULL DEFAULT FALSE
+hasProfilePic boolean NOT NULL DEFAULT FALSE,
+latitude decimal,
+longitude decimal
 );
 
 -- sign in, Password123

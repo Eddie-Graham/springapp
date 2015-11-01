@@ -9,9 +9,11 @@ public class User {
 	private String authority;
 	private boolean enabled;
 	private boolean hasProfilePic;
+	private double latitude;
+	private double longitude;
 	
 	public User(String id, String username, String email, String password, String authority, boolean enabled,
-			boolean hasProfilePic) {
+			boolean hasProfilePic, double latitude, double longitude) {
 		
 		this.id = id;
 		this.username = username;
@@ -20,6 +22,8 @@ public class User {
 		this.authority = authority;
 		this.enabled = enabled;
 		this.hasProfilePic = hasProfilePic;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 	
 	public User(String username, String email, String password){
@@ -85,9 +89,26 @@ public class User {
 		this.hasProfilePic = hasProfilePic;
 	}
 
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
 	public String toString(){
-		
+
 		return "\nid: " + id + "\nusername: " + username + "\nemail: " + email + "\nauthority: " + authority
-				+ "\nenabled: " + enabled + "\nhasProfilePic: " + hasProfilePic;
+				+ "\nenabled: " + enabled + "\nhasProfilePic: " + hasProfilePic + "\nlatitude: " + latitude
+				+ "\nlongitude: " + longitude;
 	}
 }

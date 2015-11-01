@@ -2,6 +2,8 @@ package springapp.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import springapp.dbcon.DbCon;
@@ -19,7 +21,12 @@ public class UserManager {
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
-		return getUserFromResultSet(rs);
+		ArrayList<User> users = getUsersFromResultSet(rs);
+		
+		if(users.size() > 0)
+			return users.get(0);
+		
+		return null;
 	}
 	
 	public User getUserById(String id) throws SQLException {
@@ -28,7 +35,12 @@ public class UserManager {
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
-		return getUserFromResultSet(rs);
+		ArrayList<User> users = getUsersFromResultSet(rs);
+		
+		if(users.size() > 0)
+			return users.get(0);
+		
+		return null;
 	}
 	
 	public User getUserByUsername(String username) throws SQLException {
@@ -37,12 +49,43 @@ public class UserManager {
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
-		return getUserFromResultSet(rs);
+		ArrayList<User> users = getUsersFromResultSet(rs);
+		
+		if(users.size() > 0)
+			return users.get(0);
+		
+		return null;
+	}
+	
+	public ArrayList<User> getAllUsers() throws SQLException {
+
+		String query = "select * from users;";
+
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+
+		return getUsersFromResultSet(rs);
+	}
+	
+	public ArrayList<User> getAllUsersWithLatLong() throws SQLException {
+
+		// if lat not null then long is also not null
+		String query = "select * from users where latitude is not null;";
+
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+
+		return getUsersFromResultSet(rs);
 	}
 	
 	public void setHasProfilePic(boolean hasProfilePic, String userId){
 		
 		String query = "update users set hasProfilePic = " + hasProfilePic + " where id = " + userId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+	}
+	
+	public void setLatLong(String userId, String latitude, String longitude){
+		
+		String query = "update users set latitude = " + latitude + ", longitude = " + longitude + " where id =" + userId + ";";
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
@@ -55,7 +98,9 @@ public class UserManager {
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	private User getUserFromResultSet(ResultSet rs) throws SQLException {
+	private ArrayList<User> getUsersFromResultSet(ResultSet rs) throws SQLException {
+		
+		ArrayList<User> users = new ArrayList<User>();
 		
 		while (rs.next()) {
 			
@@ -64,6 +109,8 @@ public class UserManager {
 			String email = rs.getString("email");
 			String password = rs.getString("password");
 			String authority = rs.getString("authority");
+			double latitude = rs.getDouble("latitude");
+			double longitude = rs.getDouble("longitude");
 			
 			boolean enabled;
 			if(rs.getString("enabled").equals("t"))
@@ -77,9 +124,9 @@ public class UserManager {
 			else
 				hasProfilePic = false;
             
-			return new User(id, username, email, password, authority, enabled, hasProfilePic);
+			users.add(new User(id, username, email, password, authority, enabled, hasProfilePic, latitude, longitude));
 		}
 		
-		return null;	
+		return users;	
 	}
 }

@@ -1,5 +1,6 @@
 package springapp.web;
 
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -37,5 +38,11 @@ public class MenuController {
 			mav.addObject("imagePath", "profile_images/" + id + ".png");
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="/usermap.html")
+	public ModelAndView enterUserMap(HttpServletRequest request) throws SQLException{
+		
+		return new ModelAndView("usermap");
 	}
 }
