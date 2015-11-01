@@ -7,7 +7,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="css/usermap.css">
 		
-    </jsp:attribute>
+	</jsp:attribute>
     
 	<jsp:body>
 	
@@ -16,6 +16,6 @@
 	<script src="js/googlemap.js"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOby6rm2T3or27LY1sXDTWcgvjkGUjJHw&callback=initMap"></script>
    
-    </jsp:body>
+	</jsp:body>
 
 </t:genericpage>

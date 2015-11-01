@@ -7,15 +7,16 @@ function initMap() {
 
 	var map = new google.maps.Map(document.getElementById('map'), {
 		center : {
-			lat : -34.397,
-			lng : 150.644
+			// Glasgow, UK
+			lat : 55.864237,
+			lng : -4.251806
 		},
-		zoom : 6
+		zoom : 10
 	});
 
-	var infoWindow = new google.maps.InfoWindow({
-		map : map
-	});
+//	var infoWindow = new google.maps.InfoWindow({
+//		map : map
+//	});
 
 	// Try HTML5 geolocation.
 	if (navigator.geolocation) {
@@ -33,7 +34,18 @@ function initMap() {
 					
 				success : function(response) {
 						
+					var user = JSON.parse(response);
 					
+					var marker = new google.maps.Marker({
+						position : {
+							lat : user.latitude,
+							lng : user.longitude
+						},
+						map : map,
+						//icon : image,
+						//shape : shape,
+						title : user.username
+					});
 				}
 			});
 			

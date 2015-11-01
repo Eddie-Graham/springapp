@@ -46,6 +46,13 @@ public class UserMapController {
 		
 		userManager.setLatLong(id, latitude, longitude);
 		
-		return "SUCCESS";
+		// update session object
+		user.setLatitude(Double.valueOf(latitude));
+		user.setLongitude(Double.valueOf(longitude));
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(user);
+		
+		return json;
 	}
 }
