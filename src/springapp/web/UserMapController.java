@@ -50,9 +50,6 @@ public class UserMapController {
 		user.setLatitude(Double.valueOf(latitude));
 		user.setLongitude(Double.valueOf(longitude));
 		
-		Gson gson = new Gson();
-		String json = gson.toJson(user);
-		
-		return json;
+		return "SUCCESS";
 	}
 }

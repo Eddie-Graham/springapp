@@ -4,6 +4,8 @@
 // locate you.
 
 function initMap() {
+	
+	var HTML5 = false;
 
 	var map = new google.maps.Map(document.getElementById('map'), {
 		center : {
@@ -20,6 +22,9 @@ function initMap() {
 
 	// Try HTML5 geolocation.
 	if (navigator.geolocation) {
+		
+		HTML5 = true;
+		
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var pos = {
 				lat : position.coords.latitude,
@@ -34,9 +39,8 @@ function initMap() {
 					
 				success : function(response) {
 						
-					var user = JSON.parse(response);
-					
-					makeMarker(map, user);
+					setMarkers(map);
+					map.setCenter(pos);
 				}
 			});
 			
@@ -44,10 +48,11 @@ function initMap() {
 
 			//infoWindow.setPosition(pos);
 			//infoWindow.setContent('Location found.');
-			map.setCenter(pos);
 			
 		}, function() {
-			alert("Geolocation error.");
+			
+			// set markers geo position denied
+			setMarkers(map);
 		});
 	} 
 	
@@ -56,15 +61,16 @@ function initMap() {
 //		handleLocationError(false, infoWindow, map.getCenter());
 //	}
 
-	setMarkers(map);
+	if(!HTML5)
+		setMarkers(map);
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-	infoWindow.setPosition(pos);
-	infoWindow
-			.setContent(browserHasGeolocation ? 'Error: The Geolocation service failed.'
-					: 'Error: Your browser doesn\'t support geolocation.');
-}
+//function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+//	infoWindow.setPosition(pos);
+//	infoWindow
+//			.setContent(browserHasGeolocation ? 'Error: The Geolocation service failed.'
+//					: 'Error: Your browser doesn\'t support geolocation.');
+//}
 
 function setMarkers(map) {
 	// Adds markers to the map.
@@ -96,9 +102,9 @@ function makeMarker(map, user){
 		var imagePath = 'images/profile_default.png';
 	
 	var contentString = '<div id="content">' +
-    '<a href="viewuser.html?id=' + user.id + '"><img id="profilePic" style="width: 150px; max-height: 200px;" src="' + imagePath + '" alt="Profile pic"></a>' +
-    '<div style="text-align: center; line-height: 30px; font-size: 20px;"><a href="viewuser.html?id=' + user.id + '" class="links"><strong>' + user.username + '</strong></a></div>' +
-    '</div>';
+	'<a href="viewuser.html?id=' + user.id + '"><img id="profilePic" style="width: 150px; max-height: 200px;" src="' + imagePath + '" alt="Profile pic"></a>' +
+	'<div style="text-align: center; line-height: 30px; font-size: 20px;"><a href="viewuser.html?id=' + user.id + '" class="links"><strong>' + user.username + '</strong></a></div>' +
+	'</div>';
 		
 	var infowindow = new google.maps.InfoWindow({
 		content: contentString
