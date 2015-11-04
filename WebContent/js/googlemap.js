@@ -4,8 +4,6 @@
 // locate you.
 
 function initMap() {
-	
-	var HTML5 = false;
 
 	var map = new google.maps.Map(document.getElementById('map'), {
 		center : {
@@ -23,9 +21,8 @@ function initMap() {
 	// Try HTML5 geolocation.
 	if (navigator.geolocation) {
 		
-		HTML5 = true;
-		
 		navigator.geolocation.getCurrentPosition(function(position) {
+			
 			var pos = {
 				lat : position.coords.latitude,
 				lng : position.coords.longitude
@@ -54,15 +51,11 @@ function initMap() {
 			// set markers geo position denied
 			setMarkers(map);
 		});
-	} 
-	
-//	else {
-//		// Browser doesn't support Geolocation
-//		handleLocationError(false, infoWindow, map.getCenter());
-//	}
-
-	if(!HTML5)
+	} else {
+		
+		// Browser doesn't support Geolocation
 		setMarkers(map);
+	}
 }
 
 //function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -123,6 +116,6 @@ function makeMarker(map, user){
 	
 	marker.addListener('click', function() {
 	    infowindow.open(map, marker);
-	  });
+	});
 	
 }
