@@ -4,9 +4,11 @@
 
 <t:genericpage>
 	<jsp:attribute name="head">
+	
 		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 		<script src="js/home.js"></script> 
+		
     </jsp:attribute>
     
 	<jsp:body>
@@ -20,11 +22,12 @@
 	 	</div>
 	 	
 	 	<div id="postsDiv" class="pure-u-1">
+	 	
 	 		<div id="left" class="pure-u-1 pure-u-lg-3-4">
 	 		
 	 		<div id="filter">
 	 			<div class="pure-menu pure-menu-horizontal">
-	 				Sort by:  &nbsp&nbsp         
+	 				Sort by:  &nbsp;       
     				<ul class="pure-menu-list">
         				<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
             				<a id="menuLink1" class="pure-button pure-menu-link">Timestamp</a>
@@ -41,9 +44,10 @@
 				</div>
 			</div>
 			
-			<div id="postsList" class="pure-u-1 pure-u-lg-3-4"></div>
+			<div id="postsList" class="pure-u-1 pure-u-lg-3-4"></div> 
 	 		
 	 		</div>
+	 		
 	 		<div id="right" class="pure-u-lg-1-4"></div>
 	 	</div>
 

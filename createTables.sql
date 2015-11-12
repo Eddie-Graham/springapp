@@ -4,6 +4,8 @@ DROP TABLE Dislike_Records;
 
 DROP TABLE Tags;
 
+DROP TABLE Post_Comments;
+
 DROP TABLE Posts;
 
 DROP TABLE Users;
@@ -36,6 +38,21 @@ total int NOT NULL DEFAULT 0,
 timestamp TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'GMT'), 
 user_id int NOT NULL,
 FOREIGN KEY (user_id) REFERENCES Users(id)
+);
+
+CREATE TABLE Post_Comments
+(
+id SERIAL PRIMARY KEY,
+text varchar(255) NOT NULL,
+likes int NOT NULL DEFAULT 0,
+dislikes int NOT NULL DEFAULT 0,
+total int NOT NULL DEFAULT 0,
+timestamp TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'GMT'), 
+user_id int NOT NULL,
+masterPost_id int NOT NULL,
+postIndex int NOT NULL,
+FOREIGN KEY (user_id) REFERENCES Users(id),
+FOREIGN KEY (masterPost_id) REFERENCES Posts(id)
 );
 
 CREATE TABLE Like_Records

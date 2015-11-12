@@ -92,11 +92,11 @@
             </fileset>
         </copy>
     	
-    	<copy todir="${deploy.jbossews}/${name}" preservelastmodified="true">
-    	            <fileset dir="${web.dir}">
-    	                <include name="**/*.*"/>
-    	            </fileset>
-    	</copy>
+		<copy todir="${deploy.jbossews}/${name}" preservelastmodified="true">
+			<fileset dir="${web.dir}">
+				<include name="**/*.*"/>
+			</fileset>
+		</copy>
     </target>
 
     <target name="deploywar" depends="build" description="Deploy application as a WAR file">

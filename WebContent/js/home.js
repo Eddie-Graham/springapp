@@ -2,13 +2,13 @@ $(document).ready(function() {
 	
 	// Dynamic css assignment for responsiveness across devices
 	var divHeight = $("#postSubmitDiv").height();
+
 	// Total padding is 64px (32px*2)
 	divHeight += 64;
 	$("#postsDiv").css('top', divHeight);
 	
 	divHeight = $("#filter").height();
 	$("#postsList").css('top', divHeight);
-	
 	
 	refreshPostsByTimestamp();
 });
@@ -214,6 +214,42 @@ function decrementDisikes(postId){
 			
 			else
 				$("#total_" + postId).css('color', '#777');
+		}
+	});
+}
+
+function getPostComments(postId, backgroundColor){
+	
+	$.ajax({
+		type : "GET",
+		url : "getPostComments.html",
+		data: {"postId": postId, "backgroundColor": backgroundColor},
+		success : function(response) {
+			
+			$("#comments_" + postId).html(response); 
+			
+			$("#comments_" + postId).collapse('show');
+		}
+	});
+}
+
+function submitPostComment(postId, backgroundColor){
+	
+	var postText = $("#postComment_" + postId).val();
+	postText = postText.trim();
+	
+	if(postText == "")
+		return;
+	
+	$.ajax({
+		type : "POST",
+		url : "submitPostComment.html",
+		data: {"postText": postText, "postId": postId},
+		success : function(response) {
+
+			getPostComments(postId, backgroundColor);
+			
+			$("#replyDiv_" + postId).collapse('hide');	
 		}
 	});
 }

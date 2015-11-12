@@ -124,3 +124,27 @@
 	font-size: 95%;
 	overflow: hidden;
 }
+
+#bottom{
+	width: 100%;
+}
+
+#expandCommentsBtn{
+    -moz-border-radius: 400px;
+    -webkit-border-radius: 400px;
+    border-radius: 400px;
+    background-color: #0078e7;
+	color: #fff
+}
+
+.postCommentsDiv{
+	padding-left: 15%;
+}
+
+.reply{
+	color: #0078e7;
+}
+
+.replyDiv{
+	padding-left: 22%;
+}

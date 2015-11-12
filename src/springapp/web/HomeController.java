@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import springapp.domain.Post;
 import springapp.domain.User;
 import springapp.service.LikeDislikeRecordManager;
+import springapp.service.PostCommentsManager;
 import springapp.service.PostManager;
 import springapp.service.TagManager;
 
@@ -31,6 +32,9 @@ public class HomeController {
 	
 	@Autowired
 	private LikeDislikeRecordManager likeDislikeRecordManager;
+	
+	@Autowired
+	private PostCommentsManager postCommentsManager;
 	
 	@RequestMapping(value="/postsByTimestamp.html")
 	public ModelAndView postsByTimestamp(HttpServletRequest request) throws SQLException, ParseException{
@@ -176,6 +180,38 @@ public class HomeController {
 		postManager.decrementDislikes(postId);
 		
 		likeDislikeRecordManager.createDislikeRecord(userId, postId);
+		
+		return "SUCCESS";
+	}
+	
+	@RequestMapping(value="/getPostComments.html")
+	public ModelAndView getPostComments(HttpServletRequest request) throws SQLException, NumberFormatException, ParseException{
+	    
+		String postId = request.getParameter("postId");
+		String backgroundColor = request.getParameter("backgroundColor");
+		
+		ArrayList<Post> posts = postCommentsManager.getPostComments(postId);
+		
+		ModelAndView mav = new ModelAndView("posts");
+		mav.addObject("posts", posts);
+		mav.addObject("fromPostComments", true);
+		mav.addObject("postCommentsColor", backgroundColor);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/submitPostComment.html", method = RequestMethod.POST)
+	public @ResponseBody String submitPostComment(HttpServletRequest request) throws SQLException, ParseException{
+		
+		User user =  (User) request.getSession().getAttribute("user");
+		String id = user.getId();
+		
+		String postText = request.getParameter("postText");
+		String postId = request.getParameter("postId");
+		
+		String postIndex = postCommentsManager.getIncrementedPostIndex(postId);
+		
+		postCommentsManager.submitPostComment(postText, id, postId, postIndex);
 		
 		return "SUCCESS";
 	}

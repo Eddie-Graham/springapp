@@ -14,6 +14,11 @@
 	</c:choose>
     
 	<c:set var="count" value="${count + 1}" scope="page"/>
+	
+	<!-- Overwrite background color when dealing with post comments -->
+	<c:if test="${fromPostComments}">
+		<c:set var="backgroundColor" value="${postCommentsColor}"/>
+	</c:if>
 
 	<div id="postContainer" style="background-color: ${backgroundColor};">
 
@@ -62,9 +67,18 @@
 					</div>
 				</div>
 				
-				<div id="timestamp">
-					${post.timeString} &nbsp ${post.dateString}
-				</div> 
+				<div id="bottom">
+					
+					<c:if test="${empty fromPostComments}">
+						<button type="button" onclick="getPostComments('${post.id}', '${backgroundColor}')" id="expandCommentsBtn" data-toggle="collapse" data-target="#comments_${post.id}"><strong>+</strong></button>
+						&nbsp; &nbsp; 
+						<a href="#" class="reply links" data-toggle="collapse" data-target="#replyDiv_${post.id}"><strong>Reply</strong></a>
+					</c:if>
+					
+					<div id="timestamp">				
+						${post.timeString} &nbsp ${post.dateString}
+					</div> 
+				</div>
 			</div>
 
 			<div id="postRight">
@@ -126,4 +140,20 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="replyDiv_${post.id}" class="collapse replyDiv" style="background-color: ${backgroundColor};">
+ 		<form class="pure-form">
+   			<input id="postComment_${post.id}" type="text" class="pure-input-rounded">
+   			<button type="button" onclick="submitPostComment('${post.id}', '${backgroundColor}')"  
+				class="pure-button pure-button-primary">Submit</button>
+		</form>
+	</div> 
+	
+	<c:if test="${empty fromPostComments}">
+		<div class="postCommentsDiv" style="background-color: ${backgroundColor};">
+			<div id="comments_${post.id}" class="collapse">
+			</div> 
+		</div>
+	</c:if>
+	
 </c:forEach>
