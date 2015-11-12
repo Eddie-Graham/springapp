@@ -4,9 +4,12 @@
 
 <t:genericpage>
 	<jsp:attribute name="head">
+	
 		<link rel="stylesheet" type="text/css" href="css/myprofile.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 		<script src="js/myprofile.js"></script> 
+		<script src="js/posts.js"></script> 
+		
     </jsp:attribute>
     
 	<jsp:body>

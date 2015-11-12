@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 		<script src="js/home.js"></script> 
+		<script src="js/posts.js"></script> 
 		
     </jsp:attribute>
     
