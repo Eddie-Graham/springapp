@@ -14,46 +14,82 @@ public class LikeDislikeRecordManager {
 	@Autowired
 	private DbCon dbCon;
 	
-	public void createLikeRecord(String userId, String postId){
+	public void createLikeRecord(String userId, String postId, boolean fromPostComments){
 		
-		String query = "insert into like_Records (user_id, post_id) values ('" + userId + "', '" + postId + "');";
+		String query = "";
 		
-		dbCon.makeConnectionAndExecuteQuery(query);
-	}
-	
-	public void createDislikeRecord(String userId, String postId){
+		if(!fromPostComments)
+			query = "insert into like_records (user_id, post_id) values ('" + userId + "', '" + postId + "');";
 		
-		String query = "insert into dislike_Records (user_id, post_id) values ('" + userId + "', '" + postId + "');";
-		
-		dbCon.makeConnectionAndExecuteQuery(query);
-	}
-	
-	public void removeDislikeRecord(String userId, String postId){
-		
-		String query = "delete from dislike_records where user_id = " + userId + " and post_id = " + postId + ";";
+		else
+			query = "insert into like_records_comments (user_id, post_id) values ('" + userId + "', '" + postId + "');";
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	public void removeLikeRecord(String userId, String postId){
+	public void createDislikeRecord(String userId, String postId, boolean fromPostComments){
 		
-		String query = "delete from like_records where user_id = " + userId + " and post_id = " + postId + ";";
+		String query = "";
+		
+		if(!fromPostComments)
+			query = "insert into dislike_records (user_id, post_id) values ('" + userId + "', '" + postId + "');";
+		
+		else
+			query = "insert into dislike_records_comments (user_id, post_id) values ('" + userId + "', '" + postId + "');";
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	public ResultSet getLikeRecord(String userId, String postId){
+	public void removeDislikeRecord(String userId, String postId, boolean fromPostComments){
 		
-		String query = "select * from like_records where user_id = " + userId + " and post_id = " + postId + ";";
+		String query = "";
+		
+		if(!fromPostComments)
+			query = "delete from dislike_records where user_id = " + userId + " and post_id = " + postId + ";";
+		
+		else
+			query = "delete from dislike_records_comments where user_id = " + userId + " and post_id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+	}
+	
+	public void removeLikeRecord(String userId, String postId, boolean fromPostComments){
+		
+		String query = "";
+		
+		if(!fromPostComments)
+			query = "delete from like_records where user_id = " + userId + " and post_id = " + postId + ";";
+		
+		else
+			query = "delete from like_records_comments where user_id = " + userId + " and post_id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+	}
+	
+	public ResultSet getLikeRecord(String userId, String postId, boolean fromPostComments){
+		
+		String query = "";
+		
+		if(!fromPostComments)
+			query = "select * from like_records where user_id = " + userId + " and post_id = " + postId + ";";
+		
+		else
+			query = "select * from like_records_comments where user_id = " + userId + " and post_id = " + postId + ";";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
 		return rs;
 	}
 
-	public ResultSet getDislikeRecord(String userId, String postId) {
+	public ResultSet getDislikeRecord(String userId, String postId, boolean fromPostComments) {
 		
-		String query = "select * from dislike_records where user_id = " + userId + " and post_id = " + postId + ";";
+		String query = "";
+		
+		if(!fromPostComments)
+			query = "select * from dislike_records where user_id = " + userId + " and post_id = " + postId + ";";
+		
+		else
+			query = "select * from dislike_records_comments where user_id = " + userId + " and post_id = " + postId + ";";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		

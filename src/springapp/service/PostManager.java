@@ -27,47 +27,79 @@ public class PostManager {
 	@Autowired
 	private TagManager tagManager;
 	
-	public void incrementLikes(String postId){
+	public void incrementLikes(String postId, boolean fromPostComments){
 		
-		String query = "update posts set likes = likes + 1 where Id = " + postId + ";";
+		String query = "";
+		String query2 = "";
+		
+		if(!fromPostComments){
+			query = "update posts set likes = likes + 1 where Id = " + postId + ";";
+			query2 = "update posts set total = total + 1 where Id = " + postId + ";";
+		}
+		
+		else{
+			query = "update post_comments set likes = likes + 1 where Id = " + postId + ";";
+			query2 = "update post_comments set total = total + 1 where Id = " + postId + ";";
+		}
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
-		
-		String query2 = "update posts set total = total + 1 where Id = " + postId + ";";
-		
 		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	
-	public void decrementLikes(String postId){
+	public void decrementLikes(String postId, boolean fromPostComments){
 		
-		String query = "update posts set likes = likes - 1 where Id = " + postId + ";";
+		String query = "";
+		String query2 = "";
+		
+		if(!fromPostComments){
+			query = "update posts set likes = likes - 1 where Id = " + postId + ";";
+			query2 = "update posts set total = total - 1 where Id = " + postId + ";";
+		}
+		
+		else{
+			query = "update post_comments set likes = likes - 1 where Id = " + postId + ";";
+			query2 = "update post_comments set total = total - 1 where Id = " + postId + ";";
+		}
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
-		
-		String query2 = "update posts set total = total - 1 where Id = " + postId + ";";
-		
 		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	
-	public void decrementDislikes(String postId){
+	public void decrementDislikes(String postId, boolean fromPostComments){
 		
-		String query = "update posts set dislikes = dislikes - 1 where Id = " + postId + ";";
+		String query = "";
+		String query2 = "";
+		
+		if(!fromPostComments){
+			query = "update posts set dislikes = dislikes - 1 where Id = " + postId + ";";
+			query2 = "update posts set total = total - 1 where Id = " + postId + ";";
+		}
+		
+		else{
+			query = "update post_comments set dislikes = dislikes - 1 where Id = " + postId + ";";
+			query2 = "update post_comments set total = total - 1 where Id = " + postId + ";";
+		}
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
-		
-		String query2 = "update posts set total = total - 1 where Id = " + postId + ";";
-		
 		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	
-	public void incrementDislikes(String postId){
+	public void incrementDislikes(String postId, boolean fromPostComments){
 		
-		String query = "update posts set dislikes = dislikes + 1 where Id = " + postId + ";";
+		String query = "";
+		String query2 = "";
+		
+		if(!fromPostComments){
+			query = "update posts set dislikes = dislikes + 1 where Id = " + postId + ";";
+			query2 = "update posts set total = total + 1 where Id = " + postId + ";";
+		}
+		
+		else{
+			query = "update post_comments set dislikes = dislikes + 1 where Id = " + postId + ";";
+			query2 = "update post_comments set total = total + 1 where Id = " + postId + ";";
+		}
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
-		
-		String query2 = "update posts set total = total + 1 where Id = " + postId + ";";
-		
 		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	

@@ -1,6 +1,10 @@
 ﻿DROP TABLE Like_Records;
 
+DROP TABLE Like_Records_Comments;
+
 DROP TABLE Dislike_Records;
+
+DROP TABLE Dislike_Records_Comments;
 
 DROP TABLE Tags;
 
@@ -63,12 +67,28 @@ FOREIGN KEY (user_id) REFERENCES Users(id),
 FOREIGN KEY (post_id) REFERENCES Posts(id)
 );
 
+CREATE TABLE Like_Records_Comments
+(
+user_id int NOT NULL,
+post_id int NOT NULL,
+FOREIGN KEY (user_id) REFERENCES Users(id),
+FOREIGN KEY (post_id) REFERENCES Post_Comments(id)
+);
+
 CREATE TABLE Dislike_Records
 (
 user_id int NOT NULL,
 post_id int NOT NULL,
 FOREIGN KEY (user_id) REFERENCES Users(id),
 FOREIGN KEY (post_id) REFERENCES Posts(id)
+);
+
+CREATE TABLE Dislike_Records_Comments
+(
+user_id int NOT NULL,
+post_id int NOT NULL,
+FOREIGN KEY (user_id) REFERENCES Users(id),
+FOREIGN KEY (post_id) REFERENCES Post_Comments(id)
 );
 
 CREATE TABLE Tags

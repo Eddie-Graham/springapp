@@ -126,30 +126,69 @@ public class HomeController {
 		User user =  (User) request.getSession().getAttribute("user");
 		String userId = user.getId();
 		String postId = request.getParameter("postId");
+		boolean fromPostComments = Boolean.valueOf(request.getParameter("fromPostComments"));
 		
-		ResultSet rsLR = likeDislikeRecordManager.getLikeRecord(userId, postId);
+		if(!fromPostComments){
+			
+			///////////////////
+			// main post     //
+			///////////////////
+			
+			ResultSet rsLR = likeDislikeRecordManager.getLikeRecord(userId, postId, false);
+			// already liked
+			if(rsLR.next()){
+				likeDislikeRecordManager.removeLikeRecord(userId, postId, false);
+				postManager.decrementLikes(postId, false);
+				return "UNDO_LIKED";
+			}		
+			
+			ResultSet rsDR = likeDislikeRecordManager.getDislikeRecord(userId, postId, false);
+			// already disliked
+			if(rsDR.next()){
+				likeDislikeRecordManager.removeDislikeRecord(userId, postId, false);
+				postManager.incrementDislikes(postId, false);
+				postManager.incrementLikes(postId, false);
+				likeDislikeRecordManager.createLikeRecord(userId, postId, false);
+				return "REVERSED_DISLIKE";
+			}
+			
+			postManager.incrementLikes(postId, false);
+			
+			likeDislikeRecordManager.createLikeRecord(userId, postId, false);
+			
+			return "SUCCESS";
+			
+		}
+		
+		///////////////////
+		// post comment  //
+		///////////////////
+		
+		ResultSet rsLR = likeDislikeRecordManager.getLikeRecord(userId, postId, true);
 		// already liked
 		if(rsLR.next()){
-			likeDislikeRecordManager.removeLikeRecord(userId, postId);
-			postManager.decrementLikes(postId);
+			likeDislikeRecordManager.removeLikeRecord(userId, postId, true);
+			postManager.decrementLikes(postId, true);
 			return "UNDO_LIKED";
 		}		
 		
-		ResultSet rsDR = likeDislikeRecordManager.getDislikeRecord(userId, postId);
+		ResultSet rsDR = likeDislikeRecordManager.getDislikeRecord(userId, postId, true);
 		// already disliked
 		if(rsDR.next()){
-			likeDislikeRecordManager.removeDislikeRecord(userId, postId);
-			postManager.incrementDislikes(postId);
-			postManager.incrementLikes(postId);
-			likeDislikeRecordManager.createLikeRecord(userId, postId);
+			likeDislikeRecordManager.removeDislikeRecord(userId, postId, true);
+			postManager.incrementDislikes(postId, true);
+			postManager.incrementLikes(postId, true);
+			likeDislikeRecordManager.createLikeRecord(userId, postId, true);
 			return "REVERSED_DISLIKE";
 		}
 		
-		postManager.incrementLikes(postId);
+		postManager.incrementLikes(postId, true);
 		
-		likeDislikeRecordManager.createLikeRecord(userId, postId);
+		likeDislikeRecordManager.createLikeRecord(userId, postId, true);
 		
 		return "SUCCESS";
+		
+		
 	}
 	
 	@RequestMapping(value="/decrementDisikes.html")
@@ -158,28 +197,65 @@ public class HomeController {
 		User user =  (User) request.getSession().getAttribute("user");
 		String userId = user.getId();
 		String postId = request.getParameter("postId");
+		boolean fromPostComments = Boolean.valueOf(request.getParameter("fromPostComments"));
 		
-		ResultSet rsLR = likeDislikeRecordManager.getLikeRecord(userId, postId);
+		if(!fromPostComments){
+			
+			///////////////////
+			// main post     //
+			///////////////////
+			
+			ResultSet rsLR = likeDislikeRecordManager.getLikeRecord(userId, postId, false);
+			// already liked
+			if(rsLR.next()){
+				likeDislikeRecordManager.removeLikeRecord(userId, postId, false);
+				postManager.decrementLikes(postId, false);
+				postManager.decrementDislikes(postId, false);
+				likeDislikeRecordManager.createDislikeRecord(userId, postId, false);
+				return "REVERSED_LIKE";
+			}
+				
+			ResultSet rsDR = likeDislikeRecordManager.getDislikeRecord(userId, postId, false);
+			// already disliked
+			if(rsDR.next()){
+				likeDislikeRecordManager.removeDislikeRecord(userId, postId, false);
+				postManager.incrementDislikes(postId, false);
+				return "UNDO_DISLIKED";
+			}
+			
+			postManager.decrementDislikes(postId, false);
+			
+			likeDislikeRecordManager.createDislikeRecord(userId, postId, false);
+			
+			return "SUCCESS";
+			
+		}
+		
+		///////////////////
+		// post comment  //
+		///////////////////
+		
+		ResultSet rsLR = likeDislikeRecordManager.getLikeRecord(userId, postId, true);
 		// already liked
 		if(rsLR.next()){
-			likeDislikeRecordManager.removeLikeRecord(userId, postId);
-			postManager.decrementLikes(postId);
-			postManager.decrementDislikes(postId);
-			likeDislikeRecordManager.createDislikeRecord(userId, postId);
+			likeDislikeRecordManager.removeLikeRecord(userId, postId, true);
+			postManager.decrementLikes(postId, true);
+			postManager.decrementDislikes(postId, true);
+			likeDislikeRecordManager.createDislikeRecord(userId, postId, true);
 			return "REVERSED_LIKE";
 		}
 			
-		ResultSet rsDR = likeDislikeRecordManager.getDislikeRecord(userId, postId);
+		ResultSet rsDR = likeDislikeRecordManager.getDislikeRecord(userId, postId, true);
 		// already disliked
 		if(rsDR.next()){
-			likeDislikeRecordManager.removeDislikeRecord(userId, postId);
-			postManager.incrementDislikes(postId);
+			likeDislikeRecordManager.removeDislikeRecord(userId, postId, true);
+			postManager.incrementDislikes(postId, true);
 			return "UNDO_DISLIKED";
 		}
 		
-		postManager.decrementDislikes(postId);
+		postManager.decrementDislikes(postId, true);
 		
-		likeDislikeRecordManager.createDislikeRecord(userId, postId);
+		likeDislikeRecordManager.createDislikeRecord(userId, postId, true);
 		
 		return "SUCCESS";
 	}
