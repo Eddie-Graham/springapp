@@ -56,9 +56,6 @@
 	
 	<div id="statsDiv" class="pure-u-1 pure-u-md-1-2"></div>
 	
-
-	
-	
 	<div id="myRecentPostsDiv" class="pure-u-1 pure-u-md-1-2"></div>
 
     </jsp:body>

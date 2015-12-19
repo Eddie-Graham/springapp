@@ -231,6 +231,16 @@ function decrementDisikes(postId, fromPostComments){
 	});
 }
 
+function expandComments(postId, backgroundColor){
+	
+	if ($("#comments_" + postId).is(':visible')){
+		$("#comments_" + postId).hide(800);
+		return;
+	}
+	
+	getPostComments(postId, backgroundColor);
+}
+
 function getPostComments(postId, backgroundColor){
 	
 	$.ajax({
@@ -241,7 +251,8 @@ function getPostComments(postId, backgroundColor){
 			
 			$("#comments_" + postId).html(response); 
 			
-			$("#comments_" + postId).collapse('show');
+			if ($("#comments_" + postId).is(':hidden'))
+				$("#comments_" + postId).slideToggle(1000);
 		}
 	});
 }
@@ -262,7 +273,12 @@ function submitPostComment(postId, backgroundColor){
 
 			getPostComments(postId, backgroundColor);
 			
-			$("#replyDiv_" + postId).collapse('hide');	
+			$("#replyDiv_" + postId).hide(800);
 		}
 	});
+}
+
+function toggleReplyDiv(replyDivId){
+	
+	$("#" + replyDivId).slideToggle(300);
 }
