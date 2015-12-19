@@ -106,11 +106,18 @@
                 <include name="**/*.*"/>
             </fileset>
         </war>
-        <copy todir="${deploy.path}" preservelastmodified="true">
+    	
+        <copy todir="${deploy.jbossews}" preservelastmodified="true">
             <fileset dir=".">
                 <include name="*.war"/>
             </fileset>
         </copy>
+    	
+    	<copy todir="${deploy.path}" preservelastmodified="true">
+			<fileset dir=".">
+				<include name="*.war"/>
+			</fileset>
+		</copy>
     </target>
     
 <!-- ============================================================== -->

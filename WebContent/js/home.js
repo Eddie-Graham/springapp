@@ -2,7 +2,6 @@ $(document).ready(function() {
 	
 	// Dynamic css assignment for responsiveness across devices
 	var divHeight = $("#postSubmitDiv").height();
-
 	// Total padding is 64px (32px*2)
 	divHeight += 64;
 	$("#postsDiv").css('top', divHeight);
