@@ -72,7 +72,7 @@
 					<c:if test="${empty fromPostComments}">
 						<button type="button"
 							onclick="expandComments('${post.id}', '${backgroundColor}')"
-							id="expandCommentsBtn">
+							id="expandCommentsBtn_${post.id}" class="expandCommentsBtn">
 							<strong>+</strong>
 						</button>
 						&nbsp;
@@ -129,41 +129,28 @@
 				<c:choose>
 					<c:when test="${post.canRate}">
 					
-						<c:if test="${empty fromPostComments}">
+						<c:choose>
+							<c:when test="${empty fromPostComments}">
+								<c:set var="postComment" value="false"/>
+							</c:when>
+							<c:otherwise>
+								<c:set var="postComment" value="true"/>
+							</c:otherwise>
+						</c:choose>
 						
-							<div id="buttons" class="pure-u-1-2">
-								<div id="likeButton" class="pure-u-1">
-									<input onclick="incrementLikes(${post.id}, false)" type="image"
-										src="/springapp/images/like.png" width="100%" height="100%"
-										alt="like">
-								</div>
-
-								<div id="dislikeButton" class="pure-u-1">
-									<input onclick="decrementDisikes(${post.id}, false)" type="image"
-										src="/springapp/images/dislike.png" width="100%" height="100%"
-										alt="dislike">
-								</div>
+						<div id="buttons" class="pure-u-1-2">
+							<div id="likeButton" class="pure-u-1">
+								<input onclick="incrementLikes(${post.id}, ${postComment})" type="image"
+									src="/springapp/images/like.png" width="100%" height="100%"
+									alt="like">
 							</div>
-		
-						</c:if>
-						
-						<c:if test="${fromPostComments}">
-						
-							<div id="buttons" class="pure-u-1-2">
-								<div id="likeButton" class="pure-u-1">
-									<input onclick="incrementLikes(${post.id}, true)" type="image"
-										src="/springapp/images/like.png" width="100%" height="100%"
-										alt="like">
-								</div>
 
-								<div id="dislikeButton" class="pure-u-1">
-									<input onclick="decrementDisikes(${post.id}, true)" type="image"
-										src="/springapp/images/dislike.png" width="100%" height="100%"
-										alt="dislike">
-								</div>
+							<div id="dislikeButton" class="pure-u-1">
+								<input onclick="decrementDisikes(${post.id}, ${postComment})" type="image"
+									src="/springapp/images/dislike.png" width="100%" height="100%"
+									alt="dislike">
 							</div>
-		
-						</c:if>
+						</div>
 					
 					</c:when>
 					<c:otherwise>

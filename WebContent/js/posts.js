@@ -234,7 +234,9 @@ function decrementDisikes(postId, fromPostComments){
 function expandComments(postId, backgroundColor){
 	
 	if ($("#comments_" + postId).is(':visible')){
+		
 		$("#comments_" + postId).hide(800);
+		$('#expandCommentsBtn_' + postId).html('+');
 		return;
 	}
 	
@@ -251,8 +253,11 @@ function getPostComments(postId, backgroundColor){
 			
 			$("#comments_" + postId).html(response); 
 			
-			if ($("#comments_" + postId).is(':hidden'))
+			if ($("#comments_" + postId).is(':hidden')){
+				
 				$("#comments_" + postId).slideToggle(1000);
+				$('#expandCommentsBtn_' + postId).html('-');
+			}
 		}
 	});
 }

@@ -36,7 +36,6 @@ public class PostManager {
 			query = "update posts set likes = likes + 1 where Id = " + postId + ";";
 			query2 = "update posts set total = total + 1 where Id = " + postId + ";";
 		}
-		
 		else{
 			query = "update post_comments set likes = likes + 1 where Id = " + postId + ";";
 			query2 = "update post_comments set total = total + 1 where Id = " + postId + ";";
@@ -54,8 +53,7 @@ public class PostManager {
 		if(!fromPostComments){
 			query = "update posts set likes = likes - 1 where Id = " + postId + ";";
 			query2 = "update posts set total = total - 1 where Id = " + postId + ";";
-		}
-		
+		}	
 		else{
 			query = "update post_comments set likes = likes - 1 where Id = " + postId + ";";
 			query2 = "update post_comments set total = total - 1 where Id = " + postId + ";";
@@ -74,7 +72,6 @@ public class PostManager {
 			query = "update posts set dislikes = dislikes - 1 where Id = " + postId + ";";
 			query2 = "update posts set total = total - 1 where Id = " + postId + ";";
 		}
-		
 		else{
 			query = "update post_comments set dislikes = dislikes - 1 where Id = " + postId + ";";
 			query2 = "update post_comments set total = total - 1 where Id = " + postId + ";";
@@ -92,8 +89,7 @@ public class PostManager {
 		if(!fromPostComments){
 			query = "update posts set dislikes = dislikes + 1 where Id = " + postId + ";";
 			query2 = "update posts set total = total + 1 where Id = " + postId + ";";
-		}
-		
+		}	
 		else{
 			query = "update post_comments set dislikes = dislikes + 1 where Id = " + postId + ";";
 			query2 = "update post_comments set total = total + 1 where Id = " + postId + ";";
@@ -185,26 +181,34 @@ public class PostManager {
 		return getPostsFromResultSet(rs);
 	}
 	
-	public String getNoOfPostsByUser(String id) throws SQLException {
+	public String getNoOfPostsByUser(String id, boolean fromPostComments) throws SQLException {
 		
-		String query = "select count(user_id) from posts where user_id = '" + id + "';";
+		String query = "";
+		
+		if(!fromPostComments)
+			query = "select count(user_id) from posts where user_id = '" + id + "';";
+		else
+			query = "select count(user_id) from post_comments where user_id = '" + id + "';";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
 		while (rs.next()) {
 			String count = rs.getString("count");
-			
 			return count;
 		}
 		
 		return null;
 	}
 	
-	public int getTotalLikes(String id) throws SQLException, ParseException{
+	public int getTotalLikes(String id, boolean fromPostComments) throws SQLException, ParseException{
 		
 		int totalLikes = 0;
+		String query = "";
 		
-		String query = "select likes from posts where user_id = '" + id + "';";
+		if(!fromPostComments)
+			query = "select likes from posts where user_id = '" + id + "';";
+		else
+			query = "select likes from post_comments where user_id = '" + id + "';";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
@@ -216,11 +220,15 @@ public class PostManager {
 		return totalLikes;
 	}
 	
-	public int getTotalDislikes(String id) throws SQLException, ParseException{
+	public int getTotalDislikes(String id, boolean fromPostComments) throws SQLException, ParseException{
 		
 		int totalDislikes = 0;
+		String query = "";
 		
-		String query = "select dislikes from posts where user_id = '" + id + "';";
+		if(!fromPostComments)
+			query = "select dislikes from posts where user_id = '" + id + "';";
+		else
+			query = "select dislikes from post_comments where user_id = '" + id + "';";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		

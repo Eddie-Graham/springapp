@@ -57,18 +57,32 @@ public class MyProfileController {
 		User user =  (User) request.getSession().getAttribute("user");
 		String id = user.getId();
 		
-		String noOfPosts = postManager.getNoOfPostsByUser(id);
-		int totalLikes = postManager.getTotalLikes(id);
-		int totalDislikes = postManager.getTotalDislikes(id);
-		int totalPostsLiked = likeDislikeRecordManager.getTotalPostsLiked(id);
-		int totalPostsDisliked = likeDislikeRecordManager.getTotalPostsDisliked(id);
+		// main posts
+		String noOfPosts = postManager.getNoOfPostsByUser(id, false);
+		int totalLikes = postManager.getTotalLikes(id, false);
+		int totalDislikes = postManager.getTotalDislikes(id, false);
+		int totalPostsLiked = likeDislikeRecordManager.getTotalPostsLiked(id, false);
+		int totalPostsDisliked = likeDislikeRecordManager.getTotalPostsDisliked(id, false);
+		// replies
+		String noOfReplies = postManager.getNoOfPostsByUser(id, true);
+		int totalReplyLikes = postManager.getTotalLikes(id, true);
+		int totalReplyDislikes = postManager.getTotalDislikes(id, true);
+		int totalRepliesLiked = likeDislikeRecordManager.getTotalPostsLiked(id, true);
+		int totalRepliesDisliked = likeDislikeRecordManager.getTotalPostsDisliked(id, true);
 		
 		ModelAndView mav = new ModelAndView("stats");
+		// main posts
 		mav.addObject("noOfPosts", noOfPosts);
 		mav.addObject("totalLikes", totalLikes);
 		mav.addObject("totalDislikes", totalDislikes);
 		mav.addObject("totalPostsLiked", totalPostsLiked);
 		mav.addObject("totalPostsDisliked", totalPostsDisliked);
+		// replies
+		mav.addObject("noOfReplies", noOfReplies);
+		mav.addObject("totalReplyLikes", totalReplyLikes);
+		mav.addObject("totalReplyDislikes", totalReplyDislikes);
+		mav.addObject("totalRepliesLiked", totalRepliesLiked);
+		mav.addObject("totalRepliesDisliked", totalRepliesDisliked);
 		
 		return mav;
 	}

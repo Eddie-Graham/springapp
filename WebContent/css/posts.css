@@ -122,19 +122,19 @@
 #timestamp{
 	float: right;
 	font-size: 95%;
-	overflow: hidden;
 }
 
 #bottom{
 	width: 100%;
 }
 
-#expandCommentsBtn{
+.expandCommentsBtn{
 	-moz-border-radius: 400px;
 	-webkit-border-radius: 400px;
 	border-radius: 400px;
 	background-color: #0078e7;
 	color: #fff;
+	width: 26px;
 }
 
 .postCommentsDiv{

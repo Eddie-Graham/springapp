@@ -49,7 +49,7 @@
 	 		
 	 		</div>
 	 		
-	 		<div id="right" class="pure-u-lg-1-4"></div>
+	 		<div id="right"></div>
 	 	</div>
 
     </jsp:body>

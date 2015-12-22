@@ -73,3 +73,11 @@
 	background: #0078e7;
 	color: #FFFFFF;
 }
+
+/* best fit for timestamp on home.jsp */
+@media (max-width: 30em) {
+
+    #timestamp {
+        display: none;
+    }
+}

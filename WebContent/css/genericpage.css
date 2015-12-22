@@ -298,7 +298,7 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     text-decoration: none;
 }
 
-/* collapsible stolen from bootstrap (not using bootstrap source as it interferes) */
+/* collapsible stolen from bootstrap .css (not using bootstrap source as it interferes */
 .collapse{
 	display:none
 }

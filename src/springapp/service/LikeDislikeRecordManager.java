@@ -20,7 +20,6 @@ public class LikeDislikeRecordManager {
 		
 		if(!fromPostComments)
 			query = "insert into like_records (user_id, post_id) values ('" + userId + "', '" + postId + "');";
-		
 		else
 			query = "insert into like_records_comments (user_id, post_id) values ('" + userId + "', '" + postId + "');";
 		
@@ -33,7 +32,6 @@ public class LikeDislikeRecordManager {
 		
 		if(!fromPostComments)
 			query = "insert into dislike_records (user_id, post_id) values ('" + userId + "', '" + postId + "');";
-		
 		else
 			query = "insert into dislike_records_comments (user_id, post_id) values ('" + userId + "', '" + postId + "');";
 		
@@ -46,7 +44,6 @@ public class LikeDislikeRecordManager {
 		
 		if(!fromPostComments)
 			query = "delete from dislike_records where user_id = " + userId + " and post_id = " + postId + ";";
-		
 		else
 			query = "delete from dislike_records_comments where user_id = " + userId + " and post_id = " + postId + ";";
 		
@@ -59,7 +56,6 @@ public class LikeDislikeRecordManager {
 		
 		if(!fromPostComments)
 			query = "delete from like_records where user_id = " + userId + " and post_id = " + postId + ";";
-		
 		else
 			query = "delete from like_records_comments where user_id = " + userId + " and post_id = " + postId + ";";
 		
@@ -72,7 +68,6 @@ public class LikeDislikeRecordManager {
 		
 		if(!fromPostComments)
 			query = "select * from like_records where user_id = " + userId + " and post_id = " + postId + ";";
-		
 		else
 			query = "select * from like_records_comments where user_id = " + userId + " and post_id = " + postId + ";";
 		
@@ -87,7 +82,6 @@ public class LikeDislikeRecordManager {
 		
 		if(!fromPostComments)
 			query = "select * from dislike_records where user_id = " + userId + " and post_id = " + postId + ";";
-		
 		else
 			query = "select * from dislike_records_comments where user_id = " + userId + " and post_id = " + postId + ";";
 		
@@ -96,9 +90,14 @@ public class LikeDislikeRecordManager {
 		return rs;
 	}
 	
-	public int getTotalPostsLiked(String userId) throws SQLException {
+	public int getTotalPostsLiked(String userId, boolean fromPostComments) throws SQLException {
 		
-		String query = "select count(user_id) from like_records where user_id = " + userId + ";";
+		String query = "";
+		
+		if(!fromPostComments)
+			query = "select count(user_id) from like_records where user_id = " + userId + ";";
+		else
+			query = "select count(user_id) from like_records_comments where user_id = " + userId + ";";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
@@ -107,9 +106,14 @@ public class LikeDislikeRecordManager {
 		return rs.getInt("count");
 	}
 	
-	public int getTotalPostsDisliked(String userId) throws SQLException {
+	public int getTotalPostsDisliked(String userId, boolean fromPostComments) throws SQLException {
 		
-		String query = "select count(user_id) from dislike_records where user_id = " + userId + ";";
+		String query = "";
+		
+		if(!fromPostComments)
+			query = "select count(user_id) from dislike_records where user_id = " + userId + ";";
+		else
+			query = "select count(user_id) from dislike_records_comments where user_id = " + userId + ";";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		

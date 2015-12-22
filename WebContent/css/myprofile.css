@@ -44,3 +44,28 @@
 #delete{
 	color: red;
 }
+
+/* best fit for timestamp on myprofile.jsp */
+/* 0 -----> 30 -----> 48 -----> 70 ----->  */
+/*    none      block     none      block  */
+
+@media (max-width: 30em) {
+
+    #timestamp {
+        display: none;
+    }
+}
+
+@media (min-width: 48em) {
+
+    #timestamp {
+        display: none;
+    }
+}
+
+@media (min-width: 70em) {
+
+    #timestamp {
+        display: block;
+    }
+}
