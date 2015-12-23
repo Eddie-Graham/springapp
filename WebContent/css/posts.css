@@ -126,15 +126,18 @@
 
 #bottom{
 	width: 100%;
+	height: 20%;
 }
 
 .expandCommentsBtn{
-	-moz-border-radius: 400px;
-	-webkit-border-radius: 400px;
-	border-radius: 400px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	border-radius: 30px; 
 	background-color: #0078e7;
 	color: #fff;
-	width: 26px;
+	width: 40px;
+	padding: 0;
+	height: 100%;
 }
 
 .postCommentsDiv{

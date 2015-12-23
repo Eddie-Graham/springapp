@@ -23,6 +23,7 @@
     </jsp:attribute>
     
 	<jsp:body>
+	
 	<div id="titleDiv">
 
 		<div id="title" class="pure-u-1">
@@ -32,7 +33,10 @@
 				
 					<div id="profileImageDiv" style="width: 160px; text-align: center;">
 						<img id="profileImage" src="profile_images/${myProfileUser.id}.png" alt="Profile pic">
-						<a id="delete" class="links" href="delete.html">Delete & Change</a>
+						
+						<c:if test="${not empty isLoggedInUser}">
+							<a id="delete" class="links" href="delete.html">Delete & Change</a>
+						</c:if>
 					</div>
 				
 				</c:when>			
