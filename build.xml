@@ -85,7 +85,7 @@
         </javac>
     </target>
 
-    <target name="deploy" depends="build" description="Deploy application">
+    <target name="deploy" depends="build,deleteLiveAppCodeBase" description="Deploy application">
         <copy todir="${deploy.path}/${name}" preservelastmodified="true">
             <fileset dir="${web.dir}">
                 <include name="**/*.*"/>
@@ -98,6 +98,10 @@
 			</fileset>
 		</copy>
     </target>
+	
+	<target name="deleteLiveAppCodeBase" description="Delete live codebase">
+		<delete dir="${deploy.jbossews}/${name}"/>
+	</target>
 
     <target name="deploywar" depends="build" description="Deploy application as a WAR file">
         <war destfile="${name}.war"

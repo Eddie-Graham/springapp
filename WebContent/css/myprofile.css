@@ -45,6 +45,26 @@
 	color: red;
 }
 
+/* table, th, td {
+    border: 1px solid black;
+}  */
+
+td{
+	padding: 8px;
+}
+
+table{ 
+    display: table;
+    /* border-collapse: separate;
+    border-spacing: 12px; */
+    border-color: gray;
+}
+
+.stat{
+	text-align: right;
+	width: 20px;
+}
+
 /* best fit for timestamp on myprofile.jsp */
 /* 0 -----> 30 -----> 48 -----> 70 ----->  */
 /*    none      block     none      block  */

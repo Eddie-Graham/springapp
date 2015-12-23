@@ -181,7 +181,8 @@ public class PostManager {
 		return getPostsFromResultSet(rs);
 	}
 	
-	public String getNoOfPostsByUser(String id, boolean fromPostComments) throws SQLException {
+	@SuppressWarnings("null")
+	public int getNoOfPostsByUser(String id, boolean fromPostComments) throws SQLException {
 		
 		String query = "";
 		
@@ -192,12 +193,10 @@ public class PostManager {
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
-		while (rs.next()) {
-			String count = rs.getString("count");
-			return count;
-		}
+		while (rs.next())
+			return Integer.parseInt(rs.getString("count"));
 		
-		return null;
+		return (Integer) null;
 	}
 	
 	public int getTotalLikes(String id, boolean fromPostComments) throws SQLException, ParseException{

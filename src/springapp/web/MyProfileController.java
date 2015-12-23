@@ -58,31 +58,34 @@ public class MyProfileController {
 		String id = user.getId();
 		
 		// main posts
-		String noOfPosts = postManager.getNoOfPostsByUser(id, false);
+		int noOfPosts = postManager.getNoOfPostsByUser(id, false);
 		int totalLikes = postManager.getTotalLikes(id, false);
 		int totalDislikes = postManager.getTotalDislikes(id, false);
 		int totalPostsLiked = likeDislikeRecordManager.getTotalPostsLiked(id, false);
 		int totalPostsDisliked = likeDislikeRecordManager.getTotalPostsDisliked(id, false);
 		// replies
-		String noOfReplies = postManager.getNoOfPostsByUser(id, true);
+		int noOfReplies = postManager.getNoOfPostsByUser(id, true);
 		int totalReplyLikes = postManager.getTotalLikes(id, true);
 		int totalReplyDislikes = postManager.getTotalDislikes(id, true);
 		int totalRepliesLiked = likeDislikeRecordManager.getTotalPostsLiked(id, true);
 		int totalRepliesDisliked = likeDislikeRecordManager.getTotalPostsDisliked(id, true);
 		
+		// order stats are added is in conjunction with stats.jsp 
+		ArrayList<Integer> stats = new ArrayList<Integer>();
+		stats.add(noOfPosts);
+		stats.add(totalLikes);
+		stats.add(totalDislikes);
+		stats.add(totalPostsLiked);
+		stats.add(totalPostsDisliked);
+		stats.add(noOfReplies);
+		stats.add(totalReplyLikes);
+		stats.add(totalReplyDislikes);
+		stats.add(totalRepliesLiked);
+		stats.add(totalRepliesDisliked);
+	
 		ModelAndView mav = new ModelAndView("stats");
-		// main posts
-		mav.addObject("noOfPosts", noOfPosts);
-		mav.addObject("totalLikes", totalLikes);
-		mav.addObject("totalDislikes", totalDislikes);
-		mav.addObject("totalPostsLiked", totalPostsLiked);
-		mav.addObject("totalPostsDisliked", totalPostsDisliked);
-		// replies
-		mav.addObject("noOfReplies", noOfReplies);
-		mav.addObject("totalReplyLikes", totalReplyLikes);
-		mav.addObject("totalReplyDislikes", totalReplyDislikes);
-		mav.addObject("totalRepliesLiked", totalRepliesLiked);
-		mav.addObject("totalRepliesDisliked", totalRepliesDisliked);
+		mav.addObject("stats", stats);
+		mav.addObject("username", user.getUsername());
 		
 		return mav;
 	}

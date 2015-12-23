@@ -48,7 +48,7 @@
 			</c:choose>
 				
 			<div id="profileOverview">
-				<h3><strong>${username}</strong></h3>
+				<h2><strong>${username}</strong></h2>
 			</div>
 		
 		</div>
