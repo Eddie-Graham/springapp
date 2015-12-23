@@ -27,17 +27,17 @@
 			<div id="profileDiv">
 				<div id="image">
 				<c:choose>
-					<c:when test="${post.profileImagePath == ''}">
-						<a href="viewuser.html?id=${post.user_id}"><img id="profilePic" src="images/profile_default.png" alt="Profile pic"></a>
+					<c:when test="${post.user.hasProfilePic}">
+						<a href="myprofile.html?id=${post.user.id}"><img id="profilePic" src="profile_images/${post.user.id}.png" alt="Profile pic"></a>
 					</c:when>
 					<c:otherwise>
-						<a href="viewuser.html?id=${post.user_id}"><img id="profilePic" src="${post.profileImagePath}" alt="Profile pic"></a>
+						<a href="myprofile.html?id=${post.user.id}"><img id="profilePic" src="images/profile_default.png" alt="Profile pic"></a>		
 					</c:otherwise>
 				</c:choose>
 				</div>
 				
 				<div id="username">
-					<a href="viewuser.html?id=${post.user_id}" class="links"><strong><c:out value="${post.username}" /></strong></a>
+					<a href="myprofile.html?id=${post.user.id}" class="links"><strong><c:out value="${post.user.username}" /></strong></a>
 				</div>
 				
 			</div>

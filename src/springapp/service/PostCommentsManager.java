@@ -89,24 +89,12 @@ public class PostCommentsManager {
 				canRate = true;
 			////////////////////////////////////////
 			
-			// Username                           
+			// User object for post's user                           
 			User postUser = userManager.getUserById(user_id);
-			String username = postUser.getUsername();
 			
-			////////////////////////////////////////
-			// Does user have profile pic?        //
-			String profileImagePath = "";
-			
-			if(postUser.isHasProfilePic())
-				profileImagePath = "profile_images/" + user_id + ".png";
-			////////////////////////////////////////
-
-			
-			posts.add(new Post(id, text, likes, dislikes, total, timestamp, timeString, dateString, user_id, canRate,
-					username, profileImagePath));
+			posts.add(new Post(id, text, likes, dislikes, total, timestamp, timeString, dateString, canRate, postUser));
 		}
 		
 		return posts;
 	}
-
 }

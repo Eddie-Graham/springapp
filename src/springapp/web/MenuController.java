@@ -3,14 +3,19 @@ package springapp.web;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.User;
+import springapp.service.UserManager;
 
 @Controller
 public class MenuController {
+	
+	@Autowired
+	private UserManager userManager;
 	
 	@RequestMapping(value="/about.html")
 	public ModelAndView enterAbout(HttpServletRequest request){
@@ -25,17 +30,18 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="/myprofile.html")
-	public ModelAndView enterMyProfile(HttpServletRequest request){
+	public ModelAndView enterMyProfile(HttpServletRequest request) throws SQLException{
 		
-		User user =  (User) request.getSession().getAttribute("user");
-		String username = user.getUsername();
-		String id = user.getId();
+		User loggedInUser =  (User) request.getSession().getAttribute("user");
+		
+		String userId = (String) request.getParameter("id");
+		User user = userManager.getUserById(userId);
 		
 		ModelAndView mav = new ModelAndView("myprofile");
-		mav.addObject("username", username);
+		mav.addObject("myProfileUser", user);
 		
-		if(user.isHasProfilePic())
-			mav.addObject("imagePath", "profile_images/" + id + ".png");
+		if(loggedInUser.getId().equals(userId))
+			mav.addObject("isLoggedInUser", true);
 		
 		return mav;
 	}

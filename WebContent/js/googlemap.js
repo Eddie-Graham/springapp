@@ -95,8 +95,8 @@ function makeMarker(map, user){
 		var imagePath = 'images/profile_default.png';
 	
 	var contentString = '<div id="content">' +
-	'<a href="viewuser.html?id=' + user.id + '"><img id="profilePic" style="width: 150px; max-height: 200px;" src="' + imagePath + '" alt="Profile pic"></a>' +
-	'<div style="text-align: center; line-height: 30px; font-size: 20px;"><a href="viewuser.html?id=' + user.id + '" class="links"><strong>' + user.username + '</strong></a></div>' +
+	'<a href="myprofile.html?id=' + user.id + '"><img id="profilePic" style="width: 150px; max-height: 200px;" src="' + imagePath + '" alt="Profile pic"></a>' +
+	'<div style="text-align: center; line-height: 30px; font-size: 20px;"><a href="myprofile.html?id=' + user.id + '" class="links"><strong>' + user.username + '</strong></a></div>' +
 	'</div>';
 		
 	var infowindow = new google.maps.InfoWindow({

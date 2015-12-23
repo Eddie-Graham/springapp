@@ -40,8 +40,7 @@ public class MyProfileController {
 	@RequestMapping(value="/getUsersRecentPosts.html")
 	public ModelAndView getUsersRecentPosts(HttpServletRequest request) throws SQLException, ParseException{
 		
-		User user =  (User) request.getSession().getAttribute("user");
-		String id = user.getId();
+		String id = request.getParameter("userId");
 		
 		ArrayList<Post> posts = postManager.getUsersPostsByTimestamp(id);
 		
@@ -54,8 +53,8 @@ public class MyProfileController {
 	@RequestMapping(value="/getUsersStats.html")
 	public ModelAndView getUsersStats(HttpServletRequest request) throws SQLException, ParseException{
 		
-		User user =  (User) request.getSession().getAttribute("user");
-		String id = user.getId();
+		String id = request.getParameter("userId");	
+		User user = userManager.getUserById(id);
 		
 		// main posts
 		int noOfPosts = postManager.getNoOfPostsByUser(id, false);
@@ -121,7 +120,7 @@ public class MyProfileController {
 			System.out.println("User uploaded profile pic at path: " + path);
 		}
 		
-		return "redirect:myprofile.html";
+		return "redirect:myprofile.html?id=" + id;
 	}
 	
 	@RequestMapping(value="/delete.html")
@@ -141,6 +140,6 @@ public class MyProfileController {
 		
 		System.out.println("Deleted file (" + success + "): " + path);
 		
-		return "redirect:myprofile.html";
+		return "redirect:myprofile.html?id=" + id;
 	}
 }

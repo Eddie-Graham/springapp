@@ -54,10 +54,10 @@ td{
 }
 
 table{ 
-    display: table;
-    /* border-collapse: separate;
-    border-spacing: 12px; */
-    border-color: gray;
+	display: table;
+	/* border-collapse: separate;
+	border-spacing: 12px; */
+	border-color: gray;
 }
 
 .stat{
