@@ -74,6 +74,20 @@ function refreshPostsByTimestamp(){
 	});
 }
 
+function refreshPostsByNoOfReplies(){
+	
+	$.ajax({
+		type : "GET",
+		url : "postsByNoOfReplies.html",
+		
+		success : function(response) {
+			
+			$("#menuLink1").html("Most replied"); 
+			$("#postsList").html(response); 
+		}
+	});
+}
+
 function refreshPostsByTotal(){
 	
 	$.ajax({

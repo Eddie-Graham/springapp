@@ -38,6 +38,7 @@
                					<li class="pure-menu-item"><button class="pure-button dropdownBtns" onclick="refreshPostsByTotal()">Total</button></li>
                					<li class="pure-menu-item"><button class="pure-button dropdownBtns" onclick="refreshPostsByLikes()">Likes</button></li>
                					<li class="pure-menu-item"><button class="pure-button dropdownBtns" onclick="refreshPostsByDislikes()">Dislikes</button></li>
+               					<li class="pure-menu-item"><button class="pure-button dropdownBtns" onclick="refreshPostsByNoOfReplies()">Most Replied</button></li>
                					
            					</ul>
         				</li>

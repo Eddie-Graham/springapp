@@ -47,6 +47,17 @@ public class HomeController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/postsByNoOfReplies.html")
+	public ModelAndView postsByNoOfReplies(HttpServletRequest request) throws SQLException, ParseException{
+		
+		ArrayList<Post> posts = postManager.getPostsByNoOfReplies();
+		
+		ModelAndView mav = new ModelAndView("posts");
+		mav.addObject("posts", posts);
+		
+		return mav;
+	}
+	
 	@RequestMapping(value="/postsByLikes.html")
 	public ModelAndView postsByLikes(HttpServletRequest request) throws SQLException, ParseException{
 		

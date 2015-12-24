@@ -111,6 +111,18 @@ public class PostManager {
 		return getPostsFromResultSet(rs);
 	}
 	
+	public ArrayList<Post> getPostsByNoOfReplies() throws SQLException, ParseException{
+		
+		String query = "select * "
+				+ "from posts join (select masterpost_id, count(*) from post_comments group by masterpost_id order by count(*) desc) as noOfComments "
+				+ "on posts.id = noOfComments.masterpost_id "
+				+ "order by count desc;";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+
+		return getPostsFromResultSet(rs);
+	}
+	
 	public ArrayList<Post> getPostsByLikes() throws SQLException, ParseException{
 		
 		String query = "select * from posts order by likes desc;";
