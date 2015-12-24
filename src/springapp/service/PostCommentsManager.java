@@ -57,6 +57,19 @@ public class PostCommentsManager {
 		return postIndex;
 	}
 	
+	public int getNoOfCommentsForMasterPost(String masterPostId) throws SQLException{
+		
+		String query = "select count(*) from post_comments where masterpost_id = " + masterPostId + ";";
+		
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		rs.next();
+		
+		String noOfComments = rs.getString("count");
+		
+		return Integer.parseInt(noOfComments);
+	}
+	
 	private ArrayList<Post> getPostsFromResultSet(ResultSet rs) throws NumberFormatException, SQLException, ParseException{
 		
 		ArrayList<Post> posts = new ArrayList<Post>();

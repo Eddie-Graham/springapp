@@ -236,7 +236,11 @@ function expandComments(postId, backgroundColor){
 	if ($("#comments_" + postId).is(':visible')){
 		
 		$("#comments_" + postId).hide(800);
-		$('#expandCommentsBtn_' + postId).html('+');
+		
+		var prevHtml = $('#expandCommentsBtn_' + postId).html();
+		var newHtml = prevHtml.replace("-", "+");
+		$('#expandCommentsBtn_' + postId).html(newHtml);
+		
 		return;
 	}
 	
@@ -256,7 +260,10 @@ function getPostComments(postId, backgroundColor){
 			if ($("#comments_" + postId).is(':hidden')){
 				
 				$("#comments_" + postId).slideToggle(1000);
-				$('#expandCommentsBtn_' + postId).html('-');
+				
+				var prevHtml = $('#expandCommentsBtn_' + postId).html();
+				var newHtml = prevHtml.replace("+", "-");
+				$('#expandCommentsBtn_' + postId).html(newHtml);
 			}
 		}
 	});
@@ -275,6 +282,13 @@ function submitPostComment(postId, backgroundColor){
 		url : "submitPostComment.html",
 		data: {"postText": postText, "postId": postId},
 		success : function(response) {
+			
+			// increment number of comments indicator
+			var prevHtml = $('#expandCommentsBtn_' + postId).html();
+			var number = prevHtml.replace(/^\D+/, '');
+			number ++;
+			var newHtml = prevHtml.replace(/\d+/, number);
+			$('#expandCommentsBtn_' + postId).html(newHtml);
 
 			getPostComments(postId, backgroundColor);
 			

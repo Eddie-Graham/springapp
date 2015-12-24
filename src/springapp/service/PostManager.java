@@ -27,6 +27,9 @@ public class PostManager {
 	@Autowired
 	private TagManager tagManager;
 	
+	@Autowired
+	private PostCommentsManager postCommentsManager;
+	
 	public void incrementLikes(String postId, boolean fromPostComments){
 		
 		String query = "";
@@ -274,7 +277,10 @@ public class PostManager {
 			// User object for post's user                           
 			User postUser = userManager.getUserById(user_id);
 			
-			posts.add(new Post(id, text, likes, dislikes, total, timestamp, timeString, dateString, canRate, postUser));
+			int noOfComments = postCommentsManager.getNoOfCommentsForMasterPost(id);
+			
+			posts.add(new Post(id, text, likes, dislikes, total, timestamp, timeString, dateString, canRate, postUser,
+					noOfComments));
 		}
 		
 		return posts;

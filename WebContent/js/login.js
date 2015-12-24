@@ -191,7 +191,12 @@ $(document).ready(function() {
 			success : function(response) {
 				
 				if(response == 'SUCCESS'){
-					alert("You have successfully registered, please sign in!")				
+					alert("You have successfully registered, please sign in!")		
+					
+					$("#username").prop('disabled', true);
+					$("#email").prop('disabled', true);
+					$("#password").prop('disabled', true);
+					$("#confirmPassword").prop('disabled', true);
 				}	
 			}
 		});

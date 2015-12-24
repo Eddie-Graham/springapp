@@ -14,6 +14,23 @@ public class Post {
 	private String dateString;
 	private boolean canRate;
 	private User user;
+	private int noOfComments;
+	
+	public Post(String id, String text, int likes, int dislikes, int total, Timestamp timestamp, String timeString,
+			String dateString, boolean canRate, User user, int noOfComments){
+		
+		this.id = id;
+		this.text = text;
+		this.likes = likes;
+		this.dislikes = dislikes;
+		this.total = total;
+		this.timestamp = timestamp;
+		this.timeString = timeString;
+		this.dateString = dateString;
+		this.canRate = canRate;
+		this.user = user;
+		this.noOfComments = noOfComments;
+	}
 	
 	public Post(String id, String text, int likes, int dislikes, int total, Timestamp timestamp, String timeString,
 			String dateString, boolean canRate, User user){
@@ -110,9 +127,17 @@ public class Post {
 		this.user = user;
 	}
 
+	public int getNoOfComments() {
+		return noOfComments;
+	}
+
+	public void setNoOfComments(int noOfComments) {
+		this.noOfComments = noOfComments;
+	}
+
 	public String toString(){
 		
 		return "\nid: " + id + "\ntext: " + text + "\nlikes: " + likes + "\ndislikes: " + dislikes + "\ntotal: " + total
-				+ "\ntimestamp: " + timestamp + "\ncanRate: " + canRate;
+				+ "\ntimestamp: " + timestamp + "\ncanRate: " + canRate + "\nnoOfComments: " + noOfComments;
 	}
 }

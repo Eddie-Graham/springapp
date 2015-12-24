@@ -72,7 +72,8 @@
 					<c:if test="${empty fromPostComments}">
 						<button type="button"
 							onclick="expandComments('${post.id}', '${backgroundColor}')"
-							id="expandCommentsBtn_${post.id}" class="expandCommentsBtn">+
+							id="expandCommentsBtn_${post.id}" class="expandCommentsBtn">
+							+${post.noOfComments}
 						</button>
 						&nbsp;
 						<a href="javascript:toggleReplyDiv('replyDiv_${post.id}');" class="reply links">
