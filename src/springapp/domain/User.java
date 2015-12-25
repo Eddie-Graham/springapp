@@ -1,5 +1,7 @@
 package springapp.domain;
 
+import java.sql.Timestamp;
+
 public class User {
 
 	private String id;
@@ -11,9 +13,14 @@ public class User {
 	private boolean hasProfilePic;
 	private double latitude;
 	private double longitude;
+	private Timestamp registeredTimestamp;
+	private String timeString;
+	private String dateString;
+	
 	
 	public User(String id, String username, String email, String password, String authority, boolean enabled,
-			boolean hasProfilePic, double latitude, double longitude) {
+			boolean hasProfilePic, double latitude, double longitude, Timestamp registeredTimestamp, String timeString,
+			String dateString) {
 		
 		this.id = id;
 		this.username = username;
@@ -24,6 +31,9 @@ public class User {
 		this.hasProfilePic = hasProfilePic;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.registeredTimestamp = registeredTimestamp;
+		this.timeString = timeString;
+		this.dateString = dateString;
 	}
 	
 	public User(String username, String email, String password){
@@ -105,10 +115,34 @@ public class User {
 		this.longitude = longitude;
 	}
 
+	public Timestamp getRegisteredTimestamp() {
+		return registeredTimestamp;
+	}
+
+	public void setRegisteredTimestamp(Timestamp registeredTimestamp) {
+		this.registeredTimestamp = registeredTimestamp;
+	}
+
+	public String getTimeString() {
+		return timeString;
+	}
+
+	public void setTimeString(String timeString) {
+		this.timeString = timeString;
+	}
+
+	public String getDateString() {
+		return dateString;
+	}
+
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
+
 	public String toString(){
 
 		return "\nid: " + id + "\nusername: " + username + "\nemail: " + email + "\nauthority: " + authority
 				+ "\nenabled: " + enabled + "\nhasProfilePic: " + hasProfilePic + "\nlatitude: " + latitude
-				+ "\nlongitude: " + longitude;
+				+ "\nlongitude: " + longitude + "\nregisteredTimestamp: " + registeredTimestamp;
 	}
 }

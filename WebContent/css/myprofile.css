@@ -27,13 +27,14 @@
 /* preserve image aspect ratio  */
 #profileImage{
 	float: left;
-	width:  160px;
+	width:  100%;
  	height: auto;
 }
 
 #profileOverview{
 	float:left;
-	padding-left: 2%;
+	padding-top: 2%;
+	padding-left: 3%;
 }
 
 #profileImageDiv{
@@ -63,6 +64,17 @@ table{
 .stat{
 	text-align: right;
 	width: 20px;
+}
+
+#usernameTitle{
+	font-weight: bold;
+	font-size: 200%;
+	color: #000000;
+}
+
+#registeredTimestamp{
+	padding-top: 2%;
+	font-size: 15px;
 }
 
 /* best fit for timestamp on myprofile.jsp */

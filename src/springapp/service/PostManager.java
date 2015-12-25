@@ -114,9 +114,9 @@ public class PostManager {
 	public ArrayList<Post> getPostsByNoOfReplies() throws SQLException, ParseException{
 		
 		String query = "select * "
-				+ "from posts join (select masterpost_id, count(*) from post_comments group by masterpost_id order by count(*) desc) as noOfComments "
+				+ "from posts left join (select masterpost_id, count(*) from post_comments group by masterpost_id) as noOfComments "
 				+ "on posts.id = noOfComments.masterpost_id "
-				+ "order by count desc;";
+				+ "order by count desc NULLS LAST;";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -196,7 +196,6 @@ public class PostManager {
 		return getPostsFromResultSet(rs);
 	}
 	
-	@SuppressWarnings("null")
 	public int getNoOfPostsByUser(String id, boolean fromPostComments) throws SQLException {
 		
 		String query = "";
@@ -208,10 +207,9 @@ public class PostManager {
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
-		while (rs.next())
-			return Integer.parseInt(rs.getString("count"));
+		rs.next();
 		
-		return (Integer) null;
+		return Integer.parseInt(rs.getString("count"));
 	}
 	
 	public int getTotalLikes(String id, boolean fromPostComments) throws SQLException, ParseException{

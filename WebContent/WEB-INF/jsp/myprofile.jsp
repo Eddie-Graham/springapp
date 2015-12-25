@@ -69,7 +69,8 @@
 			</c:choose>
 				
 			<div id="profileOverview">
-				<h2><strong>${myProfileUser.username}</strong></h2>
+				<div id="usernameTitle"><c:out value="${myProfileUser.username}" /></div>
+				<div id="registeredTimestamp">Member since ${myProfileUser.timeString} &nbsp; ${myProfileUser.dateString}</div>
 			</div>
 		
 		</div>

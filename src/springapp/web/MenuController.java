@@ -1,6 +1,8 @@
 package springapp.web;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="/myprofile.html")
-	public ModelAndView enterMyProfile(HttpServletRequest request) throws SQLException{
+	public ModelAndView enterMyProfile(HttpServletRequest request) throws SQLException, ParseException{
 		
 		User loggedInUser =  (User) request.getSession().getAttribute("user");
 		

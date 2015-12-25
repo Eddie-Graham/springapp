@@ -26,7 +26,8 @@ authority varchar(255) NOT NULL DEFAULT 'ROLE_USER',
 enabled boolean NOT NULL DEFAULT TRUE,
 hasProfilePic boolean NOT NULL DEFAULT FALSE,
 latitude decimal,
-longitude decimal
+longitude decimal,
+registeredTimestamp TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'GMT')
 );
 
 -- sign in, Password123

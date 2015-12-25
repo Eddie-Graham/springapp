@@ -2,6 +2,8 @@ package springapp.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ public class UserManager {
 	@Autowired
 	private DbCon dbCon;
 	
-	public User getUserByEmail(String email) throws SQLException {
+	public User getUserByEmail(String email) throws SQLException, ParseException {
 		
 		String query = "select * from users where LOWER(email) = LOWER('" + email + "');";			
 
@@ -29,7 +31,7 @@ public class UserManager {
 		return null;
 	}
 	
-	public User getUserById(String id) throws SQLException {
+	public User getUserById(String id) throws SQLException, ParseException {
 		
 		String query = "select * from users where id = " + id + ";";			
 
@@ -43,7 +45,7 @@ public class UserManager {
 		return null;
 	}
 	
-	public User getUserByUsername(String username) throws SQLException {
+	public User getUserByUsername(String username) throws SQLException, ParseException {
 
 		String query = "select * from users where LOWER(username) = LOWER('" + username + "');";
 
@@ -57,7 +59,7 @@ public class UserManager {
 		return null;
 	}
 	
-	public ArrayList<User> getAllUsers() throws SQLException {
+	public ArrayList<User> getAllUsers() throws SQLException, ParseException {
 
 		String query = "select * from users;";
 
@@ -66,7 +68,7 @@ public class UserManager {
 		return getUsersFromResultSet(rs);
 	}
 	
-	public ArrayList<User> getAllUsersWithLatLong() throws SQLException {
+	public ArrayList<User> getAllUsersWithLatLong() throws SQLException, ParseException {
 
 		// if lat not null then long is also not null
 		String query = "select * from users where latitude is not null;";
@@ -98,7 +100,7 @@ public class UserManager {
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
-	private ArrayList<User> getUsersFromResultSet(ResultSet rs) throws SQLException {
+	private ArrayList<User> getUsersFromResultSet(ResultSet rs) throws SQLException, ParseException {
 		
 		ArrayList<User> users = new ArrayList<User>();
 		
@@ -112,6 +114,10 @@ public class UserManager {
 			double latitude = rs.getDouble("latitude");
 			double longitude = rs.getDouble("longitude");
 			
+			Timestamp registeredTimestamp = Utils.getTimestamp(rs.getString("registeredTimestamp"));
+			String timeString = Utils.getTimeString(registeredTimestamp);
+			String dateString = Utils.getDateString(registeredTimestamp);
+			
 			boolean enabled;
 			if(rs.getString("enabled").equals("t"))
 				enabled = true;
@@ -124,7 +130,8 @@ public class UserManager {
 			else
 				hasProfilePic = false;
             
-			users.add(new User(id, username, email, password, authority, enabled, hasProfilePic, latitude, longitude));
+			users.add(new User(id, username, email, password, authority, enabled, hasProfilePic, latitude, longitude,
+					registeredTimestamp, timeString, dateString));
 		}
 		
 		return users;	

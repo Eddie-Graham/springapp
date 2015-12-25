@@ -81,7 +81,7 @@
 					</c:if>
 
 					<div id="timestamp">				
-						${post.timeString} &nbsp ${post.dateString}
+						${post.timeString} &nbsp; ${post.dateString}
 					</div> 
 				</div>
 			</div>

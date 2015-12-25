@@ -1,6 +1,7 @@
 package springapp.web;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,7 +35,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/loginSuccess.html")
-	public @ResponseBody String loginSuccess(HttpServletRequest request) throws SQLException{
+	public @ResponseBody String loginSuccess(HttpServletRequest request) throws SQLException, ParseException{
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
@@ -56,7 +57,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/checkUniqueEmail.html")
-	public @ResponseBody String checkUniqueEmail(HttpServletRequest request) throws SQLException{
+	public @ResponseBody String checkUniqueEmail(HttpServletRequest request) throws SQLException, ParseException{
 		
 		String email = request.getParameter("email");
 		
@@ -71,7 +72,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/checkUniqueUsername.html")
-	public @ResponseBody String checkUniqueUsername(HttpServletRequest request) throws SQLException{
+	public @ResponseBody String checkUniqueUsername(HttpServletRequest request) throws SQLException, ParseException{
 		
 		String username = request.getParameter("username");
 		

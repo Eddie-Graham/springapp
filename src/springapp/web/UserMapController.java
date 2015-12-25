@@ -1,6 +1,7 @@
 package springapp.web;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,7 @@ public class UserMapController {
 	private UserManager userManager;
 
 	@RequestMapping(value="/getUsers.html")
-	public @ResponseBody String getUsers(HttpServletRequest request) throws SQLException {
+	public @ResponseBody String getUsers(HttpServletRequest request) throws SQLException, ParseException {
 		
 		ArrayList<User> users = userManager.getAllUsersWithLatLong();
 		
