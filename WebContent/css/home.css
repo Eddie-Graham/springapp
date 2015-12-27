@@ -53,25 +53,12 @@
     }
 }
 
-#filter{
-	padding-left: 2%;
-}
-
 #postsList{
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	overflow: scroll;
 	border-top: 1px solid #000000;
-}
-
-.dropdownBtns{
-	width: 125px;
-}
-
-#menuLink1{
-	background: #0078e7;
-	color: #FFFFFF;
 }
 
 /* best fit for timestamp on home.jsp */

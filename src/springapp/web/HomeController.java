@@ -39,7 +39,9 @@ public class HomeController {
 	@RequestMapping(value="/postsByTimestamp.html")
 	public ModelAndView postsByTimestamp(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = postManager.getPostsByTimestamp();
+		String userId = request.getParameter("userId");
+		
+		ArrayList<Post> posts = postManager.getPostsByTimestamp(userId);
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
@@ -50,7 +52,9 @@ public class HomeController {
 	@RequestMapping(value="/postsByNoOfReplies.html")
 	public ModelAndView postsByNoOfReplies(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = postManager.getPostsByNoOfReplies();
+		String userId = request.getParameter("userId");
+		
+		ArrayList<Post> posts = postManager.getPostsByNoOfReplies(userId);
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
@@ -61,7 +65,9 @@ public class HomeController {
 	@RequestMapping(value="/postsByLikes.html")
 	public ModelAndView postsByLikes(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = postManager.getPostsByLikes();
+		String userId = request.getParameter("userId");
+		
+		ArrayList<Post> posts = postManager.getPostsByLikes(userId);
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
@@ -72,7 +78,9 @@ public class HomeController {
 	@RequestMapping(value="/postsByDislikes.html")
 	public ModelAndView postsByDislikes(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = postManager.getPostsByDislikes();
+		String userId = request.getParameter("userId");
+		
+		ArrayList<Post> posts = postManager.getPostsByDislikes(userId);
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);
@@ -83,7 +91,9 @@ public class HomeController {
 	@RequestMapping(value="/postsByTotal.html")
 	public ModelAndView postsByTotal(HttpServletRequest request) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = postManager.getPostsByTotal();
+		String userId = request.getParameter("userId");
+		
+		ArrayList<Post> posts = postManager.getPostsByTotal(userId);
 		
 		ModelAndView mav = new ModelAndView("posts");
 		mav.addObject("posts", posts);

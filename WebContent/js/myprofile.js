@@ -1,16 +1,3 @@
-function getUsersRecentPosts(userId){
-	
-	$.ajax({
-		type : "GET",
-		url : "getUsersRecentPosts.html",
-		data: {"userId": userId},
-		success : function(response) {
-
-			$("#myRecentPostsDiv").html(response); 
-		}
-	});
-}
-
 function getUsersStats(userId){
 	
 	$.ajax({

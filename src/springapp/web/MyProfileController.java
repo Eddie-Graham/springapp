@@ -37,19 +37,6 @@ public class MyProfileController {
 	@Autowired
 	private LikeDislikeRecordManager likeDislikeRecordManager;
 	
-	@RequestMapping(value="/getUsersRecentPosts.html")
-	public ModelAndView getUsersRecentPosts(HttpServletRequest request) throws SQLException, ParseException{
-		
-		String id = request.getParameter("userId");
-		
-		ArrayList<Post> posts = postManager.getUsersPostsByTimestamp(id);
-		
-		ModelAndView mav = new ModelAndView("posts");
-		mav.addObject("posts", posts);
-		
-		return mav;
-	}
-	
 	@RequestMapping(value="/getUsersStats.html")
 	public ModelAndView getUsersStats(HttpServletRequest request) throws SQLException, ParseException{
 		

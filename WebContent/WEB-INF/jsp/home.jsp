@@ -7,8 +7,10 @@
 	
 		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
+		<link rel="stylesheet" type="text/css" href="css/filter.css">
 		<script src="js/home.js"></script> 
-		<script src="js/posts.js"></script> 
+		<script src="js/posts.js"></script>
+		<script src="js/filter.js"></script>
 		
     </jsp:attribute>
     
@@ -26,27 +28,9 @@
 	 	
 	 		<div id="left" class="pure-u-1 pure-u-lg-3-4">
 	 		
-	 		<div id="filter">
-	 			<div class="pure-menu pure-menu-horizontal">
-	 				Sort by:  &nbsp;       
-    				<ul class="pure-menu-list">
-        				<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-            				<a id="menuLink1" class="pure-button pure-menu-link">Timestamp</a>
-            				<ul class="pure-menu-children">
-                				
-               					<li class="pure-menu-item"><button class="pure-button dropdownBtns" onclick="refreshPostsByTimestamp()">Timestamp</button></li>
-               					<li class="pure-menu-item"><button class="pure-button dropdownBtns" onclick="refreshPostsByTotal()">Total</button></li>
-               					<li class="pure-menu-item"><button class="pure-button dropdownBtns" onclick="refreshPostsByLikes()">Likes</button></li>
-               					<li class="pure-menu-item"><button class="pure-button dropdownBtns" onclick="refreshPostsByDislikes()">Dislikes</button></li>
-               					<li class="pure-menu-item"><button class="pure-button dropdownBtns" onclick="refreshPostsByNoOfReplies()">Most Replied</button></li>
-               					
-           					</ul>
-        				</li>
-    				</ul>
-				</div>
-			</div>
+	 			<%@ include file="/WEB-INF/jsp/filter.jsp"%>
 			
-			<div id="postsList" class="pure-u-1 pure-u-lg-3-4"></div> 
+				<div id="postsList" class="pure-u-1 pure-u-lg-3-4"></div> 
 	 		
 	 		</div>
 	 		

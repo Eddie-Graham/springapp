@@ -7,14 +7,16 @@
 	
 		<link rel="stylesheet" type="text/css" href="css/myprofile.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
+		<link rel="stylesheet" type="text/css" href="css/filter.css">
 		<script src="js/myprofile.js"></script> 
 		<script src="js/posts.js"></script> 
+		<script src="js/filter.js"></script>
 		
 		<script>
 		
 		$(document).ready(function() {
 			
-			getUsersRecentPosts("${myProfileUser.id}");
+			refreshPostsByTimestamp("${myProfileUser.id}");
 			getUsersStats("${myProfileUser.id}");
 		});
 		
@@ -78,7 +80,15 @@
 	
 	<div id="statsDiv" class="pure-u-1 pure-u-md-1-2"></div>
 	
-	<div id="myRecentPostsDiv" class="pure-u-1 pure-u-md-1-2"></div>
+	<!-- <div id="myRecentPostsDiv" class="pure-u-1 pure-u-md-1-2"></div> -->
+	
+	<div class="pure-u-1 pure-u-md-1-2">
+	
+		<%@ include file="/WEB-INF/jsp/filter.jsp"%>
+	
+		<div id="postsList"></div>
+	
+	</div>
 
     </jsp:body>
 

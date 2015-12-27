@@ -102,20 +102,35 @@ public class PostManager {
 		dbCon.makeConnectionAndExecuteQuery(query2);
 	}
 	
-	public ArrayList<Post> getPostsByTimestamp() throws SQLException, ParseException{
+	public ArrayList<Post> getPostsByTimestamp(String userId) throws SQLException, ParseException{
 		
-		String query = "select * from posts order by timestamp desc;";
+		String query = "";
+		
+		if(userId == null)
+			query = "select * from posts order by timestamp desc;";
+		else
+			query = "select * from posts where user_id = " + userId + " order by timestamp desc;";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
 		return getPostsFromResultSet(rs);
 	}
 	
-	public ArrayList<Post> getPostsByNoOfReplies() throws SQLException, ParseException{
+	public ArrayList<Post> getPostsByNoOfReplies(String userId) throws SQLException, ParseException{
 		
-		String query = "select * "
+		String query = "";
+		
+		if(userId == null)
+			query = "select * "
 				+ "from posts left join (select masterpost_id, count(*) from post_comments group by masterpost_id) as noOfComments "
 				+ "on posts.id = noOfComments.masterpost_id "
+				+ "order by count desc NULLS LAST;";
+		
+		else
+			query = "select * "
+				+ "from posts left join (select masterpost_id, count(*) from post_comments group by masterpost_id) as noOfComments "
+				+ "on posts.id = noOfComments.masterpost_id "
+				+ "where user_id = " + userId + " "
 				+ "order by count desc NULLS LAST;";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
@@ -123,18 +138,14 @@ public class PostManager {
 		return getPostsFromResultSet(rs);
 	}
 	
-	public ArrayList<Post> getPostsByLikes() throws SQLException, ParseException{
+	public ArrayList<Post> getPostsByLikes(String userId) throws SQLException, ParseException{
 		
-		String query = "select * from posts order by likes desc;";
+		String query = "";
 		
-		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
-		
-		return getPostsFromResultSet(rs);
-	}
-	
-	public ArrayList<Post> getUsersPostsByTimestamp(String id) throws SQLException, ParseException{
-		
-		String query = "select * from posts where user_id = '" + id + "' order by timestamp desc;";
+		if(userId == null)
+			query = "select * from posts order by likes desc;";
+		else
+			query = "select * from posts where user_id = " + userId + " order by likes desc;";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
@@ -154,18 +165,29 @@ public class PostManager {
 		return dbCon.makeConnectionAndExecuteQueryGettingAutoId(query);
 	}
 	
-	public ArrayList<Post> getPostsByDislikes() throws SQLException, ParseException{
+	public ArrayList<Post> getPostsByDislikes(String userId) throws SQLException, ParseException{
 		
-		String query = "select * from posts order by dislikes;";
+		String query = "";
+		
+		if(userId == null)
+			query = "select * from posts order by dislikes;";
+		else
+			query = "select * from posts where user_id = " + userId + " order by dislikes;";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
 		return getPostsFromResultSet(rs);
 	}
 	
-	public ArrayList<Post> getPostsByTotal() throws SQLException, ParseException{
+	public ArrayList<Post> getPostsByTotal(String userId) throws SQLException, ParseException{
 		
-		String query = "select * from posts order by total desc;";
+		String query = "";
+		
+		if(userId == null)
+			query = "select * from posts order by total desc;";
+		else
+			query = "select * from posts where user_id = " + userId + " order by total desc;";
+		
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
