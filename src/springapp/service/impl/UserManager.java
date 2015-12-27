@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import springapp.dbcon.DbCon;
+
+import springapp.dbcon.DbConInterface;
 import springapp.domain.User;
 import springapp.service.UserManagerInterface;
 import springapp.service.UtilsInterface;
@@ -17,7 +18,7 @@ import springapp.service.UtilsInterface;
 public class UserManager implements UserManagerInterface {
 
 	@Autowired
-	private DbCon dbCon;
+	private DbConInterface dbCon;
 	
 	@Autowired
 	private UtilsInterface utilsManager;

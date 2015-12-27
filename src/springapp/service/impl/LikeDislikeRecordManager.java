@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import springapp.dbcon.DbCon;
+import springapp.dbcon.DbConInterface;
 import springapp.service.LikeDislikeRecordManagerInterface;
 
 @Component
 public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterface{
 
 	@Autowired
-	private DbCon dbCon;
+	private DbConInterface dbCon;
 	
 	public void createLikeRecord(String userId, String postId, boolean fromPostComments){
 		

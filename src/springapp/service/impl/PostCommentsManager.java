@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import springapp.dbcon.DbCon;
+import springapp.dbcon.DbConInterface;
 import springapp.domain.Post;
 import springapp.domain.User;
 import springapp.service.PostCommentsManagerInterface;
@@ -22,7 +22,7 @@ import springapp.service.UtilsInterface;
 public class PostCommentsManager implements PostCommentsManagerInterface {
 	
 	@Autowired
-	private DbCon dbCon;
+	private DbConInterface dbCon;
 	
 	@Autowired
 	private UserManagerInterface userManager;

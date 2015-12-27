@@ -1,4 +1,4 @@
-package springapp.dbcon;
+package springapp.dbcon.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,8 +9,10 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import springapp.dbcon.DbConInterface;
+
 @Component
-public class DbCon{
+public class DbCon implements DbConInterface{
 	
 	@Autowired
 	private DataSource dataSource;

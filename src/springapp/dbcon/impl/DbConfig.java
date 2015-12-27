@@ -1,4 +1,4 @@
-package springapp.dbcon;
+package springapp.dbcon.impl;
 
 import javax.sql.DataSource;
 

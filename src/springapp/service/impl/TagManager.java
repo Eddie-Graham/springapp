@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import springapp.dbcon.DbCon;
+import springapp.dbcon.DbConInterface;
 import springapp.service.TagManagerInterface;
 
 @Component
 public class TagManager implements TagManagerInterface{
 	
 	@Autowired
-	private DbCon dbCon;
+	private DbConInterface dbCon;
 	
 	public void insertTag(String tag, String postId){
 		

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import springapp.dbcon.DbCon;
+import springapp.dbcon.DbConInterface;
 import springapp.domain.Post;
 import springapp.domain.User;
 import springapp.service.PostCommentsManagerInterface;
@@ -24,7 +24,7 @@ import springapp.service.UtilsInterface;
 public class PostManager implements PostManagerInterface {
 
 	@Autowired
-	private DbCon dbCon;
+	private DbConInterface dbCon;
 	
 	@Autowired
 	private UserManagerInterface userManager;
@@ -163,12 +163,12 @@ public class PostManager implements PostManagerInterface {
 	/**
 	 * This method returns the auto generated id field of the inserted post
 	 * @param postText
-	 * @param user_id
+	 * @param userId
 	 * @return
 	 */
-	public String submitPost(String postText, String user_id){
+	public String submitPost(String postText, String userId){
 		
-		String query = "insert into posts (text, user_id) values ('" + postText + "', '" + user_id + "');";
+		String query = "insert into posts (text, user_id) values ('" + postText + "', '" + userId + "');";
 		
 		return dbCon.makeConnectionAndExecuteQueryGettingAutoId(query);
 	}
@@ -226,14 +226,14 @@ public class PostManager implements PostManagerInterface {
 		return getPostsFromResultSet(rs);
 	}
 	
-	public int getNoOfPostsByUser(String id, boolean fromPostComments) throws SQLException {
+	public int getNoOfPostsByUser(String userId, boolean fromPostComments) throws SQLException {
 		
 		String query = "";
 		
 		if(!fromPostComments)
-			query = "select count(user_id) from posts where user_id = '" + id + "';";
+			query = "select count(user_id) from posts where user_id = '" + userId + "';";
 		else
-			query = "select count(user_id) from post_comments where user_id = '" + id + "';";
+			query = "select count(user_id) from post_comments where user_id = '" + userId + "';";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
@@ -242,15 +242,15 @@ public class PostManager implements PostManagerInterface {
 		return Integer.parseInt(rs.getString("count"));
 	}
 	
-	public int getTotalLikes(String id, boolean fromPostComments) throws SQLException, ParseException{
+	public int getTotalLikes(String userId, boolean fromPostComments) throws SQLException, ParseException{
 		
 		int totalLikes = 0;
 		String query = "";
 		
 		if(!fromPostComments)
-			query = "select likes from posts where user_id = '" + id + "';";
+			query = "select likes from posts where user_id = '" + userId + "';";
 		else
-			query = "select likes from post_comments where user_id = '" + id + "';";
+			query = "select likes from post_comments where user_id = '" + userId + "';";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
@@ -262,15 +262,15 @@ public class PostManager implements PostManagerInterface {
 		return totalLikes;
 	}
 	
-	public int getTotalDislikes(String id, boolean fromPostComments) throws SQLException, ParseException{
+	public int getTotalDislikes(String userId, boolean fromPostComments) throws SQLException, ParseException{
 		
 		int totalDislikes = 0;
 		String query = "";
 		
 		if(!fromPostComments)
-			query = "select dislikes from posts where user_id = '" + id + "';";
+			query = "select dislikes from posts where user_id = '" + userId + "';";
 		else
-			query = "select dislikes from post_comments where user_id = '" + id + "';";
+			query = "select dislikes from post_comments where user_id = '" + userId + "';";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
