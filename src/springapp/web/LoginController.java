@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.User;
-import springapp.service.UserManager;
+import springapp.service.UserManagerInterface;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	private UserManager userManager;
+	private UserManagerInterface userManager;
 
 	@RequestMapping(value="/login.html")
 	public ModelAndView enterLogin(HttpServletRequest request){

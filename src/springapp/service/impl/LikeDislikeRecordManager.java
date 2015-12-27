@@ -1,4 +1,4 @@
-package springapp.service;
+package springapp.service.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import springapp.dbcon.DbCon;
+import springapp.service.LikeDislikeRecordManagerInterface;
 
 @Component
-public class LikeDislikeRecordManager {
+public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterface{
 
 	@Autowired
 	private DbCon dbCon;

@@ -16,25 +16,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.Post;
 import springapp.domain.User;
-import springapp.service.LikeDislikeRecordManager;
-import springapp.service.PostCommentsManager;
-import springapp.service.PostManager;
-import springapp.service.TagManager;
+import springapp.service.LikeDislikeRecordManagerInterface;
+import springapp.service.PostCommentsManagerInterface;
+import springapp.service.PostManagerInterface;
+import springapp.service.TagManagerInterface;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	private PostManager postManager;
+	private PostManagerInterface postManager;
 	
 	@Autowired
-	private TagManager tagManager;
+	private TagManagerInterface tagManager;
 	
 	@Autowired
-	private LikeDislikeRecordManager likeDislikeRecordManager;
+	private LikeDislikeRecordManagerInterface likeDislikeRecordManager;
 	
 	@Autowired
-	private PostCommentsManager postCommentsManager;
+	private PostCommentsManagerInterface postCommentsManager;
 	
 	@RequestMapping(value="/postsByTimestamp.html")
 	public ModelAndView postsByTimestamp(HttpServletRequest request) throws SQLException, ParseException{

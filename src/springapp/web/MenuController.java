@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import springapp.domain.User;
-import springapp.service.UserManager;
+import springapp.service.UserManagerInterface;
 
 @Controller
 public class MenuController {
 	
 	@Autowired
-	private UserManager userManager;
+	private UserManagerInterface userManager;
 	
 	@RequestMapping(value="/about.html")
 	public ModelAndView enterAbout(HttpServletRequest request){

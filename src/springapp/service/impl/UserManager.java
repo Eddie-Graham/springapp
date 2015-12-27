@@ -1,4 +1,4 @@
-package springapp.service;
+package springapp.service.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,12 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import springapp.dbcon.DbCon;
 import springapp.domain.User;
+import springapp.service.UserManagerInterface;
+import springapp.service.UtilsInterface;
 
 @Component
-public class UserManager {
+public class UserManager implements UserManagerInterface {
 
 	@Autowired
 	private DbCon dbCon;
+	
+	@Autowired
+	private UtilsInterface utilsManager;
 	
 	public User getUserByEmail(String email) throws SQLException, ParseException {
 		
@@ -114,9 +119,9 @@ public class UserManager {
 			double latitude = rs.getDouble("latitude");
 			double longitude = rs.getDouble("longitude");
 			
-			Timestamp registeredTimestamp = Utils.getTimestamp(rs.getString("registeredTimestamp"));
-			String timeString = Utils.getTimeString(registeredTimestamp);
-			String dateString = Utils.getDateString(registeredTimestamp);
+			Timestamp registeredTimestamp = utilsManager.getTimestamp(rs.getString("registeredTimestamp"));
+			String timeString = utilsManager.getTimeString(registeredTimestamp);
+			String dateString = utilsManager.getDateString(registeredTimestamp);
 			
 			boolean enabled;
 			if(rs.getString("enabled").equals("t"))

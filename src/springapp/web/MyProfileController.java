@@ -19,23 +19,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import springapp.domain.Post;
 import springapp.domain.User;
-import springapp.service.LikeDislikeRecordManager;
-import springapp.service.PostManager;
-import springapp.service.UserManager;
+import springapp.service.LikeDislikeRecordManagerInterface;
+import springapp.service.PostManagerInterface;
+import springapp.service.UserManagerInterface;
 
 @Controller
 public class MyProfileController {
 	
 	@Autowired
-	private PostManager postManager;
+	private PostManagerInterface postManager;
 	
 	@Autowired
-	private UserManager userManager;
+	private UserManagerInterface userManager;
 	
 	@Autowired
-	private LikeDislikeRecordManager likeDislikeRecordManager;
+	private LikeDislikeRecordManagerInterface likeDislikeRecordManager;
 	
 	@RequestMapping(value="/getUsersStats.html")
 	public ModelAndView getUsersStats(HttpServletRequest request) throws SQLException, ParseException{

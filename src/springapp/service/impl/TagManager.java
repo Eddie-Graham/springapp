@@ -1,4 +1,4 @@
-package springapp.service;
+package springapp.service.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import springapp.dbcon.DbCon;
+import springapp.service.TagManagerInterface;
 
 @Component
-public class TagManager {
+public class TagManager implements TagManagerInterface{
 	
 	@Autowired
 	private DbCon dbCon;

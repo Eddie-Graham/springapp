@@ -1,4 +1,4 @@
-package springapp.service;
+package springapp.service.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,15 +14,21 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import springapp.dbcon.DbCon;
 import springapp.domain.Post;
 import springapp.domain.User;
+import springapp.service.PostCommentsManagerInterface;
+import springapp.service.UserManagerInterface;
+import springapp.service.UtilsInterface;
 
 @Component
-public class PostCommentsManager {
+public class PostCommentsManager implements PostCommentsManagerInterface {
 	
 	@Autowired
 	private DbCon dbCon;
 	
 	@Autowired
-	private UserManager userManager;
+	private UserManagerInterface userManager;
+	
+	@Autowired
+	private UtilsInterface utilsManager;
 	
 	public ArrayList<Post> getPostComments(String masterPostId) throws NumberFormatException, SQLException, ParseException{
 		
@@ -86,9 +92,9 @@ public class PostCommentsManager {
 			int dislikes = Integer.parseInt(rs.getString("dislikes"));
 			int total = Integer.parseInt(rs.getString("total"));
 			
-			Timestamp timestamp = Utils.getTimestamp(rs.getString("timestamp"));
-			String timeString = Utils.getTimeString(timestamp);
-			String dateString = Utils.getDateString(timestamp);
+			Timestamp timestamp = utilsManager.getTimestamp(rs.getString("timestamp"));
+			String timeString = utilsManager.getTimeString(timestamp);
+			String dateString = utilsManager.getDateString(timestamp);
 			
 			String user_id = rs.getString("user_id");
 			
