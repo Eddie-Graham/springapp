@@ -35,16 +35,20 @@ public class MenuController {
 	@RequestMapping(value="/myprofile.html")
 	public ModelAndView enterMyProfile(HttpServletRequest request) throws SQLException, ParseException{
 		
-		User loggedInUser =  (User) request.getSession().getAttribute("user");
-		
 		String userId = (String) request.getParameter("id");
-		User user = userManager.getUserById(userId);
 		
 		ModelAndView mav = new ModelAndView("myprofile");
-		mav.addObject("myProfileUser", user);
+		
+		User loggedInUser =  (User) request.getSession().getAttribute("user");
 		
 		if(loggedInUser.getId().equals(userId))
 			mav.addObject("isLoggedInUser", true);
+		// if logged in user is not viewing their own profile, increment profile views
+		else 
+			userManager.incrementProfileViews(userId);
+		
+		User user = userManager.getUserById(userId);
+		mav.addObject("myProfileUser", user);
 		
 		return mav;
 	}

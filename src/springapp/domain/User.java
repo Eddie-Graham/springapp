@@ -14,13 +14,13 @@ public class User {
 	private double latitude;
 	private double longitude;
 	private Timestamp registeredTimestamp;
-	private String timeString;
-	private String dateString;
-	
+	private String registeredTimeString;
+	private String registeredDateString;
+	private int profileViews;
 	
 	public User(String id, String username, String email, String password, String authority, boolean enabled,
-			boolean hasProfilePic, double latitude, double longitude, Timestamp registeredTimestamp, String timeString,
-			String dateString) {
+			boolean hasProfilePic, double latitude, double longitude, Timestamp registeredTimestamp, String registeredTimeString,
+			String registeredDateString, int profileViews) {
 		
 		this.id = id;
 		this.username = username;
@@ -32,8 +32,9 @@ public class User {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.registeredTimestamp = registeredTimestamp;
-		this.timeString = timeString;
-		this.dateString = dateString;
+		this.registeredTimeString = registeredTimeString;
+		this.registeredDateString = registeredDateString;
+		this.profileViews = profileViews;
 	}
 	
 	public User(String username, String email, String password){
@@ -123,26 +124,34 @@ public class User {
 		this.registeredTimestamp = registeredTimestamp;
 	}
 
-	public String getTimeString() {
-		return timeString;
+	public String getRegisteredTimeString() {
+		return registeredTimeString;
 	}
 
-	public void setTimeString(String timeString) {
-		this.timeString = timeString;
+	public void setRegisteredTimeString(String registeredTimeString) {
+		this.registeredTimeString = registeredTimeString;
 	}
 
-	public String getDateString() {
-		return dateString;
+	public String getRegisteredDateString() {
+		return registeredDateString;
 	}
 
-	public void setDateString(String dateString) {
-		this.dateString = dateString;
+	public void setRegisteredDateString(String registeredDateString) {
+		this.registeredDateString = registeredDateString;
+	}
+
+	public int getProfileViews() {
+		return profileViews;
+	}
+
+	public void setProfileViews(int profileViews) {
+		this.profileViews = profileViews;
 	}
 
 	public String toString(){
 
 		return "\nid: " + id + "\nusername: " + username + "\nemail: " + email + "\nauthority: " + authority
 				+ "\nenabled: " + enabled + "\nhasProfilePic: " + hasProfilePic + "\nlatitude: " + latitude
-				+ "\nlongitude: " + longitude + "\nregisteredTimestamp: " + registeredTimestamp;
+				+ "\nlongitude: " + longitude + "\nregisteredTimestamp: " + registeredTimestamp + "\nprofileViews: " + profileViews;
 	}
 }

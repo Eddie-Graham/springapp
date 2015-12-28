@@ -72,7 +72,8 @@
 				
 			<div id="profileOverview">
 				<div id="usernameTitle"><c:out value="${myProfileUser.username}" /></div>
-				<div id="registeredTimestamp">Member since ${myProfileUser.timeString} &nbsp; ${myProfileUser.dateString}</div>
+				<div class="overviewStat">Member since ${myProfileUser.registeredDateString}</div>
+				<div class="overviewStat">Profile views: ${myProfileUser.profileViews}</div>
 			</div>
 		
 		</div>

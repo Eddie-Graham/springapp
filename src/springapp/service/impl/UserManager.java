@@ -106,6 +106,13 @@ public class UserManager implements UserManagerInterface {
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
+	public void incrementProfileViews(String userId){
+		
+		String query = "update users set profileViews = profileViews + 1 where Id = " + userId + ";";		
+		
+		dbCon.makeConnectionAndExecuteQuery(query);		
+	}
+	
 	private ArrayList<User> getUsersFromResultSet(ResultSet rs) throws SQLException, ParseException {
 		
 		ArrayList<User> users = new ArrayList<User>();
@@ -121,8 +128,10 @@ public class UserManager implements UserManagerInterface {
 			double longitude = rs.getDouble("longitude");
 			
 			Timestamp registeredTimestamp = utils.getTimestamp(rs.getString("registeredTimestamp"));
-			String timeString = utils.getTimeString(registeredTimestamp);
-			String dateString = utils.getDateString(registeredTimestamp);
+			String registeredTimeString = utils.getTimeString(registeredTimestamp);
+			String registeredDateString = utils.getDateString(registeredTimestamp);
+			
+			int profileViews = Integer.parseInt(rs.getString("profileViews"));
 			
 			boolean enabled;
 			if(rs.getString("enabled").equals("t"))
@@ -137,7 +146,7 @@ public class UserManager implements UserManagerInterface {
 				hasProfilePic = false;
             
 			users.add(new User(id, username, email, password, authority, enabled, hasProfilePic, latitude, longitude,
-					registeredTimestamp, timeString, dateString));
+					registeredTimestamp, registeredTimeString, registeredDateString, profileViews));
 		}
 		
 		return users;	

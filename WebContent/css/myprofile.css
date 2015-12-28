@@ -73,7 +73,7 @@ table{
 	color: #000000;
 }
 
-#registeredTimestamp{
+.overviewStat{
 	padding-top: 2%;
 	font-size: 15px;
 }

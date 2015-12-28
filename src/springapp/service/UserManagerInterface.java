@@ -16,4 +16,5 @@ public interface UserManagerInterface {
 	public void setHasProfilePic(boolean hasProfilePic, String userId);
 	public void setLatLong(String userId, String latitude, String longitude);
 	public void createUser(User user);
+	public void incrementProfileViews(String userId);
 }

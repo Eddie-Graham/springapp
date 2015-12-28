@@ -6,52 +6,52 @@
     <th>Savings</th>
   </tr> -->
   
-  <tr>
-    <td colspan="2"><h3>${username}'s stats</h3></td>
-  </tr>
-  <tr>
-    <td>No of main posts:</td>
-    <td id="0" class="stat"></td>
-  </tr>
-  <tr style="background-color: #E6E6E6;">
-    <td>My main posts total likes:</td>
-    <td id="1" class="stat"></td>
-  </tr>
-  <tr style="background-color: #E6E6E6;">
-    <td>My main posts total dislikes:</td>
-    <td id="2" class="stat"></td>
-  </tr>
-  <tr>
-    <td>Main posts I have liked:</td>
-    <td id="3" class="stat"></td>
-  </tr>
-  <tr>
-    <td>Main posts I have disliked:</td>
-    <td id="4" class="stat"></td>
-  </tr>
-  <tr>
-    <td colspan="2">------------------------------------------------------------------------------------------------------------------------------------------</td>
-  </tr>
-  <tr>
-    <td>No of replies:</td>
-    <td id="5" class="stat"></td>
-  </tr>
-  <tr style="background-color: #E6E6E6;">
-    <td >My reply posts total likes:</td>
-    <td id="6" class="stat"></td>
-  </tr>
-  <tr style="background-color: #E6E6E6;">
-    <td>My reply posts total dislikes:</td>
-    <td id="7" class="stat"></td>
-  </tr>
-  <tr>
-    <td>Reply posts I have liked:</td>
-    <td id="8" class="stat"></td>
-  </tr>
-  <tr>
-    <td>Reply posts I have disliked:</td>
-    <td id="9" class="stat"></td>
-  </tr>
+	<tr>
+		<td colspan="2"><h3>${username}'s stats</h3></td>
+	</tr>
+	<tr>
+		<td>No of main posts:</td>
+	<td id="0" class="stat"></td>
+	</tr>
+	<tr style="background-color: #E6E6E6;">
+		<td>My main posts total likes:</td>
+		<td id="1" class="stat"></td>
+	</tr>
+	<tr style="background-color: #E6E6E6;">
+		<td>My main posts total dislikes:</td>
+		<td id="2" class="stat"></td>
+	</tr>
+	<tr>
+		<td>Main posts I have liked:</td>
+		<td id="3" class="stat"></td>
+	</tr>
+	<tr>
+		<td>Main posts I have disliked:</td>
+		<td id="4" class="stat"></td>
+	</tr>
+	<tr>
+		<td colspan="2">------------------------------------------------------------------------------------------------------------------------------------------</td>
+	</tr>
+	<tr>
+		<td>No of replies:</td>
+		<td id="5" class="stat"></td>
+	</tr>
+	<tr style="background-color: #E6E6E6;">
+		<td >My reply posts total likes:</td>
+		<td id="6" class="stat"></td>
+	</tr>
+	<tr style="background-color: #E6E6E6;">
+		<td>My reply posts total dislikes:</td>
+		<td id="7" class="stat"></td>
+	</tr>
+	<tr>
+		<td>Reply posts I have liked:</td>
+		<td id="8" class="stat"></td>
+	</tr>
+	<tr>
+		<td>Reply posts I have disliked:</td>
+		<td id="9" class="stat"></td>
+	</tr>
 </table>
 
 <script>

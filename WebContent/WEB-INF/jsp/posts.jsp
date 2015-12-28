@@ -1,5 +1,9 @@
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 
+<c:if test="${empty posts}">
+		<div id="emptyPosts">No posts yet.</div>
+</c:if>
+
 <c:forEach items="${posts}" var="post" varStatus="loop">
 
 	<c:choose>
@@ -16,31 +20,31 @@
 		<c:set var="backgroundColor" value="${postCommentsColor}"/>
 	</c:if>
 
-	<div id="postContainer" style="background-color: ${backgroundColor};">
+	<div class="postContainer" style="background-color: ${backgroundColor};">
 
-		<div id="post">
+		<div class="post">
 		
-			<div id="profileDiv">
-				<div id="image">
+			<div class="profileDiv">
+				<div class="image">
 				<c:choose>
 					<c:when test="${post.user.hasProfilePic}">
-						<a href="myprofile.html?id=${post.user.id}"><img id="profilePic" src="profile_images/${post.user.id}.png" alt="Profile pic"></a>
+						<a href="myprofile.html?id=${post.user.id}"><img class="profilePic" src="profile_images/${post.user.id}.png" alt="Profile pic"></a>
 					</c:when>
 					<c:otherwise>
-						<a href="myprofile.html?id=${post.user.id}"><img id="profilePic" src="images/profile_default.png" alt="Profile pic"></a>		
+						<a href="myprofile.html?id=${post.user.id}"><img class="profilePic" src="images/profile_default.png" alt="Profile pic"></a>		
 					</c:otherwise>
 				</c:choose>
 				</div>
 				
-				<div id="username">
+				<div class="username">
 					<a href="myprofile.html?id=${post.user.id}" class="links"><strong><c:out value="${post.user.username}" /></strong></a>
 				</div>
 				
 			</div>
 		
-			<div id="postLeft"> 
-				<div id="textDiv">
-					<div id="text">
+			<div class="postLeft"> 
+				<div class="textDiv">
+					<div class="text">
 					
 					<!-- Split by whitespace, loop and see if token begin with # -->
 					<c:set var="postText" value="${post.text}" scope="page" />
@@ -63,7 +67,7 @@
 					</div>
 				</div>
 				
-				<div id="bottom">
+				<div class="bottom">
 
 					<c:if test="${empty fromPostComments}">
 						<button type="button"
@@ -76,15 +80,15 @@
 							<strong>Reply</strong></a>
 					</c:if>
 
-					<div id="timestamp">				
+					<div class="timestamp">				
 						${post.timeString} &nbsp; ${post.dateString}
 					</div> 
 				</div>
 			</div>
 
-			<div id="postRight">
+			<div class="postRight">
 
-				<div id="postStats" class="pure-u-1-2">
+				<div class="postStats pure-u-1-2">
 					
 					<c:choose>
 						<c:when test="${post.total gt 0}">
@@ -134,14 +138,14 @@
 							</c:otherwise>
 						</c:choose>
 						
-						<div id="buttons" class="pure-u-1-2">
-							<div id="likeButton" class="pure-u-1">
+						<div class="buttons pure-u-1-2">
+							<div class="likeButton pure-u-1">
 								<input onclick="incrementLikes(${post.id}, ${postComment})" type="image"
 									src="/springapp/images/like.png" width="100%" height="100%"
 									alt="like">
 							</div>
 
-							<div id="dislikeButton" class="pure-u-1">
+							<div class="dislikeButton pure-u-1">
 								<input onclick="decrementDisikes(${post.id}, ${postComment})" type="image"
 									src="/springapp/images/dislike.png" width="100%" height="100%"
 									alt="dislike">
@@ -151,12 +155,12 @@
 					</c:when>
 					<c:otherwise>
 					
-						<div id="buttons" class="pure-u-1-2">
-							<div id="likeButton" class="pure-u-1">
+						<div class="buttons pure-u-1-2">
+							<div class="likeButton pure-u-1">
 									<img class="images" src="/springapp/images/like.png" alt="like">
 							</div>
 
-							<div id="dislikeButton" class="pure-u-1">
+							<div class="dislikeButton pure-u-1">
 									<img class="images" src="/springapp/images/dislike.png" alt="dislike">
 							</div>
 						</div>		

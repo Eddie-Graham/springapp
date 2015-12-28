@@ -1,15 +1,15 @@
-#postContainer{
+.postContainer{
 	width: 100%;
 	height: 180px;
 	padding: 2%;
 }
 
-#post{
+.post{
 	width: 100%;
 	height: 100%;
 }
 
-#text{
+.text{
 	height: 100%;
 	width: 100%;
 	word-wrap: break-word; 
@@ -17,7 +17,7 @@
 	color: #000000;
 }
 
-#textDiv{
+.textDiv{
 	padding: 4%;
 	border: 1px solid #000000;
 	width: 100%;
@@ -28,19 +28,19 @@
 	border-bottom-right-radius: 5px;
 }
 
-#postLeft{
+.postLeft{
 	height: 100%;
 	width: 55%;
 	float: left;
 } 
 
-#postRight{
+.postRight{
 	width: 25%;
 	height: 100%;
 	float: left;
 }
 
-#postStats{
+.postStats{
 	height: 100%;
 	float: left;
 }
@@ -72,16 +72,16 @@
 	color: #FF0000;
 }
 
-#buttons{
+.buttons{
 	height: 100%;
 }
 
-#likeButton{
+.likeButton{
 	height: 50%;
 	padding: 7%;
 }
 
-#dislikeButton{
+.dislikeButton{
 	height: 50%;
 	padding: 7%;
 }
@@ -91,27 +91,27 @@
 	height: 100%;
 }
 
-#profileDiv{
+.profileDiv{
 	height: 100%;
 	width: 20%;
 	float: left;
 	padding-right: 2%;
 }
 
-#profilePic{
+.profilePic{
 	max-width: 100%;
 	height: 100%;
 	display: block;
 	margin: auto;
 }
 
-#image{
+.image{
 	width: 100%;
 	height: 80%;
 }
 
 /* hard coded height for center aligned text (vertically) */
-#username{
+.username{
 	width: 100%;
 	height: 30px;
 	text-align: center;
@@ -119,12 +119,12 @@
 	overflow: hidden;
 } 
 
-#timestamp{
+.timestamp{
 	float: right;
 	font-size: 95%;
 }
 
-#bottom{
+.bottom{
 	width: 100%;
 	height: 20%;
 }
@@ -151,4 +151,9 @@
 .replyDiv{
 	padding-left: 22%;
 	padding-bottom: 1%;
+}
+
+#emptyPosts{
+	padding-top: 10%;
+	padding-left: 2%;
 }

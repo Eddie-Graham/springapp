@@ -44,19 +44,19 @@
 			<tr style="background-color: ${backgroundColor};">
 				<td class="profileTd">
 				
-					<div id="profileDiv">
-						<div id="image">
+					<div class="profileDiv">
+						<div class="image">
 							<c:choose>
 								<c:when test="${user.hasProfilePic}">
-									<a href="myprofile.html?id=${user.id}"><img id="profilePic" src="profile_images/${user.id}.png" alt="Profile pic"></a>
+									<a href="myprofile.html?id=${user.id}"><img class="profilePic" src="profile_images/${user.id}.png" alt="Profile pic"></a>
 								</c:when>
 								<c:otherwise>
-									<a href="myprofile.html?id=${user.id}"><img id="profilePic" src="images/profile_default.png" alt="Profile pic"></a>		
+									<a href="myprofile.html?id=${user.id}"><img class="profilePic" src="images/profile_default.png" alt="Profile pic"></a>		
 								</c:otherwise>
 							</c:choose>
 						</div>
 				
-						<div id="username">
+						<div class="username">
 							<a href="myprofile.html?id=${user.id}" class="links"><strong><c:out value="${user.username}" /></strong></a>
 						</div>
 				
@@ -67,7 +67,7 @@
 				<td>${user.email}</td>
 				<td>${user.authority}</td>
 				<td>${user.enabled}</td> 
-				<td>${user.timeString} &nbsp; ${user.dateString}</td>
+				<td>${user.registeredDateString}, ${user.registeredTimeString}</td>
 			</tr>
 		
 		</c:forEach>

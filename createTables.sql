@@ -27,11 +27,12 @@ enabled boolean NOT NULL DEFAULT TRUE,
 hasProfilePic boolean NOT NULL DEFAULT FALSE,
 latitude decimal,
 longitude decimal,
-registeredTimestamp TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'GMT')
+registeredTimestamp TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'GMT'),
+profileViews int NOT NULL DEFAULT 0
 );
 
 -- sign in, Password123
-INSERT INTO Users (username, email, password) VALUES ('test', 'jamgrah2@aol.com', '$2a$10$fD/hHGPW/gR0KA4bp.YiUOAiitM/5V3WSfPLWwFVMYpBZdHq/C2ne');
+INSERT INTO Users (username, email, authority, password) VALUES ('test', 'jamgrah2@aol.com', 'ROLE_ADMIN', '$2a$10$fD/hHGPW/gR0KA4bp.YiUOAiitM/5V3WSfPLWwFVMYpBZdHq/C2ne');
 
 CREATE TABLE Posts
 (
