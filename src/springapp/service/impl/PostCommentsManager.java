@@ -28,7 +28,7 @@ public class PostCommentsManager implements PostCommentsManagerInterface {
 	private UserManagerInterface userManager;
 	
 	@Autowired
-	private UtilsInterface utilsManager;
+	private UtilsInterface utils;
 	
 	public ArrayList<Post> getPostComments(String masterPostId) throws NumberFormatException, SQLException, ParseException{
 		
@@ -92,9 +92,9 @@ public class PostCommentsManager implements PostCommentsManagerInterface {
 			int dislikes = Integer.parseInt(rs.getString("dislikes"));
 			int total = Integer.parseInt(rs.getString("total"));
 			
-			Timestamp timestamp = utilsManager.getTimestamp(rs.getString("timestamp"));
-			String timeString = utilsManager.getTimeString(timestamp);
-			String dateString = utilsManager.getDateString(timestamp);
+			Timestamp timestamp = utils.getTimestamp(rs.getString("timestamp"));
+			String timeString = utils.getTimeString(timestamp);
+			String dateString = utils.getDateString(timestamp);
 			
 			String user_id = rs.getString("user_id");
 			

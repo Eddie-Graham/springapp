@@ -21,7 +21,7 @@ public class UserManager implements UserManagerInterface {
 	private DbConInterface dbCon;
 	
 	@Autowired
-	private UtilsInterface utilsManager;
+	private UtilsInterface utils;
 	
 	public User getUserByEmail(String email) throws SQLException, ParseException {
 		
@@ -67,7 +67,7 @@ public class UserManager implements UserManagerInterface {
 	
 	public ArrayList<User> getAllUsers() throws SQLException, ParseException {
 
-		String query = "select * from users;";
+		String query = "select * from users order by id;";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -120,9 +120,9 @@ public class UserManager implements UserManagerInterface {
 			double latitude = rs.getDouble("latitude");
 			double longitude = rs.getDouble("longitude");
 			
-			Timestamp registeredTimestamp = utilsManager.getTimestamp(rs.getString("registeredTimestamp"));
-			String timeString = utilsManager.getTimeString(registeredTimestamp);
-			String dateString = utilsManager.getDateString(registeredTimestamp);
+			Timestamp registeredTimestamp = utils.getTimestamp(rs.getString("registeredTimestamp"));
+			String timeString = utils.getTimeString(registeredTimestamp);
+			String dateString = utils.getDateString(registeredTimestamp);
 			
 			boolean enabled;
 			if(rs.getString("enabled").equals("t"))

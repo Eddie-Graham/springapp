@@ -1,6 +1,7 @@
 <%@tag description="Overall Page template" pageEncoding="UTF-8"%>
 
 <%@attribute name="head" fragment="true"%>
+<%@ include file="/WEB-INF/jsp/include.jsp"%>
 
 <!doctype html>
 <html lang="en">
@@ -27,6 +28,7 @@
 </head>
 <body>
 
+
 <div id="layout">
     <!-- Menu toggle -->
     <a href="#menu" id="menuLink" class="menu-link">
@@ -46,6 +48,11 @@
                 <li class="pure-menu-item"><a href="usermap.html" class="pure-menu-link">User Map</a></li>
                 <li class="pure-menu-item"><a href="about.html" class="pure-menu-link">About</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
+
+				<c:if test="${user.authority == 'ROLE_ADMIN'}">
+					<li class="pure-menu-item"><a href="admin.html" class="pure-menu-link">Admin</a></li>
+				</c:if>
+				
                 <li class="pure-menu-item"><a href="logout" class="pure-menu-link">Logout</a></li>
             </ul>
         </div>

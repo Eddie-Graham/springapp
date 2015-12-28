@@ -1,0 +1,47 @@
+table{
+	width: 100%;
+}
+
+th{
+	text-align: left;
+}
+
+.thHeading{
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-right: 12px;
+	font-size: 20px
+}
+
+#profilePic{
+	max-width: 100%;
+	height: 100%;
+	display: block;
+	margin: auto;
+}
+
+#profileDiv{
+	height: 147px;
+	width: 100%;
+	float: left;
+/*  	padding-right: 2%; */
+}
+
+#image{
+	width: 100%;
+	height: 80%;
+}
+
+/* hard coded height for center aligned text (vertically) */
+#username{
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	line-height: 30px; 
+	overflow: hidden;
+} 
+
+/* hard coded width taken from posts.jsp  */
+.profileTd{
+	width: 15%;
+}

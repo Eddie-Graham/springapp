@@ -1,19 +1,15 @@
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 
-<c:set var="count" value="0" scope="page" />
-
-<c:forEach items="${posts}" var="post">
+<c:forEach items="${posts}" var="post" varStatus="loop">
 
 	<c:choose>
-		<c:when test="${count % 2 == 0}">
+		<c:when test="${loop.index % 2 == 0}">
 			<c:set var="backgroundColor" value="#FFFFFF"/>
 		</c:when>
 		<c:otherwise>
 			<c:set var="backgroundColor" value="#E6E6E6"/>
 		</c:otherwise>
 	</c:choose>
-    
-	<c:set var="count" value="${count + 1}" scope="page"/>
 	
 	<!-- Overwrite background color when dealing with post comments -->
 	<c:if test="${fromPostComments}">

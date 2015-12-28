@@ -2,6 +2,7 @@ package springapp.web;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -52,5 +53,16 @@ public class MenuController {
 	public ModelAndView enterUserMap(HttpServletRequest request) throws SQLException{
 		
 		return new ModelAndView("usermap");
+	}
+	
+	@RequestMapping(value="/admin.html")
+	public ModelAndView enterAdmin(HttpServletRequest request) throws SQLException, ParseException{
+		
+		ArrayList<User> users = userManager.getAllUsers();
+		
+		ModelAndView mav = new ModelAndView("admin");
+		mav.addObject("users", users);
+	    
+		return mav;
 	}
 }

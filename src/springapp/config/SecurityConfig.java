@@ -48,8 +48,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers("/loginFail.html").permitAll()
 					.antMatchers("/loginSuccess.html").permitAll()
 					
+					// admin requests
+					.antMatchers("/admin.html").hasRole("ADMIN")
+					
 					// all other requests
-					.anyRequest().hasRole("USER")
+					.anyRequest().hasAnyRole("USER", "ADMIN")
 			.and()
 				.httpBasic()
 			.and()	
