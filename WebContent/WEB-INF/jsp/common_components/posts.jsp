@@ -1,4 +1,4 @@
-<%@ include file="/WEB-INF/jsp/include.jsp"%>
+<%@ include file="/WEB-INF/jsp/common_components/include.jsp"%>
 
 <c:if test="${empty posts}">
 		<div id="emptyPosts">No posts yet.</div>

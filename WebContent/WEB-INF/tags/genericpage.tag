@@ -1,13 +1,12 @@
 <%@tag description="Overall Page template" pageEncoding="UTF-8"%>
 
 <%@attribute name="head" fragment="true"%>
-<%@ include file="/WEB-INF/jsp/include.jsp"%>
+<%@ include file="/WEB-INF/jsp/common_components/include.jsp"%>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Fishing for Likes</title>
 
@@ -68,7 +67,7 @@
 </div>
 
 <script src="js/genericpage.js"></script> 
-<script src="js/clock.js"></script> 
+<script src="js/common_components/clock.js"></script> 
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-<%@ include file="/WEB-INF/jsp/include.jsp"%>
+<%@ include file="/WEB-INF/jsp/common_components/include.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
@@ -6,11 +6,11 @@
 	<jsp:attribute name="head">
 	
 		<link rel="stylesheet" type="text/css" href="css/home.css">
-		<link rel="stylesheet" type="text/css" href="css/posts.css">
-		<link rel="stylesheet" type="text/css" href="css/filter.css">
+		<link rel="stylesheet" type="text/css" href="css/common_components/posts.css">
+		<link rel="stylesheet" type="text/css" href="css/common_components/filter.css">
 		<script src="js/home.js"></script> 
-		<script src="js/posts.js"></script>
-		<script src="js/filter.js"></script>
+		<script src="js/common_components/posts.js"></script>
+		<script src="js/common_components/filter.js"></script>
 		
     </jsp:attribute>
     
@@ -28,7 +28,7 @@
 	 	
 	 		<div id="left" class="pure-u-1 pure-u-lg-3-4">
 	 		
-	 			<%@ include file="/WEB-INF/jsp/filter.jsp"%>
+	 			<%@ include file="/WEB-INF/jsp/common_components/filter.jsp"%>
 			
 				<div id="postsList" class="pure-u-1 pure-u-lg-3-4"></div> 
 	 		

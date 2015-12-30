@@ -68,7 +68,7 @@ public class MyProfileController {
 		stats.add(totalRepliesLiked);
 		stats.add(totalRepliesDisliked);
 	
-		ModelAndView mav = new ModelAndView("stats");
+		ModelAndView mav = new ModelAndView("common_components/stats");
 		mav.addObject("stats", stats);
 		mav.addObject("username", user.getUsername());
 		

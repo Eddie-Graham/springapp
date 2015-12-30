@@ -43,7 +43,7 @@ public class HomeController {
 		
 		ArrayList<Post> posts = postManager.getPostsByTimestamp(userId);
 		
-		ModelAndView mav = new ModelAndView("posts");
+		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
 		
 		return mav;
@@ -56,7 +56,7 @@ public class HomeController {
 		
 		ArrayList<Post> posts = postManager.getPostsByNoOfReplies(userId);
 		
-		ModelAndView mav = new ModelAndView("posts");
+		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
 		
 		return mav;
@@ -69,7 +69,7 @@ public class HomeController {
 		
 		ArrayList<Post> posts = postManager.getPostsByLikes(userId);
 		
-		ModelAndView mav = new ModelAndView("posts");
+		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
 		
 		return mav;
@@ -82,7 +82,7 @@ public class HomeController {
 		
 		ArrayList<Post> posts = postManager.getPostsByDislikes(userId);
 		
-		ModelAndView mav = new ModelAndView("posts");
+		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
 		
 		return mav;
@@ -95,7 +95,7 @@ public class HomeController {
 		
 		ArrayList<Post> posts = postManager.getPostsByTotal(userId);
 		
-		ModelAndView mav = new ModelAndView("posts");
+		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
 		
 		return mav;
@@ -108,7 +108,7 @@ public class HomeController {
 		
 		ArrayList<Post> posts = postManager.getPostsByTag(tag);
 		
-		ModelAndView mav = new ModelAndView("posts");
+		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
 		
 		return mav;
@@ -215,7 +215,7 @@ public class HomeController {
 		
 		ArrayList<Post> posts = postCommentsManager.getPostComments(postId);
 		
-		ModelAndView mav = new ModelAndView("posts");
+		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
 		mav.addObject("fromPostComments", true);
 		mav.addObject("postCommentsColor", backgroundColor);

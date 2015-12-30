@@ -78,6 +78,12 @@ table{
 	font-size: 15px;
 }
 
+#emptyPosts{
+	padding-top: 4%;
+	padding-left: 2%;
+	padding-bottom: 2%;
+}
+
 /* best fit for timestamp on myprofile.jsp */
 /* 0 -----> 30 -----> 48 -----> 70 ----->  */
 /*    none      block     none      block  */
