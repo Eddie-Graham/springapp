@@ -64,13 +64,18 @@
 	bottom: 0;
 	left: 0;
 	overflow: scroll;
-	border-top: 1px solid #000000;
+	/* border-top: 1px solid #000000; */
+	display: none;
 }
 
 /* best fit for timestamp on home.jsp */
 @media (max-width: 30em) {
 
-    #timestamp {
+    .timestamp {
         display: none;
     }
+}
+
+#filter{
+	border-bottom: 1px solid #000000;
 }

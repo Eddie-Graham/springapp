@@ -293,6 +293,7 @@ function submitPostComment(postId, backgroundColor){
 			getPostComments(postId, backgroundColor);
 			
 			$("#replyDiv_" + postId).hide(800);
+			$("#postComment_" + postId).val("");
 		}
 	});
 }

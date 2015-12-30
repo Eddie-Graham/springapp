@@ -11,7 +11,7 @@
 	</tr>
 	<tr>
 		<td>No of main posts:</td>
-	<td id="0" class="stat"></td>
+		<td id="0" class="stat"></td>
 	</tr>
 	<tr style="background-color: #E6E6E6;">
 		<td>My main posts total likes:</td>

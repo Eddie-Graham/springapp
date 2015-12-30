@@ -90,21 +90,21 @@ table{
 
 @media (max-width: 30em) {
 
-    #timestamp {
+    .timestamp {
         display: none;
     }
 }
 
 @media (min-width: 48em) {
 
-    #timestamp {
+    .timestamp {
         display: none;
     }
 }
 
 @media (min-width: 70em) {
 
-    #timestamp {
+    .timestamp {
         display: block;
     }
 }

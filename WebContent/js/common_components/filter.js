@@ -1,3 +1,7 @@
+var fadeOutDefault = 400;
+var fadeInDefault = 400;
+// this value is also "copied" in home.js
+
 function refreshPostsByLikes(userId){
 	
 	$.ajax({
@@ -7,7 +11,12 @@ function refreshPostsByLikes(userId){
 		success : function(response) {
 	
 			$("#menuLink1").html("Likes"); 
-			$("#postsList").html(response); 
+			
+			$("#postsList").fadeOut(fadeOutDefault, function(){
+				
+				$("#postsList").html(response); 
+				$("#postsList").fadeIn(fadeInDefault); 
+			}); 
 		}
 	});
 }
@@ -21,12 +30,17 @@ function refreshPostsByDislikes(userId){
 		success : function(response) {
 	
 			$("#menuLink1").html("Dislikes"); 
-			$("#postsList").html(response); 
+			
+			$("#postsList").fadeOut(fadeOutDefault, function(){
+				
+				$("#postsList").html(response); 
+				$("#postsList").fadeIn(fadeInDefault); 
+			}); 
 		}
 	});
 }
 
-function refreshPostsByTimestamp(userId){
+function refreshPostsByTimestamp(userId, doNotFade){
 	
 	$.ajax({
 		type : "GET",
@@ -35,7 +49,18 @@ function refreshPostsByTimestamp(userId){
 		success : function(response) {
 			
 			$("#menuLink1").html("Timestamp"); 
-			$("#postsList").html(response); 
+			
+			if(doNotFade){
+				$("#postsList").html(response); 
+				$("#postsList").fadeIn(fadeInDefault); 
+			}
+			else{
+				$("#postsList").fadeOut(fadeOutDefault, function(){
+				
+					$("#postsList").html(response); 
+					$("#postsList").fadeIn(fadeInDefault); 
+				}); 
+			}
 		}
 	});
 }
@@ -49,7 +74,12 @@ function refreshPostsByNoOfReplies(userId){
 		success : function(response) {
 			
 			$("#menuLink1").html("Most replied"); 
-			$("#postsList").html(response); 
+			
+			$("#postsList").fadeOut(fadeOutDefault, function(){
+				
+				$("#postsList").html(response); 
+				$("#postsList").fadeIn(fadeInDefault); 
+			}); 
 		}
 	});
 }
@@ -63,7 +93,31 @@ function refreshPostsByTotal(userId){
 		success : function(response) {
 			
 			$("#menuLink1").html("Total"); 
-			$("#postsList").html(response); 
+			
+			$("#postsList").fadeOut(fadeOutDefault, function(){
+				
+				$("#postsList").html(response); 
+				$("#postsList").fadeIn(fadeInDefault); 
+			}); 
+		}
+	});
+}
+
+function refreshPostsByTag(tag){
+	
+	$.ajax({
+		type : "GET",
+		url : "postsByTag.html",
+		data: {"tag": tag},
+		success : function(response) {
+			
+			$("#menuLink1").html("Tag '" + tag + "'"); 
+			
+			$("#postsList").fadeOut(fadeOutDefault, function(){
+				
+				$("#postsList").html(response); 
+				$("#postsList").fadeIn(fadeInDefault); 
+			}); 
 		}
 	});
 }

@@ -6,10 +6,10 @@ $(document).ready(function() {
 	divHeight += 64;
 	$("#postsDiv").css('top', divHeight);
 	
-	divHeight = $("#filter").height();
+	divHeight = $("#filter").height() + 1;	// +1 to allow for border
 	$("#postsList").css('top', divHeight);
 	
-	refreshPostsByTimestamp();
+	refreshPostsByTimestamp(undefined, true);
 });
 
 function submitPost(){
@@ -27,22 +27,14 @@ function submitPost(){
 		success : function(response) {
 
 			$("#postText").val('');
-			$("#postsList").html(response); 
-		}
-	});
-}
-
-function refreshPostsByTag(tag){
-	
-	$.ajax({
-		type : "GET",
-		url : "postsByTag.html",
-		data: {"tag": tag},
-		success : function(response) {
+			// submitPost.html refreshes by timestamp (change?)
+			$("#menuLink1").html("Timestamp"); 
 			
-			$("#menuLink1").html("Tag '" + tag + "'"); 
-			
-			$("#postsList").html(response); 
+			$("#postsList").fadeOut(400, function(){
+				
+				$("#postsList").html(response); 
+				$("#postsList").fadeIn(400); 
+			}); 
 		}
 	});
 }
