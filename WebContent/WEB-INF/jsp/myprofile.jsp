@@ -16,7 +16,7 @@
 		
 		$(document).ready(function() {
 			
-			refreshPostsByTimestamp("${myProfileUser.id}");
+			refreshPostsByTimestamp("${myProfileUser.id}", true);
 			getUsersStats("${myProfileUser.id}");
 		});
 		

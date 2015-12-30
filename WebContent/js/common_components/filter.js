@@ -40,7 +40,7 @@ function refreshPostsByDislikes(userId){
 	});
 }
 
-function refreshPostsByTimestamp(userId, doNotFade){
+function refreshPostsByTimestamp(userId, doNotFadeOut){
 	
 	$.ajax({
 		type : "GET",
@@ -50,7 +50,7 @@ function refreshPostsByTimestamp(userId, doNotFade){
 			
 			$("#menuLink1").html("Timestamp"); 
 			
-			if(doNotFade){
+			if(doNotFadeOut){
 				$("#postsList").html(response); 
 				$("#postsList").fadeIn(fadeInDefault); 
 			}
