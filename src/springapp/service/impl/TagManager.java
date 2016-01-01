@@ -22,21 +22,4 @@ public class TagManager implements TagManagerInterface{
 		
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
-	
-	public ArrayList<String> getPostIdsWithTag(String tag) throws SQLException{
-		
-		ArrayList<String> postIds = new ArrayList<String>();
-		
-		String query = "select * from tags where tag = '" + tag + "';";
-		
-		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
-		
-		while (rs.next()) {
-			
-			String postId = rs.getString("post_id");
-			postIds.add(postId);
-		}
-		
-		return postIds;
-	}
 }

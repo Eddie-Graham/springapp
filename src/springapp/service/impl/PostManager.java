@@ -30,9 +30,6 @@ public class PostManager implements PostManagerInterface {
 	private UserManagerInterface userManager;
 	
 	@Autowired
-	private TagManagerInterface tagManager;
-	
-	@Autowired
 	private PostCommentsManagerInterface postCommentsManager;
 	
 	@Autowired
@@ -202,19 +199,23 @@ public class PostManager implements PostManagerInterface {
 		return getPostsFromResultSet(rs);
 	}
 	
-	public ArrayList<Post> getPostsByTag(String tag) throws SQLException, ParseException{
+	public ArrayList<Post> getPostsByTag(String tag, String userId) throws SQLException, ParseException{
 		
-		ArrayList<Post> posts = new ArrayList<Post>();
-		ArrayList<String> postIds = tagManager.getPostIdsWithTag(tag);
+		String query = "";
 		
-		for(String postId: postIds){
-			
-			ArrayList<Post> result = getPostById(postId);
-			Post post = result.get(0);
-			posts.add(post);
-		}
+		if(userId == null)
+			query = "select * "
+					+ "from posts join (select * from tags where tag = '" + tag + "') as tags "
+					+ "on posts.id = tags.post_id;";
+		else
+			query = "select * "
+					+ "from posts join (select * from tags where tag = '" + tag + "') as tags "
+					+ "on posts.id = tags.post_id "
+					+ "where user_id = " + userId + ";";
 		
-		return posts;
+		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
+		
+		return getPostsFromResultSet(rs);
 	}
 	
 	public ArrayList<Post> getPostById(String id) throws SQLException, ParseException{

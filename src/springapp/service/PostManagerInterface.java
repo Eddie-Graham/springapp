@@ -18,7 +18,7 @@ public interface PostManagerInterface {
 	public String submitPost(String postText, String userId);
 	public ArrayList<Post> getPostsByDislikes(String userId) throws SQLException, ParseException;
 	public ArrayList<Post> getPostsByTotal(String userId) throws SQLException, ParseException;
-	public ArrayList<Post> getPostsByTag(String tag) throws SQLException, ParseException;
+	public ArrayList<Post> getPostsByTag(String tag, String userId) throws SQLException, ParseException;
 	public ArrayList<Post> getPostById(String id) throws SQLException, ParseException;
 	public int getNoOfPostsByUser(String userId, boolean fromPostComments) throws SQLException;
 	public int getTotalLikes(String userId, boolean fromPostComments) throws SQLException, ParseException;

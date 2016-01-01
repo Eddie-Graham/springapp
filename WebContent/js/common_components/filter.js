@@ -102,22 +102,3 @@ function refreshPostsByTotal(userId){
 		}
 	});
 }
-
-function refreshPostsByTag(tag){
-	
-	$.ajax({
-		type : "GET",
-		url : "postsByTag.html",
-		data: {"tag": tag},
-		success : function(response) {
-			
-			$("#menuLink1").html("Tag '" + tag + "'"); 
-			
-			$("#postsList").fadeOut(fadeOutDefault, function(){
-				
-				$("#postsList").html(response); 
-				$("#postsList").fadeIn(fadeInDefault); 
-			}); 
-		}
-	});
-}

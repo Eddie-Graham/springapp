@@ -55,7 +55,7 @@
 						
 						<c:choose>
 							<c:when test="${fn:startsWith(token, '#')}">
-								<strong><a href="javascript:refreshPostsByTag('${token}');" style="color: red;" class="links"><c:out value="${token}" /></a></strong>
+								<strong><a href="javascript:refreshPostsByTag('${token}', '${userId}');" style="color: red;" class="links"><c:out value="${token}" /></a></strong>
 							</c:when>
 							<c:otherwise>
 								<c:out value="${token}" />

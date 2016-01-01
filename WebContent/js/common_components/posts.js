@@ -302,3 +302,25 @@ function toggleReplyDiv(replyDivId){
 	
 	$("#" + replyDivId).slideToggle(300);
 }
+
+function refreshPostsByTag(tag, userId){
+	
+	if(userId == "")
+		userId = undefined;
+	
+	$.ajax({
+		type : "GET",
+		url : "postsByTag.html",
+		data: {"tag": tag, "userId": userId},
+		success : function(response) {
+			
+			$("#menuLink1").html("Tag '" + tag + "'"); 
+			
+			$("#postsList").fadeOut(fadeOutDefault, function(){
+				
+				$("#postsList").html(response); 
+				$("#postsList").fadeIn(fadeInDefault); 
+			}); 
+		}
+	});
+}

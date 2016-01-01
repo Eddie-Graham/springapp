@@ -45,6 +45,7 @@ public class HomeController {
 		
 		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
+		mav.addObject("userId", userId);
 		
 		return mav;
 	}
@@ -58,6 +59,7 @@ public class HomeController {
 		
 		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
+		mav.addObject("userId", userId);
 		
 		return mav;
 	}
@@ -71,6 +73,7 @@ public class HomeController {
 		
 		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
+		mav.addObject("userId", userId);
 		
 		return mav;
 	}
@@ -84,6 +87,7 @@ public class HomeController {
 		
 		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
+		mav.addObject("userId", userId);
 		
 		return mav;
 	}
@@ -97,6 +101,7 @@ public class HomeController {
 		
 		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
+		mav.addObject("userId", userId);
 		
 		return mav;
 	}
@@ -105,11 +110,13 @@ public class HomeController {
 	public ModelAndView postsByTag(HttpServletRequest request) throws SQLException, ParseException{
 		
 		String tag = request.getParameter("tag");
+		String userId = request.getParameter("userId"); //TODO
 		
-		ArrayList<Post> posts = postManager.getPostsByTag(tag);
+		ArrayList<Post> posts = postManager.getPostsByTag(tag, userId);
 		
 		ModelAndView mav = new ModelAndView("common_components/posts");
 		mav.addObject("posts", posts);
+		mav.addObject("userId", userId);
 		
 		return mav;
 	}
