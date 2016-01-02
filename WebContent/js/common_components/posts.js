@@ -314,13 +314,29 @@ function refreshPostsByTag(tag, userId){
 		data: {"tag": tag, "userId": userId},
 		success : function(response) {
 			
-			$("#menuLink1").html("Tag '" + tag + "'"); 
+			$("#menuLink1").html("Tag " + tag); 
 			
-			$("#postsList").fadeOut(fadeOutDefault, function(){
+			$("#postsList").fadeOut(400, function(){
 				
 				$("#postsList").html(response); 
-				$("#postsList").fadeIn(fadeInDefault); 
+				$("#postsList").fadeIn(400); 
 			}); 
 		}
 	});
+}
+
+function confirmPostDelete(postId, fromPostComments){
+	
+    if (confirm("Are you sure you want to delete this post?") == true) {
+        
+    	$.ajax({
+    		type : "GET",
+    		url : "deletePost.html",
+    		data: {"postId": postId, "fromPostComments": fromPostComments},
+    		success : function(response) {
+    			
+    			refreshPostsByTimestamp(undefined, false);
+    		}
+    	});
+    } 
 }

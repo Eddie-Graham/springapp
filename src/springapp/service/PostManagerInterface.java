@@ -23,4 +23,5 @@ public interface PostManagerInterface {
 	public int getNoOfPostsByUser(String userId, boolean fromPostComments) throws SQLException;
 	public int getTotalLikes(String userId, boolean fromPostComments) throws SQLException, ParseException;
 	public int getTotalDislikes(String userId, boolean fromPostComments) throws SQLException, ParseException;
+	public void deletePost(String postId, boolean fromPostComments);
 }

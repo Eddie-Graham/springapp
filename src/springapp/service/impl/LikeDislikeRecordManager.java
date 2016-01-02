@@ -122,4 +122,28 @@ public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterfa
 		
 		return rs.getInt("count");
 	}
+	
+	public void removeAllLikeRecordsForPostId(String postId, boolean fromPostComments){
+		
+		String query = "";
+		
+		if(!fromPostComments)
+			query = "delete from like_records where post_id = " + postId + ";";
+		else
+			query = "delete from like_records_comments where post_id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+	}
+	
+	public void removeAllDislikeRecordsForPostId(String postId, boolean fromPostComments){
+		
+		String query = "";
+		
+		if(!fromPostComments)
+			query = "delete from dislike_records where post_id = " + postId + ";";
+		else
+			query = "delete from dislike_records_comments where post_id = " + postId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+	}
 }

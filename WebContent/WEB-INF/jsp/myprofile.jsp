@@ -37,7 +37,7 @@
 						<img id="profileImage" src="profile_images/${myProfileUser.id}.png" alt="Profile pic">
 						
 						<c:if test="${not empty isLoggedInUser}">
-							<a id="delete" class="links" href="delete.html">Delete & Change</a>
+							<a id="delete" class="links" href="delete.html">Delete &amp; Change</a>
 						</c:if>
 					</div>
 				

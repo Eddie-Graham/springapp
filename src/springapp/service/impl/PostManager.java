@@ -14,6 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import springapp.dbcon.DbConInterface;
 import springapp.domain.Post;
 import springapp.domain.User;
+import springapp.service.LikeDislikeRecordManagerInterface;
 import springapp.service.PostCommentsManagerInterface;
 import springapp.service.PostManagerInterface;
 import springapp.service.TagManagerInterface;
@@ -30,7 +31,13 @@ public class PostManager implements PostManagerInterface {
 	private UserManagerInterface userManager;
 	
 	@Autowired
+	private TagManagerInterface tagManager;
+	
+	@Autowired
 	private PostCommentsManagerInterface postCommentsManager;
+	
+	@Autowired
+	private LikeDislikeRecordManagerInterface likeDislikeRecordManager;
 	
 	@Autowired
 	private UtilsInterface utils;
@@ -205,13 +212,13 @@ public class PostManager implements PostManagerInterface {
 		
 		if(userId == null)
 			query = "select * "
-					+ "from posts join (select * from tags where tag = '" + tag + "') as tags "
-					+ "on posts.id = tags.post_id;";
+				+ "from posts join (select * from tags where tag = '" + tag + "') as tags "
+				+ "on posts.id = tags.post_id;";
 		else
 			query = "select * "
-					+ "from posts join (select * from tags where tag = '" + tag + "') as tags "
-					+ "on posts.id = tags.post_id "
-					+ "where user_id = " + userId + ";";
+				+ "from posts join (select * from tags where tag = '" + tag + "') as tags "
+				+ "on posts.id = tags.post_id "
+				+ "where user_id = " + userId + ";";
 		
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 		
@@ -281,6 +288,33 @@ public class PostManager implements PostManagerInterface {
 		}
 		
 		return totalDislikes;
+	}
+	
+	/**
+	 * Delete post and all database associations
+	 */
+	public void deletePost(String postId, boolean fromPostComments){
+		
+		String query = "";
+		
+		if(!fromPostComments){
+			// if masterPost
+			// delete all comments (including those comment like and dislike references)
+			// delete all tag references
+			
+			query = "delete from posts where id = " + postId + ";";
+			postCommentsManager.deleteAllCommentsForMasterPost(postId); //TODO what if comments have like and dislike records?
+			tagManager.deleteAllTagsForPost(postId);
+		}
+		else
+			query = "delete from post_comments where id = " + postId + ";";
+		
+		// delete like and dislike references
+		likeDislikeRecordManager.removeAllDislikeRecordsForPostId(postId, fromPostComments);
+		likeDislikeRecordManager.removeAllLikeRecordsForPostId(postId, fromPostComments);
+		
+		// delete post
+		dbCon.makeConnectionAndExecuteQuery(query);
 	}
 	
 	private ArrayList<Post> getPostsFromResultSet(ResultSet rs) throws NumberFormatException, SQLException, ParseException{

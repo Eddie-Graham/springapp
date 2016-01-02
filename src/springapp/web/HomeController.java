@@ -245,4 +245,15 @@ public class HomeController {
 		
 		return "SUCCESS";
 	}
+	
+	@RequestMapping(value="/deletePost.html", method = RequestMethod.GET)
+	public @ResponseBody String deletePost(HttpServletRequest request){
+		
+		String postId = request.getParameter("postId");
+		boolean fromPostComments = Boolean.valueOf(request.getParameter("fromPostComments"));
+		
+		postManager.deletePost(postId, fromPostComments);
+		
+		return "SUCCESS";
+	}
 }

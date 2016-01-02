@@ -76,6 +76,27 @@ public class PostCommentsManager implements PostCommentsManagerInterface {
 		return Integer.parseInt(noOfComments);
 	}
 	
+	public void deleteAllCommentsForMasterPost(String masterPostId){
+		
+		// delete all comments including their like and dislike references
+		
+		String query = "delete "
+				+ "from like_records_comments "
+				+ "where post_Id in "
+				+ "(select id from post_comments where masterpost_id = " + masterPostId + ");";
+		
+		String query2 = "delete "
+				+ "from dislike_records_comments "
+				+ "where post_Id in "
+				+ "(select id from post_comments where masterpost_id = " + masterPostId + ");";
+		
+		String query3 = "delete from post_comments where masterpost_id = " + masterPostId + ";";
+		
+		dbCon.makeConnectionAndExecuteQuery(query);
+		dbCon.makeConnectionAndExecuteQuery(query2);
+		dbCon.makeConnectionAndExecuteQuery(query3);
+	}
+	
 	private ArrayList<Post> getPostsFromResultSet(ResultSet rs) throws NumberFormatException, SQLException, ParseException{
 		
 		ArrayList<Post> posts = new ArrayList<Post>();

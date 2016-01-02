@@ -13,4 +13,6 @@ public interface LikeDislikeRecordManagerInterface {
 	public ResultSet getDislikeRecord(String userId, String postId, boolean fromPostComments);
 	public int getTotalPostsLiked(String userId, boolean fromPostComments) throws SQLException;
 	public int getTotalPostsDisliked(String userId, boolean fromPostComments) throws SQLException;
+	public void removeAllLikeRecordsForPostId(String postId, boolean fromPostComments);
+	public void removeAllDislikeRecordsForPostId(String postId, boolean fromPostComments);
 }

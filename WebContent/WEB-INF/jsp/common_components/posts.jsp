@@ -19,8 +19,21 @@
 	<c:if test="${fromPostComments}">
 		<c:set var="backgroundColor" value="${postCommentsColor}"/>
 	</c:if>
+	
+	<c:choose>
+		<c:when test="${empty fromPostComments}">
+			<c:set var="postComment" value="false"/>
+		</c:when>
+		<c:otherwise>
+			<c:set var="postComment" value="true"/>
+		</c:otherwise>
+	</c:choose>
 
 	<div class="postContainer" style="background-color: ${backgroundColor};">
+	
+		<c:if test="${user.authority == 'ROLE_ADMIN'}">
+			<a class="deletePost links" href="javascript:confirmPostDelete('${post.id}', '${postComment}');">X</a>
+		</c:if>
 
 		<div class="post">
 		
@@ -128,15 +141,6 @@
 				
 				<c:choose>
 					<c:when test="${post.canRate}">
-					
-						<c:choose>
-							<c:when test="${empty fromPostComments}">
-								<c:set var="postComment" value="false"/>
-							</c:when>
-							<c:otherwise>
-								<c:set var="postComment" value="true"/>
-							</c:otherwise>
-						</c:choose>
 						
 						<div class="buttons pure-u-1-2">
 							<div class="likeButton pure-u-1">

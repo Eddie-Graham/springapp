@@ -1,6 +1,6 @@
 var fadeOutDefault = 400;
 var fadeInDefault = 400;
-// this value is also "copied" in home.js
+// this value is also "copied" in home.js & posts.js
 
 function refreshPostsByLikes(userId){
 	
