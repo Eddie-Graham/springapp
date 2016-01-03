@@ -6,7 +6,7 @@
 
 <c:forEach items="${posts}" var="post" varStatus="loop">
 
-	<!---------------------------------------------------->
+	<!-- BACKGROUNDCOLOR -->
 	<c:choose>
 		<c:when test="${loop.index % 2 == 0}">
 			<c:set var="backgroundColor" value="#FFFFFF"/>
@@ -20,8 +20,8 @@
 	<c:if test="${fromPostComments}">
 		<c:set var="backgroundColor" value="${postCommentsColor}"/>
 	</c:if>
-	<!---------------------------------------------------->
-	<!---------------------------------------------------->
+	<!--  -->
+	<!-- POSTCOMMENT -->
 	<c:choose>
 		<c:when test="${empty fromPostComments}">
 			<c:set var="postComment" value="false"/>
@@ -30,11 +30,11 @@
 			<c:set var="postComment" value="true"/>
 		</c:otherwise>
 	</c:choose>
-	<!---------------------------------------------------->
+	<!--  -->
 
 	<div class="postContainer" style="background-color: ${backgroundColor};">
 	
-		<c:if test="${user.authority == 'ROLE_ADMIN'}">
+		<c:if test="${userSesh.authority == 'ROLE_ADMIN'}">
 			<a class="deletePost links" href="javascript:confirmPostDelete('${post.id}', '${postComment}');">X</a>
 		</c:if>
 
@@ -85,7 +85,7 @@
 				
 				<div class="bottom">
 
-					<c:if test="${empty fromPostComments}">
+					<c:if test="${!postComment}">
 						<button type="button"
 							onclick="expandComments('${post.id}', '${backgroundColor}')"
 							id="expandCommentsBtn_${post.id}" class="expandCommentsBtn">
@@ -118,7 +118,7 @@
 						</c:otherwise>
 					</c:choose>
 					
-					<c:if test="${empty fromPostComments}">
+					<c:if test="${!postComment}">
 					
 						<div id="likes_${post.id}" class="pure-u-1 postLikes">${post.likes}</div>
 					
@@ -129,7 +129,7 @@
 						
 					</c:if>
 						
-					<c:if test="${fromPostComments}">
+					<c:if test="${postComment}">
 					
 						<div id="likes_comment_${post.id}" class="pure-u-1 postLikes">${post.likes}</div>
 					
@@ -179,7 +179,7 @@
 		</div>
 	</div>
 	
-	<c:if test="${empty fromPostComments}">
+	<c:if test="${!postComment}">
 	
 		<div id="replyDiv_${post.id}" class="collapse replyDiv" style="background-color: ${backgroundColor};">
  			<form class="pure-form">

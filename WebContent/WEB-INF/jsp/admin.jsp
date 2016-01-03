@@ -4,13 +4,6 @@
 
 <t:genericpage>
 	<jsp:attribute name="head">
-	
-		<!-- <link rel="stylesheet" type="text/css" href="css/home.css">
-		<link rel="stylesheet" type="text/css" href="css/posts.css">
-		<link rel="stylesheet" type="text/css" href="css/filter.css">
-		<script src="js/home.js"></script> 
-		<script src="js/posts.js"></script>
-		<script src="js/filter.js"></script> -->
 		
 		<script src="js/admin.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/admin.css">
@@ -27,7 +20,8 @@
 			<th class="thHeading">Email</th>
 			<th class="thHeading">Authority</th>
 			<th class="thHeading">Enabled</th> 
-			<th class="thHeading">Registered</th>
+			<th class="thHeading">Password</th> 
+			<%-- <th class="thHeading">Registered</th> --%>
 			<th class="thHeading"></th>
 		</tr>
 		
@@ -84,9 +78,10 @@
 					</select>
 				
 				</td> 
-				<td>${user.registeredDateString}, ${user.registeredTimeString}</td>
+				<td><input type="text" id="password_${user.id}" placeholder="New Password"></td>
+				<%-- <td>${user.registeredDateString}</td> --%>
 				
-				<td><button onclick="updateUser('${user.id}');">Save</button></td>
+				<td><button class="pure-button pure-button-primary" onclick="updateUser('${user.id}');">Save</button></td>
 						
 			</tr>
 		

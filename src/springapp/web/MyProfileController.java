@@ -86,7 +86,7 @@ public class MyProfileController {
 	@RequestMapping(value="/upload.html", method = RequestMethod.POST)
 	public String uploadProfileImage(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
 
-		User user =  (User) request.getSession().getAttribute("user");
+		User user =  (User) request.getSession().getAttribute("userSesh");
 		String id = user.getId();
 		
 		if (!file.isEmpty()) {
@@ -112,7 +112,7 @@ public class MyProfileController {
 	@RequestMapping(value="/delete.html")
 	public String deleteProfileImage(HttpServletRequest request) {
 
-		User user =  (User) request.getSession().getAttribute("user");
+		User user =  (User) request.getSession().getAttribute("userSesh");
 		String id = user.getId();
 		
 		String path = System.getenv("APP_ROOT") + "/profile_images/" + id + ".png";

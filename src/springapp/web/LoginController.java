@@ -26,7 +26,7 @@ public class LoginController {
 	@RequestMapping(value="/login.html")
 	public ModelAndView enterLogin(HttpServletRequest request){
 		
-		User user =  (User) request.getSession().getAttribute("user");
+		User user =  (User) request.getSession().getAttribute("userSesh");
 		
 		if(user != null)
 			return new ModelAndView("redirect:home.html");
@@ -45,7 +45,7 @@ public class LoginController {
 		////////////////////////////////
 		// set user object in session //
 		////////////////////////////////
-		request.getSession().setAttribute("user", user);
+		request.getSession().setAttribute("userSesh", user);
 		
 		return "SUCCESS";
 	}

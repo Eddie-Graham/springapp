@@ -7,9 +7,14 @@ function updateUser(userId){
 	var email = $('#email_' + userId).val();
 	var authority = $('#authority_' + userId).val();
 	var enabled = $('#enabled_' + userId).val();
+	var password = $('#password_' + userId).val();
 	
+	var url = "updateUser.html?userId=" + userId + "&username="
+		+ username + "&email=" + email + "&authority=" + authority
+		+ "&enabled=" + enabled;
+	
+	if(password != "")
+		url += "&password=" + password;
 
-	window.location = "updateUser.html?userId=" + userId + "&username="
-			+ username + "&email=" + email + "&authority=" + authority
-			+ "&enabled=" + enabled;
+	window.location = url;
 }

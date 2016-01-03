@@ -20,7 +20,7 @@ public class AdminController {
 	@Autowired
 	private UserManagerInterface userManager;
 	
-	@RequestMapping(value="/deletePost.html", method = RequestMethod.GET)
+	@RequestMapping(value="/deletePost.html")
 	public @ResponseBody String deletePost(HttpServletRequest request){
 		
 		String postId = request.getParameter("postId");
@@ -31,7 +31,7 @@ public class AdminController {
 		return "SUCCESS";
 	}
 	
-	@RequestMapping(value="/updateUser.html", method = RequestMethod.GET)
+	@RequestMapping(value="/updateUser.html")
 	public String updateUser(HttpServletRequest request){
 		
 		String userId = request.getParameter("userId");
@@ -39,8 +39,9 @@ public class AdminController {
 		String email = request.getParameter("email");
 		String authority = request.getParameter("authority");
 		String enabled = request.getParameter("enabled");
+		String password = request.getParameter("password");
 		
-		userManager.updateUser(userId, username, email, authority, enabled);
+		userManager.updateUser(userId, username, email, authority, enabled, password);
 		
 		return "redirect:admin.html";
 	}

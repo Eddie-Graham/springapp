@@ -124,7 +124,7 @@ public class HomeController {
 	@RequestMapping(value="/submitPost.html", method = RequestMethod.POST)
 	public String submitPost(HttpServletRequest request) throws SQLException, ParseException{
 		
-		User user =  (User) request.getSession().getAttribute("user");
+		User user =  (User) request.getSession().getAttribute("userSesh");
 		String id = user.getId();
 		
 		String postText = request.getParameter("postText");
@@ -151,7 +151,7 @@ public class HomeController {
 	@RequestMapping(value="/incrementLikes.html")
 	public @ResponseBody String incrementLikes(HttpServletRequest request) throws SQLException{
 		
-		User user =  (User) request.getSession().getAttribute("user");
+		User user =  (User) request.getSession().getAttribute("userSesh");
 		String userId = user.getId();
 		String postId = request.getParameter("postId");
 		boolean fromPostComments = Boolean.valueOf(request.getParameter("fromPostComments"));
@@ -184,7 +184,7 @@ public class HomeController {
 	@RequestMapping(value="/decrementDisikes.html")
 	public @ResponseBody String decrementDisikes(HttpServletRequest request) throws SQLException{
 	    
-		User user =  (User) request.getSession().getAttribute("user");
+		User user =  (User) request.getSession().getAttribute("userSesh");
 		String userId = user.getId();
 		String postId = request.getParameter("postId");
 		boolean fromPostComments = Boolean.valueOf(request.getParameter("fromPostComments"));
@@ -233,7 +233,7 @@ public class HomeController {
 	@RequestMapping(value="/submitPostComment.html", method = RequestMethod.POST)
 	public @ResponseBody String submitPostComment(HttpServletRequest request) throws SQLException, ParseException{
 		
-		User user =  (User) request.getSession().getAttribute("user");
+		User user =  (User) request.getSession().getAttribute("userSesh");
 		String id = user.getId();
 		
 		String postText = request.getParameter("postText");

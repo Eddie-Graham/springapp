@@ -43,12 +43,12 @@
 		
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="home.html" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="myprofile.html?id=${user.id}" class="pure-menu-link">My Profile</a></li>
+                <li class="pure-menu-item"><a href="myprofile.html?id=${userSesh.id}" class="pure-menu-link">My Profile</a></li>
                 <li class="pure-menu-item"><a href="usermap.html" class="pure-menu-link">User Map</a></li>
                 <li class="pure-menu-item"><a href="about.html" class="pure-menu-link">About</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
 
-				<c:if test="${user.authority == 'ROLE_ADMIN'}">
+				<c:if test="${userSesh.authority == 'ROLE_ADMIN'}">
 					<li class="pure-menu-item"><a href="admin.html" class="pure-menu-link">Admin</a></li>
 				</c:if>
 				

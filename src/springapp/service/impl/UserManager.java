@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import springapp.dbcon.DbConInterface;
@@ -113,11 +114,23 @@ public class UserManager implements UserManagerInterface {
 		dbCon.makeConnectionAndExecuteQuery(query);		
 	}
 	
-	public void updateUser(String userId, String username, String email, String authority, String enabled){
+	public void updateUser(String userId, String username, String email, String authority, String enabled, String password){
 		
-		String query = "update users "
+		String query = "";
+		
+		if(password == null)
+			query = "update users "
 				+ "set username = '" + username + "', email = '" + email + "', authority = '" + authority + "', enabled = " + enabled + " "
-				+ "where id = " + userId + ";";		
+				+ "where id = " + userId + ";";
+		
+		else{
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String hashedPassword = passwordEncoder.encode(password);
+			
+			query = "update users "
+				+ "set username = '" + username + "', email = '" + email + "', authority = '" + authority + "', enabled = " + enabled + ", password = '" + hashedPassword + "' "
+				+ "where id = " + userId + ";";
+		}
 		
 		dbCon.makeConnectionAndExecuteQuery(query);		
 	}

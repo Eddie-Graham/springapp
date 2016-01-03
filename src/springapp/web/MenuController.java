@@ -39,7 +39,7 @@ public class MenuController {
 		
 		ModelAndView mav = new ModelAndView("myprofile");
 		
-		User loggedInUser =  (User) request.getSession().getAttribute("user");
+		User loggedInUser =  (User) request.getSession().getAttribute("userSesh");
 		
 		if(loggedInUser.getId().equals(userId))
 			mav.addObject("isLoggedInUser", true);

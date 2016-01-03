@@ -17,5 +17,5 @@ public interface UserManagerInterface {
 	public void setLatLong(String userId, String latitude, String longitude);
 	public void createUser(User user);
 	public void incrementProfileViews(String userId);
-	public void updateUser(String userId, String username, String email, String authority, String enabled);
+	public void updateUser(String userId, String username, String email, String authority, String enabled, String password);
 }

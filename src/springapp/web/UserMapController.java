@@ -39,7 +39,7 @@ public class UserMapController {
 	@RequestMapping(value="/postLatLong.html", method = RequestMethod.POST)
 	public @ResponseBody String postLatLong(HttpServletRequest request) throws SQLException {
 		
-		User user =  (User) request.getSession().getAttribute("user");
+		User user =  (User) request.getSession().getAttribute("userSesh");
 		String id = user.getId();
 		
 		String latitude = request.getParameter("latitude");

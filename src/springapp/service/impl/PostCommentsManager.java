@@ -102,7 +102,7 @@ public class PostCommentsManager implements PostCommentsManagerInterface {
 		ArrayList<Post> posts = new ArrayList<Post>();
 		
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		User loggedInUser =  (User) attr.getRequest().getSession().getAttribute("user");
+		User loggedInUser =  (User) attr.getRequest().getSession().getAttribute("userSesh");
 		String loggedInId = loggedInUser.getId();
 		
 		while (rs.next()) {
