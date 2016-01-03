@@ -113,6 +113,15 @@ public class UserManager implements UserManagerInterface {
 		dbCon.makeConnectionAndExecuteQuery(query);		
 	}
 	
+	public void updateUser(String userId, String username, String email, String authority, String enabled){
+		
+		String query = "update users "
+				+ "set username = '" + username + "', email = '" + email + "', authority = '" + authority + "', enabled = " + enabled + " "
+				+ "where id = " + userId + ";";		
+		
+		dbCon.makeConnectionAndExecuteQuery(query);		
+	}
+	
 	private ArrayList<User> getUsersFromResultSet(ResultSet rs) throws SQLException, ParseException {
 		
 		ArrayList<User> users = new ArrayList<User>();

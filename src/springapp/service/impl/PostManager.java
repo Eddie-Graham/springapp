@@ -303,7 +303,7 @@ public class PostManager implements PostManagerInterface {
 			// delete all tag references
 			
 			query = "delete from posts where id = " + postId + ";";
-			postCommentsManager.deleteAllCommentsForMasterPost(postId); //TODO what if comments have like and dislike records?
+			postCommentsManager.deleteAllCommentsForMasterPost(postId);
 			tagManager.deleteAllTagsForPost(postId);
 		}
 		else

@@ -51,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					// admin requests
 					.antMatchers("/admin.html").hasRole("ADMIN")
 					.antMatchers("/deletePost.html").hasRole("ADMIN")
+					.antMatchers("/updateUser.html").hasRole("ADMIN")					
 					
 					// all other requests
 					.anyRequest().hasAnyRole("USER", "ADMIN")

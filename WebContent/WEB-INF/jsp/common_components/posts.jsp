@@ -6,6 +6,7 @@
 
 <c:forEach items="${posts}" var="post" varStatus="loop">
 
+	<!---------------------------------------------------->
 	<c:choose>
 		<c:when test="${loop.index % 2 == 0}">
 			<c:set var="backgroundColor" value="#FFFFFF"/>
@@ -19,7 +20,8 @@
 	<c:if test="${fromPostComments}">
 		<c:set var="backgroundColor" value="${postCommentsColor}"/>
 	</c:if>
-	
+	<!---------------------------------------------------->
+	<!---------------------------------------------------->
 	<c:choose>
 		<c:when test="${empty fromPostComments}">
 			<c:set var="postComment" value="false"/>
@@ -28,6 +30,7 @@
 			<c:set var="postComment" value="true"/>
 		</c:otherwise>
 	</c:choose>
+	<!---------------------------------------------------->
 
 	<div class="postContainer" style="background-color: ${backgroundColor};">
 	

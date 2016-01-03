@@ -12,22 +12,23 @@
 		<script src="js/posts.js"></script>
 		<script src="js/filter.js"></script> -->
 		
+		<script src="js/admin.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/admin.css">
 		
     </jsp:attribute>
     
 	<jsp:body>
 	
-	
-	
 	<table>
 		<tr>
 			<th class="thHeading"></th>
 			<th class="thHeading">ID</th>
+			<th class="thHeading">Username</th>
 			<th class="thHeading">Email</th>
 			<th class="thHeading">Authority</th>
 			<th class="thHeading">Enabled</th> 
 			<th class="thHeading">Registered</th>
+			<th class="thHeading"></th>
 		</tr>
 		
 		<c:forEach items="${users}" var="user" varStatus="loop">
@@ -64,17 +65,34 @@
 				
 				</td>
 				<td>${user.id}</td>
-				<td>${user.email}</td>
-				<td>${user.authority}</td>
-				<td>${user.enabled}</td> 
+				<td><input type="text" id="username_${user.id}" value="${user.username}"></td>
+				<td><input type="text" id="email_${user.id}" value="${user.email}"></td>
+				<td><input type="text" id="authority_${user.id}" value="${user.authority}"></td>
+				<td>
+				
+					<select id="enabled_${user.id}">
+					<c:choose>
+						<c:when test="${user.enabled}">
+							<option selected="selected" value="true">true</option>
+							<option value="false">false</option>
+						</c:when>
+						<c:otherwise>
+							<option value="true">true</option>
+							<option selected="selected" value="false">false</option>
+						</c:otherwise>
+					</c:choose>
+					</select>
+				
+				</td> 
 				<td>${user.registeredDateString}, ${user.registeredTimeString}</td>
+				
+				<td><button onclick="updateUser('${user.id}');">Save</button></td>
+						
 			</tr>
 		
 		</c:forEach>
 	</table>
 	
-	
-
     </jsp:body>
 
 </t:genericpage>
