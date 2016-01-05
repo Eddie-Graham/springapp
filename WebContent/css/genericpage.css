@@ -259,11 +259,7 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 }
 
 #time{
-	position: absolute;
-	color: #999;
-	bottom: 0.6em;
-	left: 0.6em;
-	font-size: 18px;
+	padding-top: 0 !important;
 }
 
 #fish{

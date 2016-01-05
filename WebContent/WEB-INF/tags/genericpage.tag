@@ -40,6 +40,7 @@
             <a class="pure-menu-heading" href="home.html">Fish !
             	<img id="fish" src="/springapp/images/fish.png" alt="fish">
             </a>
+            <a id="time" class="pure-menu-heading" href="home.html"></a>
 		
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="home.html" class="pure-menu-link">Home</a></li>
@@ -56,7 +57,7 @@
             </ul>
         </div>
         
-        <div id="time"></div>
+        
     </div>
 
     <div id="main">

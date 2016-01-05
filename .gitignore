@@ -1,5 +1,5 @@
 .*
 *.class
 !.gitignore
-/bin/
-*.war
+/out/
+springapp.iml
