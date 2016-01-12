@@ -13,98 +13,101 @@ import springapp.dbcon.DbConInterface;
 
 @Component
 public class DbCon implements DbConInterface{
-	
+
 	@Autowired
 	private DataSource dataSource;
 
 	/**
 	 * Run a query for which results are expected.
+	 *
 	 * @param query
 	 * @return
 	 */
 	public ResultSet makeConnectionAndRunQuery(String query){
-		
+
 		ResultSet rs = null;
-		
-		try {
-			
+
+		try{
+
 			Connection c = dataSource.getConnection();
 
 			Statement stmt = c.createStatement();
-			
+
 			System.out.println("Running query: " + query);
-			
-			rs = stmt.executeQuery(query);	
-			
+
+			rs = stmt.executeQuery(query);
+
 			c.close();
 
-		} catch (Exception e) {
+		} catch(Exception e){
 
 			e.printStackTrace();
 
 		}
-		
+
 		return rs;
-		
+
 	}
-	
+
 	/**
 	 * Execute query which does not return a result.
+	 *
 	 * @param query
 	 */
 	public void makeConnectionAndExecuteQuery(String query){
-		
-		try {
+
+		try{
 
 			Connection c = dataSource.getConnection();
-						
+
 			Statement stmt = c.createStatement();
-			
+
 			System.out.println("Executing query: " + query);
-			
-			stmt.execute(query);	
-			
+
+			stmt.execute(query);
+
 			c.close();
 
-		} catch (Exception e) {
+		} catch(Exception e){
 
 			e.printStackTrace();
 
 		}
 	}
-	
+
 	/**
 	 * Execute query and return auto generated id field
+	 *
 	 * @param query
 	 */
 	public String makeConnectionAndExecuteQueryGettingAutoId(String query){
-		
+
 		String autoId = "";
-		
-		try {
+
+		try{
 
 			Connection c = dataSource.getConnection();
-						
-			Statement stmt = c.createStatement();
-			
-			System.out.println("Executing query: " + query);
-			
-			stmt.execute(query, Statement.RETURN_GENERATED_KEYS);
-			
-			ResultSet rs = stmt.getGeneratedKeys();  
-	
-			rs.next();  
 
-			autoId = rs.getString("id"); 
-			
+			Statement stmt = c.createStatement();
+
+			System.out.println("Executing query: " + query);
+
+			stmt.execute(query, Statement.RETURN_GENERATED_KEYS);
+
+			ResultSet rs = stmt.getGeneratedKeys();
+
+			rs.next();
+
+			autoId = rs.getString("id");
+
 			c.close();
 
-		} catch (Exception e) {
+		} catch(Exception e){
 
 			e.printStackTrace();
 
 		}
-		
+
 		return autoId;
 	}
 }

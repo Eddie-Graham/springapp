@@ -25,23 +25,23 @@ import springapp.service.PostManagerInterface;
 import springapp.service.UserManagerInterface;
 
 @Controller
-public class MyProfileController {
-	
+public class MyProfileController{
+
 	@Autowired
 	private PostManagerInterface postManager;
-	
+
 	@Autowired
 	private UserManagerInterface userManager;
-	
+
 	@Autowired
 	private LikeDislikeRecordManagerInterface likeDislikeRecordManager;
-	
-	@RequestMapping(value="/getUsersStats.html")
+
+	@RequestMapping(value = "/getUsersStats.html")
 	public ModelAndView getUsersStats(HttpServletRequest request) throws SQLException, ParseException{
-		
-		String id = request.getParameter("userId");	
+
+		String id = request.getParameter("userId");
 		User user = userManager.getUserById(id);
-		
+
 		// main posts
 		int noOfPosts = postManager.getNoOfPostsByUser(id, false);
 		int totalLikes = postManager.getTotalLikes(id, false);
@@ -54,7 +54,7 @@ public class MyProfileController {
 		int totalReplyDislikes = postManager.getTotalDislikes(id, true);
 		int totalRepliesLiked = likeDislikeRecordManager.getTotalPostsLiked(id, true);
 		int totalRepliesDisliked = likeDislikeRecordManager.getTotalPostsDisliked(id, true);
-		
+
 		// order stats are added is in conjunction with stats.jsp 
 		ArrayList<Integer> stats = new ArrayList<Integer>();
 		stats.add(noOfPosts);
@@ -67,65 +67,67 @@ public class MyProfileController {
 		stats.add(totalReplyDislikes);
 		stats.add(totalRepliesLiked);
 		stats.add(totalRepliesDisliked);
-	
+
 		ModelAndView mav = new ModelAndView("common_components/stats");
 		mav.addObject("stats", stats);
 		mav.addObject("username", user.getUsername());
-		
+
 		return mav;
 	}
-	
+
 	/**
 	 * Uploads selected profile image into /profile_images/ folder using
 	 * user's id as file name (eg 7.png).
+	 *
 	 * @param file
 	 * @param request
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(value="/upload.html", method = RequestMethod.POST)
-	public String uploadProfileImage(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+	@RequestMapping(value = "/upload.html", method = RequestMethod.POST)
+	public String uploadProfileImage(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws
+			IOException{
 
-		User user =  (User) request.getSession().getAttribute("userSesh");
+		User user = (User) request.getSession().getAttribute("userSesh");
 		String id = user.getId();
-		
-		if (!file.isEmpty()) {
-			
+
+		if(!file.isEmpty()){
+
 			BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-			
+
 			String path = System.getenv("APP_ROOT") + "/profile_images/" + id + ".png";
-			
-			File destination = new File(path); 
+
+			File destination = new File(path);
 
 			ImageIO.write(bufferedImage, "png", destination);
-			
+
 			userManager.setHasProfilePic(true, id);
 			// change object in session
 			user.setHasProfilePic(true);
-			
+
 			System.out.println("User uploaded profile pic at path: " + path);
 		}
-		
+
 		return "redirect:myprofile.html?id=" + id;
 	}
-	
-	@RequestMapping(value="/delete.html")
-	public String deleteProfileImage(HttpServletRequest request) {
 
-		User user =  (User) request.getSession().getAttribute("userSesh");
+	@RequestMapping(value = "/delete.html")
+	public String deleteProfileImage(HttpServletRequest request){
+
+		User user = (User) request.getSession().getAttribute("userSesh");
 		String id = user.getId();
-		
+
 		String path = System.getenv("APP_ROOT") + "/profile_images/" + id + ".png";
-		
+
 		File f = new File(path);
 		boolean success = f.delete();
-		
+
 		userManager.setHasProfilePic(false, id);
 		// change object in session
 		user.setHasProfilePic(false);
-		
+
 		System.out.println("Deleted file (" + success + "): " + path);
-		
+
 		return "redirect:myprofile.html?id=" + id;
 	}
 }

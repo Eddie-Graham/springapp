@@ -12,60 +12,60 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+
 	@Autowired
 	private DataSource dataSource;
-	
+
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-			
+
 		auth
-			.jdbcAuthentication()
+				.jdbcAuthentication()
 				.dataSource(dataSource)
 				.passwordEncoder(new BCryptPasswordEncoder())
-					.usersByUsernameQuery("select username, password, enabled from users where username=?")
-					.authoritiesByUsernameQuery("select username, authority from users where username=?");
+				.usersByUsernameQuery("select username, password, enabled from users where username=?")
+				.authoritiesByUsernameQuery("select username, authority from users where username=?");
 	}
-	
+
 	protected void configure(HttpSecurity http) throws Exception{
-		
+
 		http
-			.formLogin()
+				.formLogin()
 				.loginPage("/login.html")
 				.defaultSuccessUrl("/loginSuccess.html", true)
 				.failureUrl("/loginFail.html")
-			.and()
+				.and()
 				.authorizeRequests()
-					
-					// login requests
-					.antMatchers("/login.html").permitAll()
-					.antMatchers("/checkUniqueUsername.html").permitAll()
-					.antMatchers("/checkUniqueEmail.html").permitAll()
-					.antMatchers("/submitRegistration.html").permitAll()
-					.antMatchers("/css/login.css").permitAll()
-					.antMatchers("/js/login.js").permitAll()
-					.antMatchers("/images/background.jpg").permitAll()
-					.antMatchers("/loginFail.html").permitAll()
-					.antMatchers("/loginSuccess.html").permitAll()
-					
-					// admin requests
-					.antMatchers("/admin.html").hasRole("ADMIN")
-					.antMatchers("/deletePost.html").hasRole("ADMIN")
-					.antMatchers("/updateUser.html").hasRole("ADMIN")					
-					
-					// all other requests
-					.anyRequest().hasAnyRole("USER", "ADMIN")
-			.and()
+
+				// login requests
+				.antMatchers("/login.html").permitAll()
+				.antMatchers("/checkUniqueUsername.html").permitAll()
+				.antMatchers("/checkUniqueEmail.html").permitAll()
+				.antMatchers("/submitRegistration.html").permitAll()
+				.antMatchers("/css/login.css").permitAll()
+				.antMatchers("/js/login.js").permitAll()
+				.antMatchers("/images/background.jpg").permitAll()
+				.antMatchers("/loginFail.html").permitAll()
+				.antMatchers("/loginSuccess.html").permitAll()
+
+				// admin requests
+				.antMatchers("/admin.html").hasRole("ADMIN")
+				.antMatchers("/deletePost.html").hasRole("ADMIN")
+				.antMatchers("/updateUser.html").hasRole("ADMIN")
+
+				// all other requests
+				.anyRequest().hasAnyRole("USER", "ADMIN")
+				.and()
 				.httpBasic()
-			.and()	
+				.and()
 				.sessionManagement()
-					.invalidSessionUrl("/login.html")
-			.and()
+				.invalidSessionUrl("/login.html")
+				.and()
 				.headers()
-					.frameOptions()
-						.disable()
-			.and()
+				.frameOptions()
+				.disable()
+				.and()
 				.csrf()
-					.disable();
+				.disable();
 	}
 }

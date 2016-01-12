@@ -2,8 +2,8 @@ package springapp.domain;
 
 import java.sql.Timestamp;
 
-public class Post {
-	
+public class Post{
+
 	private String id;
 	private String text;
 	private int likes;
@@ -15,10 +15,10 @@ public class Post {
 	private boolean canRate;
 	private User user;
 	private int noOfComments;
-	
+
 	public Post(String id, String text, int likes, int dislikes, int total, Timestamp timestamp, String timeString,
-			String dateString, boolean canRate, User user, int noOfComments){
-		
+				String dateString, boolean canRate, User user, int noOfComments){
+
 		this.id = id;
 		this.text = text;
 		this.likes = likes;
@@ -31,10 +31,10 @@ public class Post {
 		this.user = user;
 		this.noOfComments = noOfComments;
 	}
-	
+
 	public Post(String id, String text, int likes, int dislikes, int total, Timestamp timestamp, String timeString,
-			String dateString, boolean canRate, User user){
-		
+				String dateString, boolean canRate, User user){
+
 		this.id = id;
 		this.text = text;
 		this.likes = likes;
@@ -47,97 +47,98 @@ public class Post {
 		this.user = user;
 	}
 
-	public String getId() {
+	public String getId(){
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(String id){
 		this.id = id;
 	}
 
-	public String getText() {
+	public String getText(){
 		return text;
 	}
 
-	public void setText(String text) {
+	public void setText(String text){
 		this.text = text;
 	}
 
-	public int getLikes() {
+	public int getLikes(){
 		return likes;
 	}
 
-	public void setLikes(int likes) {
+	public void setLikes(int likes){
 		this.likes = likes;
 	}
 
-	public int getDislikes() {
+	public int getDislikes(){
 		return dislikes;
 	}
 
-	public void setDislikes(int dislikes) {
+	public void setDislikes(int dislikes){
 		this.dislikes = dislikes;
 	}
 
-	public int getTotal() {
+	public int getTotal(){
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(int total){
 		this.total = total;
 	}
 
-	public Timestamp getTimestamp() {
+	public Timestamp getTimestamp(){
 		return timestamp;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
+	public void setTimestamp(Timestamp timestamp){
 		this.timestamp = timestamp;
 	}
 
-	public String getTimeString() {
+	public String getTimeString(){
 		return timeString;
 	}
 
-	public void setTimeString(String timeString) {
+	public void setTimeString(String timeString){
 		this.timeString = timeString;
 	}
 
-	public String getDateString() {
+	public String getDateString(){
 		return dateString;
 	}
 
-	public void setDateString(String dateString) {
+	public void setDateString(String dateString){
 		this.dateString = dateString;
 	}
 
-	public boolean isCanRate() {
+	public boolean isCanRate(){
 		return canRate;
 	}
 
-	public void setCanRate(boolean canRate) {
+	public void setCanRate(boolean canRate){
 		this.canRate = canRate;
 	}
 
-	public User getUser() {
+	public User getUser(){
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(User user){
 		this.user = user;
 	}
 
-	public int getNoOfComments() {
+	public int getNoOfComments(){
 		return noOfComments;
 	}
 
-	public void setNoOfComments(int noOfComments) {
+	public void setNoOfComments(int noOfComments){
 		this.noOfComments = noOfComments;
 	}
 
 	public String toString(){
-		
-		return "\nid: " + id + "\ntext: " + text + "\nlikes: " + likes + "\ndislikes: " + dislikes + "\ntotal: " + total
+
+		return "\nid: " + id + "\ntext: " + text + "\nlikes: " + likes + "\ndislikes: " + dislikes + "\ntotal: " +
+				total
 				+ "\ntimestamp: " + timestamp + "\ncanRate: " + canRate + "\nnoOfComments: " + noOfComments;
 	}
 }

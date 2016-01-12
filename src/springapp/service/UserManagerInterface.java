@@ -6,16 +6,26 @@ import java.util.ArrayList;
 
 import springapp.domain.User;
 
-public interface UserManagerInterface {
-	
+public interface UserManagerInterface{
+
 	public User getUserByEmail(String email) throws SQLException, ParseException;
+
 	public User getUserById(String id) throws SQLException, ParseException;
+
 	public User getUserByUsername(String username) throws SQLException, ParseException;
+
 	public ArrayList<User> getAllUsers() throws SQLException, ParseException;
+
 	public ArrayList<User> getAllUsersWithLatLong() throws SQLException, ParseException;
+
 	public void setHasProfilePic(boolean hasProfilePic, String userId);
+
 	public void setLatLong(String userId, String latitude, String longitude);
+
 	public void createUser(User user);
+
 	public void incrementProfileViews(String userId);
-	public void updateUser(String userId, String username, String email, String authority, String enabled, String password);
+
+	public void updateUser(String userId, String username, String email, String authority, String enabled, String
+			password);
 }
