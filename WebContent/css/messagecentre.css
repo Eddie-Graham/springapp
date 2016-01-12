@@ -1,0 +1,18 @@
+#userList{
+    border: 1px solid #000000;
+    width: 25%;
+    height: 100%;
+    float: left;
+}
+
+#messages{
+    border: 1px solid #000000;
+    width: 75%;
+    height: 100%;
+    float: left;
+}
+
+#mainContainer{
+    height: 100%;
+    width: 100%;
+}

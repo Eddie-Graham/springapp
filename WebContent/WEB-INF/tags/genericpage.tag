@@ -22,11 +22,14 @@
 
 <!-- Collapsible -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<%-- Angular --%>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
 <jsp:invoke fragment="head" />
 
 </head>
 <body>
-
 
 <div id="layout">
     <!-- Menu toggle -->
@@ -45,6 +48,7 @@
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="home.html" class="pure-menu-link">Home</a></li>
                 <li class="pure-menu-item"><a href="myprofile.html?id=${userSesh.id}" class="pure-menu-link">My Profile</a></li>
+                <li class="pure-menu-item"><a href="messagecentre.html" class="pure-menu-link">Message Centre</a></li>
                 <li class="pure-menu-item"><a href="usermap.html" class="pure-menu-link">User Map</a></li>
                 <li class="pure-menu-item"><a href="about.html" class="pure-menu-link">About</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>

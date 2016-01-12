@@ -6,7 +6,7 @@
     <property name="src.dir" value="src"/>
     <property name="web.dir" value="WebContent"/>
     <property name="build.dir" value="${web.dir}/WEB-INF/classes"/>
-    <property name="test.dir" value="test"/>
+    <property name="test.dir" value="tests"/>
     <property name="name" value="springapp"/>
 
     <path id="master-classpath">
@@ -60,7 +60,7 @@
             
             <batchtest>
                 <fileset dir="${build.dir}">
-                    <include name="**/*Tests.*"/>
+                    <include name="**/*Test.*"/>
                 </fileset>
             </batchtest>
             

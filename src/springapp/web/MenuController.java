@@ -69,4 +69,10 @@ public class MenuController {
 	    
 		return mav;
 	}
+
+	@RequestMapping(value="/messagecentre.html")
+	public ModelAndView enterMessageCentre(HttpServletRequest request){
+
+		return new ModelAndView("messagecentre");
+	}
 }
