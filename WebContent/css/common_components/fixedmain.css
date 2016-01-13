@@ -1,4 +1,4 @@
-#main{
+#main {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -9,14 +9,14 @@
 /* Parallel with responsive side-bar  */
 @media (min-width: 48em) {
 
-    #main{
+    #main {
         left: 150px;
     }
 }
 
 @media (max-width: 48em) {
 
-    #main{
+    #main {
         left: 0;
     }
 }

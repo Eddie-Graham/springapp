@@ -115,9 +115,13 @@ public class PostManager implements PostManagerInterface{
 		String query = "";
 
 		if(userId == null)
-			query = "select * from posts order by timestamp desc;";
+			query = "select * " +
+					"from posts " +
+					"order by timestamp desc;";
 		else
-			query = "select * from posts where user_id = " + userId + " order by timestamp desc;";
+			query = "select * " +
+					"from posts where user_id = " + userId + " " +
+					"order by timestamp desc;";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -129,19 +133,19 @@ public class PostManager implements PostManagerInterface{
 		String query = "";
 
 		if(userId == null)
-			query = "select * "
-					+ "from posts left join (select masterpost_id, count(*) from post_comments group by masterpost_id)" +
-					" as noOfComments "
-					+ "on posts.id = noOfComments.masterpost_id "
-					+ "order by count desc NULLS LAST;";
+			query = "select * " +
+					"from posts left join " +
+					"(select masterpost_id, count(*) from post_comments group by masterpost_id) as noOfComments " +
+					"on posts.id = noOfComments.masterpost_id " +
+					"order by count desc NULLS LAST;";
 
 		else //TODO optimize query?? (only do count for comments against the user's posts)
-			query = "select * "
-					+ "from posts left join (select masterpost_id, count(*) from post_comments group by masterpost_id)" +
-					" as noOfComments "
-					+ "on posts.id = noOfComments.masterpost_id "
-					+ "where user_id = " + userId + " "
-					+ "order by count desc NULLS LAST;";
+			query = "select * " +
+					"from posts left join " +
+					"(select masterpost_id, count(*) from post_comments group by masterpost_id) as noOfComments " +
+					"on posts.id = noOfComments.masterpost_id " +
+					"where user_id = " + userId + " " +
+					"order by count desc NULLS LAST;";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -153,9 +157,13 @@ public class PostManager implements PostManagerInterface{
 		String query = "";
 
 		if(userId == null)
-			query = "select * from posts order by likes desc;";
+			query = "select * " +
+					"from posts " +
+					"order by likes desc;";
 		else
-			query = "select * from posts where user_id = " + userId + " order by likes desc;";
+			query = "select * from posts " +
+					"where user_id = " + userId + " " +
+					"order by likes desc;";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -181,9 +189,14 @@ public class PostManager implements PostManagerInterface{
 		String query = "";
 
 		if(userId == null)
-			query = "select * from posts order by dislikes;";
+			query = "select * " +
+					"from posts " +
+					"order by dislikes;";
 		else
-			query = "select * from posts where user_id = " + userId + " order by dislikes;";
+			query = "select * " +
+					"from posts " +
+					"where user_id = " + userId + " " +
+					"order by dislikes;";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -195,9 +208,14 @@ public class PostManager implements PostManagerInterface{
 		String query = "";
 
 		if(userId == null)
-			query = "select * from posts order by total desc;";
+			query = "select * " +
+					"from posts " +
+					"order by total desc;";
 		else
-			query = "select * from posts where user_id = " + userId + " order by total desc;";
+			query = "select * " +
+					"from posts " +
+					"where user_id = " + userId + " " +
+					"order by total desc;";
 
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
@@ -226,7 +244,9 @@ public class PostManager implements PostManagerInterface{
 
 	public ArrayList<Post> getPostById(String id) throws SQLException, ParseException{
 
-		String query = "select * from posts where id = " + id + ";";
+		String query = "select * " +
+				"from posts " +
+				"where id = " + id + ";";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -238,9 +258,13 @@ public class PostManager implements PostManagerInterface{
 		String query = "";
 
 		if(!fromPostComments)
-			query = "select count(user_id) from posts where user_id = '" + userId + "';";
+			query = "select count(user_id) " +
+					"from posts " +
+					"where user_id = '" + userId + "';";
 		else
-			query = "select count(user_id) from post_comments where user_id = '" + userId + "';";
+			query = "select count(user_id) " +
+					"from post_comments " +
+					"where user_id = '" + userId + "';";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -255,9 +279,13 @@ public class PostManager implements PostManagerInterface{
 		String query = "";
 
 		if(!fromPostComments)
-			query = "select likes from posts where user_id = '" + userId + "';";
+			query = "select likes " +
+					"from posts " +
+					"where user_id = '" + userId + "';";
 		else
-			query = "select likes from post_comments where user_id = '" + userId + "';";
+			query = "select likes " +
+					"from post_comments " +
+					"where user_id = '" + userId + "';";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -275,9 +303,13 @@ public class PostManager implements PostManagerInterface{
 		String query = "";
 
 		if(!fromPostComments)
-			query = "select dislikes from posts where user_id = '" + userId + "';";
+			query = "select dislikes " +
+					"from posts " +
+					"where user_id = '" + userId + "';";
 		else
-			query = "select dislikes from post_comments where user_id = '" + userId + "';";
+			query = "select dislikes " +
+					"from post_comments " +
+					"where user_id = '" + userId + "';";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -301,11 +333,16 @@ public class PostManager implements PostManagerInterface{
 			// delete all comments (including those comment like and dislike references)
 			// delete all tag references
 
-			query = "delete from posts where id = " + postId + ";";
+			query = "delete " +
+					"from posts " +
+					"where id = " + postId + ";";
+
 			postCommentsManager.deleteAllCommentsForMasterPost(postId);
 			tagManager.deleteAllTagsForPost(postId);
 		} else
-			query = "delete from post_comments where id = " + postId + ";";
+			query = "delete " +
+					"from post_comments " +
+					"where id = " + postId + ";";
 
 		// delete like and dislike references
 		likeDislikeRecordManager.removeAllDislikeRecordsForPostId(postId, fromPostComments);

@@ -39,47 +39,47 @@
         <echo message="list      --> List Tomcat applications"/>
         <echo message=""/>
     </target>
-        
+
     <target name="buildtests" description="Compile test tree java files">
         <mkdir dir="${build.dir}"/>
         <javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
-            deprecation="false" optimize="false" failonerror="true">
+               deprecation="false" optimize="false" failonerror="true">
             <src path="${test.dir}"/>
             <classpath refid="master-classpath"/>
         </javac>
     </target>
-    
+
     <target name="tests" depends="build, buildtests" description="Run tests">
         <junit printsummary="on"
-            fork="false"
-            haltonfailure="false"
-            failureproperty="tests.failed"
-            showoutput="true">
+               fork="false"
+               haltonfailure="false"
+               failureproperty="tests.failed"
+               showoutput="true">
             <classpath refid="master-classpath"/>
             <formatter type="brief" usefile="false"/>
-            
+
             <batchtest>
                 <fileset dir="${build.dir}">
                     <include name="**/*Test.*"/>
                 </fileset>
             </batchtest>
-            
+
         </junit>
-        
+
         <fail if="tests.failed">
             tests.failed=${tests.failed}
             ***********************************************************
             ***********************************************************
-            ****  One or more tests failed!  Check the output ...  ****
+            **** One or more tests failed! Check the output ... ****
             ***********************************************************
             ***********************************************************
         </fail>
     </target>
 
     <target name="build" description="Compile main source tree java files">
-    	
-    	<delete dir="${build.dir}"/>
-    	
+
+        <delete dir="${build.dir}"/>
+
         <mkdir dir="${build.dir}"/>
         <javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
                deprecation="false" optimize="false" failonerror="true">
@@ -94,17 +94,17 @@
                 <include name="**/*.*"/>
             </fileset>
         </copy>
-    	
-		<copy todir="${deploy.jbossews}/${name}" preservelastmodified="true">
-			<fileset dir="${web.dir}">
-				<include name="**/*.*"/>
-			</fileset>
-		</copy>
+
+        <copy todir="${deploy.jbossews}/${name}" preservelastmodified="true">
+            <fileset dir="${web.dir}">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
     </target>
-	
-	<target name="deleteLiveAppCodeBase" description="Delete live codebase">
-		<delete dir="${deploy.jbossews}/${name}"/>
-	</target>
+
+    <target name="deleteLiveAppCodeBase" description="Delete live codebase">
+        <delete dir="${deploy.jbossews}/${name}"/>
+    </target>
 
     <target name="deploywar" depends="build" description="Deploy application as a WAR file">
         <war destfile="${name}.war"
@@ -113,23 +113,23 @@
                 <include name="**/*.*"/>
             </fileset>
         </war>
-    	
+
         <copy todir="${deploy.jbossews}" preservelastmodified="true">
             <fileset dir=".">
                 <include name="*.war"/>
             </fileset>
         </copy>
-    	
-    	<copy todir="${deploy.path}" preservelastmodified="true">
-			<fileset dir=".">
-				<include name="*.war"/>
-			</fileset>
-		</copy>
+
+        <copy todir="${deploy.path}" preservelastmodified="true">
+            <fileset dir=".">
+                <include name="*.war"/>
+            </fileset>
+        </copy>
     </target>
-    
-<!-- ============================================================== -->
-<!-- Tomcat tasks - remove these if you don't have Tomcat installed -->
-<!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- Tomcat tasks - remove these if you don't have Tomcat installed -->
+    <!-- ============================================================== -->
 
     <path id="catalina-ant-classpath">
         <!-- We need the Catalina jars for Tomcat -->
@@ -139,7 +139,7 @@
         </fileset>
     </path>
 
-    <taskdef name="install" classname="org.apache.catalina.ant.DeployTask">	
+    <taskdef name="install" classname="org.apache.catalina.ant.DeployTask">
         <classpath refid="catalina-ant-classpath"/>
     </taskdef>
     <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask">
@@ -165,47 +165,47 @@
 
     <target name="reload" description="Reload application in Tomcat">
         <reload url="${tomcat.manager.url}"
-                 username="${tomcat.manager.username}"
-                 password="${tomcat.manager.password}"
-                 path="/${name}"/>
+                username="${tomcat.manager.username}"
+                password="${tomcat.manager.password}"
+                path="/${name}"/>
     </target>
 
     <target name="start" description="Start Tomcat application">
         <start url="${tomcat.manager.url}"
-                 username="${tomcat.manager.username}"
-                 password="${tomcat.manager.password}"
-                 path="/${name}"/>
+               username="${tomcat.manager.username}"
+               password="${tomcat.manager.password}"
+               path="/${name}"/>
     </target>
 
     <target name="stop" description="Stop Tomcat application">
         <stop url="${tomcat.manager.url}"
-                 username="${tomcat.manager.username}"
-                 password="${tomcat.manager.password}"
-                 path="/${name}"/>
+              username="${tomcat.manager.username}"
+              password="${tomcat.manager.password}"
+              path="/${name}"/>
     </target>
 
     <target name="list" description="List Tomcat applications">
         <list url="${tomcat.manager.url}"
-                 username="${tomcat.manager.username}"
-                 password="${tomcat.manager.password}"/>
+              username="${tomcat.manager.username}"
+              password="${tomcat.manager.password}"/>
     </target>
-	
-	<target name="clean" description="Clean output directories">
-	        <delete>
-	            <fileset dir="${build.dir}">
-	                <include name="**/*.class"/>
-	            </fileset>
-	        </delete>
-	    </target>
 
-	    <target name="undeploy" description="Un-Deploy application">
-	        <delete>
-	            <fileset dir="${deploy.path}/${name}">
-	                <include name="**/*.*"/>
-	            </fileset>
-	        </delete>
-	    </target>
+    <target name="clean" description="Clean output directories">
+        <delete>
+            <fileset dir="${build.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+        </delete>
+    </target>
 
-<!-- End Tomcat tasks -->
+    <target name="undeploy" description="Un-Deploy application">
+        <delete>
+            <fileset dir="${deploy.path}/${name}">
+                <include name="**/*.*"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <!-- End Tomcat tasks -->
 
 </project>

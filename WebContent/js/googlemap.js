@@ -5,57 +5,59 @@
 
 function initMap() {
 
-	var map = new google.maps.Map(document.getElementById('map'), {
-		center : {
-			// Glasgow, UK
-			lat : 55.864237,
-			lng : -4.251806
-		},
-		zoom : 10
-	});
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+            // Glasgow, UK
+            lat: 55.864237,
+            lng: -4.251806
+        },
+        zoom: 10
+    });
 
 //	var infoWindow = new google.maps.InfoWindow({
 //		map : map
 //	});
 
-	// Try HTML5 geolocation.
-	if (navigator.geolocation) {
-		
-		navigator.geolocation.getCurrentPosition(function(position) {
-			
-			var pos = {
-				lat : position.coords.latitude,
-				lng : position.coords.longitude
-			};
-			
-			$.ajax({
-				type : "POST",
-				url : "postLatLong.html",
-				data: {"latitude": position.coords.latitude,
-					"longitude": position.coords.longitude},
-					
-				success : function(response) {
-						
-					setMarkers(map);
-					map.setCenter(pos);
-				}
-			});
-			
-			//alert(position.coords.latitude);
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
 
-			//infoWindow.setPosition(pos);
-			//infoWindow.setContent('Location found.');
-			
-		}, function() {
-			
-			// set markers geo position denied
-			setMarkers(map);
-		});
-	} else {
-		
-		// Browser doesn't support Geolocation
-		setMarkers(map);
-	}
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "postLatLong.html",
+                data: {
+                    "latitude": position.coords.latitude,
+                    "longitude": position.coords.longitude
+                },
+
+                success: function (response) {
+
+                    setMarkers(map);
+                    map.setCenter(pos);
+                }
+            });
+
+            //alert(position.coords.latitude);
+
+            //infoWindow.setPosition(pos);
+            //infoWindow.setContent('Location found.');
+
+        }, function () {
+
+            // set markers geo position denied
+            setMarkers(map);
+        });
+    } else {
+
+        // Browser doesn't support Geolocation
+        setMarkers(map);
+    }
 }
 
 //function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -66,56 +68,56 @@ function initMap() {
 //}
 
 function setMarkers(map) {
-	// Adds markers to the map.
+    // Adds markers to the map.
 
-	$.ajax({
-		type : "GET",
-		url : "getUsers.html",
+    $.ajax({
+        type: "GET",
+        url: "getUsers.html",
 
-		success : function(response) {
+        success: function (response) {
 
-			// response is a json list of users
-			var users = JSON.parse(response);
+            // response is a json list of users
+            var users = JSON.parse(response);
 
-			for (var i = 0; i < users.length; i++) {
-				
-				var user = users[i];
+            for (var i = 0; i < users.length; i++) {
 
-				makeMarker(map, user);
-			}
-		}
-	});
+                var user = users[i];
+
+                makeMarker(map, user);
+            }
+        }
+    });
 }
 
-function makeMarker(map, user){
-	
-	if(user.hasProfilePic)
-		var imagePath = 'profile_images/' + user.id + '.png';
-	else
-		var imagePath = 'images/profile_default.png';
-	
-	var contentString = '<div id="content">' +
-	'<a href="myprofile.html?id=' + user.id + '"><img id="profilePic" style="width: 150px; max-height: 200px;" src="' + imagePath + '" alt="Profile pic"></a>' +
-	'<div style="text-align: center; line-height: 30px; font-size: 20px;"><a href="myprofile.html?id=' + user.id + '" class="links"><strong>' + user.username + '</strong></a></div>' +
-	'</div>';
-		
-	var infowindow = new google.maps.InfoWindow({
-		content: contentString
-	});
-	
-	var marker = new google.maps.Marker({
-		position : {
-			lat : user.latitude,
-			lng : user.longitude
-		},
-		map : map,
-		//icon : image,
-		//shape : shape,
-		title : user.username
-	});
-	
-	marker.addListener('click', function() {
-	    infowindow.open(map, marker);
-	});
-	
+function makeMarker(map, user) {
+
+    if (user.hasProfilePic)
+        var imagePath = 'profile_images/' + user.id + '.png';
+    else
+        var imagePath = 'images/profile_default.png';
+
+    var contentString = '<div id="content">' +
+        '<a href="myprofile.html?id=' + user.id + '"><img id="profilePic" style="width: 150px; max-height: 200px;" src="' + imagePath + '" alt="Profile pic"></a>' +
+        '<div style="text-align: center; line-height: 30px; font-size: 20px;"><a href="myprofile.html?id=' + user.id + '" class="links"><strong>' + user.username + '</strong></a></div>' +
+        '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+        position: {
+            lat: user.latitude,
+            lng: user.longitude
+        },
+        map: map,
+        //icon : image,
+        //shape : shape,
+        title: user.username
+    });
+
+    marker.addListener('click', function () {
+        infowindow.open(map, marker);
+    });
+
 }

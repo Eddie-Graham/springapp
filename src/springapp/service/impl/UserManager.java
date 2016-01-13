@@ -26,7 +26,9 @@ public class UserManager implements UserManagerInterface{
 
 	public User getUserByEmail(String email) throws SQLException, ParseException{
 
-		String query = "select * from users where LOWER(email) = LOWER('" + email + "');";
+		String query = "select * " +
+				"from users " +
+				"where LOWER(email) = LOWER('" + email + "');";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -40,7 +42,9 @@ public class UserManager implements UserManagerInterface{
 
 	public User getUserById(String id) throws SQLException, ParseException{
 
-		String query = "select * from users where id = " + id + ";";
+		String query = "select * " +
+				"from users " +
+				"where id = " + id + ";";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -54,7 +58,9 @@ public class UserManager implements UserManagerInterface{
 
 	public User getUserByUsername(String username) throws SQLException, ParseException{
 
-		String query = "select * from users where LOWER(username) = LOWER('" + username + "');";
+		String query = "select * " +
+				"from users " +
+				"where LOWER(username) = LOWER('" + username + "');";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -68,7 +74,9 @@ public class UserManager implements UserManagerInterface{
 
 	public ArrayList<User> getAllUsers() throws SQLException, ParseException{
 
-		String query = "select * from users order by id;";
+		String query = "select * " +
+				"from users " +
+				"order by id;";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -78,7 +86,9 @@ public class UserManager implements UserManagerInterface{
 	public ArrayList<User> getAllUsersWithLatLong() throws SQLException, ParseException{
 
 		// if lat not null then long is also not null
-		String query = "select * from users where latitude is not null;";
+		String query = "select * " +
+				"from users " +
+				"where latitude is not null;";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -103,8 +113,7 @@ public class UserManager implements UserManagerInterface{
 	public void createUser(User user){
 
 		String query = "insert into users (username, email, password) values('" + user.getUsername() + "', '" + user
-				.getEmail() + "', '"
-				+ user.getPassword() + "');";
+				.getEmail() + "', '" + user.getPassword() + "');";
 
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
@@ -122,19 +131,17 @@ public class UserManager implements UserManagerInterface{
 		String query = "";
 
 		if(password == null)
-			query = "update users "
-					+ "set username = '" + username + "', email = '" + email + "', authority = '" + authority + "', " +
-					"enabled = " + enabled + " "
-					+ "where id = " + userId + ";";
+			query = "update users " +
+					"set username = '" + username + "', email = '" + email + "', authority = '" + authority + "', " +
+					"enabled = " + enabled + " where id = " + userId + ";";
 
 		else{
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String hashedPassword = passwordEncoder.encode(password);
 
-			query = "update users "
-					+ "set username = '" + username + "', email = '" + email + "', authority = '" + authority + "', " +
-					"enabled = " + enabled + ", password = '" + hashedPassword + "' "
-					+ "where id = " + userId + ";";
+			query = "update users " +
+					"set username = '" + username + "', email = '" + email + "', authority = '" + authority + "', " +
+					"enabled = " + enabled + ", password = '" + hashedPassword + "' where id = " + userId + ";";
 		}
 
 		dbCon.makeConnectionAndExecuteQuery(query);

@@ -46,10 +46,13 @@ public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterfa
 		String query = "";
 
 		if(!fromPostComments)
-			query = "delete from dislike_records where user_id = " + userId + " and post_id = " + postId + ";";
+			query = "delete " +
+					"from dislike_records " +
+					"where user_id = " + userId + " and post_id = " + postId + ";";
 		else
-			query = "delete from dislike_records_comments where user_id = " + userId + " and post_id = " + postId +
-					";";
+			query = "delete " +
+					"from dislike_records_comments " +
+					"where user_id = " + userId + " and post_id = " + postId + ";";
 
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
@@ -59,9 +62,13 @@ public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterfa
 		String query = "";
 
 		if(!fromPostComments)
-			query = "delete from like_records where user_id = " + userId + " and post_id = " + postId + ";";
+			query = "delete " +
+					"from like_records " +
+					"where user_id = " + userId + " and post_id = " + postId + ";";
 		else
-			query = "delete from like_records_comments where user_id = " + userId + " and post_id = " + postId + ";";
+			query = "delete " +
+					"from like_records_comments " +
+					"where user_id = " + userId + " and post_id = " + postId + ";";
 
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
@@ -71,9 +78,13 @@ public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterfa
 		String query = "";
 
 		if(!fromPostComments)
-			query = "select * from like_records where user_id = " + userId + " and post_id = " + postId + ";";
+			query = "select * " +
+					"from like_records " +
+					"where user_id = " + userId + " and post_id = " + postId + ";";
 		else
-			query = "select * from like_records_comments where user_id = " + userId + " and post_id = " + postId + ";";
+			query = "select * " +
+					"from like_records_comments " +
+					"where user_id = " + userId + " and post_id = " + postId + ";";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -85,10 +96,13 @@ public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterfa
 		String query = "";
 
 		if(!fromPostComments)
-			query = "select * from dislike_records where user_id = " + userId + " and post_id = " + postId + ";";
+			query = "select * " +
+					"from dislike_records " +
+					"where user_id = " + userId + " and post_id = " + postId + ";";
 		else
-			query = "select * from dislike_records_comments where user_id = " + userId + " and post_id = " + postId +
-					";";
+			query = "select * " +
+					"from dislike_records_comments " +
+					"where user_id = " + userId + " and post_id = " + postId + ";";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -100,9 +114,13 @@ public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterfa
 		String query = "";
 
 		if(!fromPostComments)
-			query = "select count(user_id) from like_records where user_id = " + userId + ";";
+			query = "select count(user_id) " +
+					"from like_records " +
+					"where user_id = " + userId + ";";
 		else
-			query = "select count(user_id) from like_records_comments where user_id = " + userId + ";";
+			query = "select count(user_id) " +
+					"from like_records_comments " +
+					"where user_id = " + userId + ";";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -116,9 +134,13 @@ public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterfa
 		String query = "";
 
 		if(!fromPostComments)
-			query = "select count(user_id) from dislike_records where user_id = " + userId + ";";
+			query = "select count(user_id) " +
+					"from dislike_records " +
+					"where user_id = " + userId + ";";
 		else
-			query = "select count(user_id) from dislike_records_comments where user_id = " + userId + ";";
+			query = "select count(user_id) " +
+					"from dislike_records_comments " +
+					"where user_id = " + userId + ";";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -132,9 +154,13 @@ public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterfa
 		String query = "";
 
 		if(!fromPostComments)
-			query = "delete from like_records where post_id = " + postId + ";";
+			query = "delete " +
+					"from like_records " +
+					"where post_id = " + postId + ";";
 		else
-			query = "delete from like_records_comments where post_id = " + postId + ";";
+			query = "delete " +
+					"from like_records_comments " +
+					"where post_id = " + postId + ";";
 
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}
@@ -144,9 +170,13 @@ public class LikeDislikeRecordManager implements LikeDislikeRecordManagerInterfa
 		String query = "";
 
 		if(!fromPostComments)
-			query = "delete from dislike_records where post_id = " + postId + ";";
+			query = "delete " +
+					"from dislike_records " +
+					"where post_id = " + postId + ";";
 		else
-			query = "delete from dislike_records_comments where post_id = " + postId + ";";
+			query = "delete " +
+					"from dislike_records_comments " +
+					"where post_id = " + postId + ";";
 
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}

@@ -1,87 +1,87 @@
-#main{
-	height: 100%;
-	width: 100%;
+#main {
+    height: 100%;
+    width: 100%;
 }
 
-#title{
-	border-width: 3px; 
-	border-style: inset;
-	border-color: #000000 #777 #777 #000000;
-	padding: 3px;
+#title {
+    border-width: 3px;
+    border-style: inset;
+    border-color: #000000 #777 #777 #000000;
+    padding: 3px;
 }
 
-#titleDiv{
-	/* border: 1px solid #000000; */
-	padding: 2%;
+#titleDiv {
+    /* border: 1px solid #000000; */
+    padding: 2%;
 }
 
-#statsDiv{
-	/* border: 1px solid #000000; */
-	padding: 2%; 
-	float: left;
+#statsDiv {
+    /* border: 1px solid #000000; */
+    padding: 2%;
+    float: left;
 }
 
 /* preserve image aspect ratio  */
-#profileImage{
-	float: left;
-	width:  100%;
- 	height: auto;
+#profileImage {
+    float: left;
+    width: 100%;
+    height: auto;
 }
 
-#profileOverview{
-	float:left;
-	padding-top: 2%;
-	padding-left: 3%;
+#profileOverview {
+    float: left;
+    padding-top: 2%;
+    padding-left: 3%;
 }
 
-#profileImageDiv{
-	float: left;
-	overflow: hidden;
+#profileImageDiv {
+    float: left;
+    overflow: hidden;
 }
 
-#delete{
-	color: red;
+#delete {
+    color: red;
 }
 
 /* table, th, td {
     border: 1px solid black;
 }  */
 
-td{
-	padding: 8px;
-	overflow: hidden;
-	white-space: nowrap;
+td {
+    padding: 8px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-table{ 
-	display: table;
-	/* border-collapse: separate;
-	border-spacing: 12px; */
-	border-color: gray;
-	width: 100%;
-	table-layout: fixed;
+table {
+    display: table;
+    /* border-collapse: separate;
+    border-spacing: 12px; */
+    border-color: gray;
+    width: 100%;
+    table-layout: fixed;
 }
 
-.stat{
-	text-align: right;
-	width: 20px;
+.stat {
+    text-align: right;
+    width: 20px;
 }
 
-#usernameTitle{
-	font-weight: bold;
-	font-size: 200%;
-	color: #000000;
+#usernameTitle {
+    font-weight: bold;
+    font-size: 200%;
+    color: #000000;
 }
 
-.overviewStat{
-	padding-top: 2%;
-	font-size: 15px;
+.overviewStat {
+    padding-top: 2%;
+    font-size: 15px;
 }
 
-#emptyPosts{
-	padding-top: 4%;
-	padding-left: 2%;
-	padding-bottom: 2%;
+#emptyPosts {
+    padding-top: 4%;
+    padding-left: 2%;
+    padding-bottom: 2%;
 }
 
 /* best fit for timestamp on myprofile.jsp */
@@ -109,6 +109,6 @@ table{
     }
 }
 
-#postsList{
-	display: none;
+#postsList {
+    display: none;
 }

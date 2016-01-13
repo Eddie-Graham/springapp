@@ -21,7 +21,9 @@ public class TagManager implements TagManagerInterface{
 
 	public void deleteAllTagsForPost(String postId){
 
-		String query = "delete from tags where post_id = " + postId + ";";
+		String query = "delete " +
+				"from tags " +
+				"where post_id = " + postId + ";";
 
 		dbCon.makeConnectionAndExecuteQuery(query);
 	}

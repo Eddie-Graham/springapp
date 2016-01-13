@@ -20,8 +20,7 @@ public class User{
 
 	public User(String id, String username, String email, String password, String authority, boolean enabled,
 				boolean hasProfilePic, double latitude, double longitude, Timestamp registeredTimestamp, String
-						registeredTimeString,
-				String registeredDateString, int profileViews){
+						registeredTimeString, String registeredDateString, int profileViews){
 
 		this.id = id;
 		this.username = username;

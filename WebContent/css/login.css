@@ -1,47 +1,47 @@
-#container{
- 	position: fixed;
- 	top: 0;
- 	bottom: 0;
- 	left: 0;
- 	right: 0;
- 	overflow: scroll;
+#container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: scroll;
 }
 
-#title{
-	color: #FFFFFF;
-	padding: 2%;
+#title {
+    color: #FFFFFF;
+    padding: 2%;
 }
 
-#left{
-	color: #FFFFFF;
-	float: left;
-	padding: 2%;
- }
- 
-#right{
-	color: #FFFFFF;
-	padding: 2%;
- }
- 
-.formLabel{
- 	height: 20%;
- }
- 
-.form{
- 	height: 80%;
- }
- 
-html{
-	background: url(/springapp/images/background.jpg) no-repeat center center fixed;
-	background-size: cover;
+#left {
+    color: #FFFFFF;
+    float: left;
+    padding: 2%;
+}
+
+#right {
+    color: #FFFFFF;
+    padding: 2%;
+}
+
+.formLabel {
+    height: 20%;
+}
+
+.form {
+    height: 80%;
+}
+
+html {
+    background: url(/springapp/images/background.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
 
 input[type] {
     color: #000000;
 }
 
-*{ 
-    -moz-box-sizing: border-box; 
-    -webkit-box-sizing: border-box; 
-     box-sizing: border-box; 
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }

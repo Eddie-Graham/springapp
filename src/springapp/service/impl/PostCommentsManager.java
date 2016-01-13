@@ -33,7 +33,10 @@ public class PostCommentsManager implements PostCommentsManagerInterface{
 	public ArrayList<Post> getPostComments(String masterPostId) throws NumberFormatException, SQLException,
 			ParseException{
 
-		String query = "select * from post_comments where masterPost_id = " + masterPostId + " order by postIndex;";
+		String query = "select * " +
+				"from post_comments " +
+				"where masterPost_id = " + masterPostId + " " +
+				"order by postIndex;";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -52,8 +55,9 @@ public class PostCommentsManager implements PostCommentsManagerInterface{
 	public String getIncrementedPostIndex(String masterPostId) throws NumberFormatException, SQLException,
 			ParseException{
 
-		String query = "select MAX(postIndex) + 1 AS incPostIndex from post_comments where masterpost_id = " +
-				masterPostId + ";";
+		String query = "select MAX(postIndex) + 1 AS incPostIndex " +
+				"from post_comments " +
+				"where masterpost_id = " + masterPostId + ";";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
@@ -70,7 +74,9 @@ public class PostCommentsManager implements PostCommentsManagerInterface{
 
 	public int getNoOfCommentsForMasterPost(String masterPostId) throws SQLException{
 
-		String query = "select count(*) from post_comments where masterpost_id = " + masterPostId + ";";
+		String query = "select count(*) " +
+				"from post_comments " +
+				"where masterpost_id = " + masterPostId + ";";
 
 		ResultSet rs = dbCon.makeConnectionAndRunQuery(query);
 
