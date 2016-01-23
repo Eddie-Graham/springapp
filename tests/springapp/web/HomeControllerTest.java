@@ -1,20 +1,52 @@
 package springapp.web;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockHttpSession;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import springapp.domain.User;
+import springapp.service.UserManagerInterface;
+import java.sql.SQLException;
+import java.text.ParseException;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class HomeControllerTest extends TestCase{
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration("file:/Users/egraham/workspace/intelliJ/springapp/WebContent/WEB-INF/springapp-servlet.xml")
+public class HomeControllerTest {
 
-	protected int value1, value2;
+	@Autowired
+	private WebApplicationContext wac;
 
-	// assigning the values
-	protected void setUp(){
-		value1 = 3;
-		value2 = 3;
+	@Autowired
+	private UserManagerInterface userManager;
+
+	private MockMvc mockMvc;
+	private MockHttpSession mockSession;
+
+	@Before
+	public void setup() throws SQLException, ParseException{
+
+		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+		mockSession = new MockHttpSession(wac.getServletContext());
+
+		User user = userManager.getUserByUsername("test");
+		mockSession.setAttribute("userSesh", user);
 	}
 
-	// test method to add two values
-	public void testAdd(){
-		double result = value1 + value2;
-		assertTrue(result == 6);
+	@Test
+	public void postsByTimestamp() throws Exception {
+
+		mockMvc.perform(get("/postsByTimestamp.html")
+				.session(mockSession))
+				.andExpect(status().isOk());
 	}
 }

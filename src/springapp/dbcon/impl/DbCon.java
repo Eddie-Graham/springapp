@@ -17,6 +17,8 @@ public class DbCon implements DbConInterface{
 	@Autowired
 	private DataSource dataSource;
 
+	private boolean debug = true;
+
 	/**
 	 * Run a query for which results are expected.
 	 *
@@ -33,7 +35,8 @@ public class DbCon implements DbConInterface{
 
 			Statement stmt = c.createStatement();
 
-			System.out.println("Running query: " + query);
+			if(debug)
+				System.out.println("Running query: " + query);
 
 			rs = stmt.executeQuery(query);
 
@@ -62,7 +65,8 @@ public class DbCon implements DbConInterface{
 
 			Statement stmt = c.createStatement();
 
-			System.out.println("Executing query: " + query);
+			if(debug)
+				System.out.println("Executing query: " + query);
 
 			stmt.execute(query);
 
@@ -90,7 +94,8 @@ public class DbCon implements DbConInterface{
 
 			Statement stmt = c.createStatement();
 
-			System.out.println("Executing query: " + query);
+			if(debug)
+				System.out.println("Executing query: " + query);
 
 			stmt.execute(query, Statement.RETURN_GENERATED_KEYS);
 
