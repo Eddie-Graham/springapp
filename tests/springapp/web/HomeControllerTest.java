@@ -13,15 +13,17 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import springapp.domain.User;
 import springapp.service.UserManagerInterface;
+
 import java.sql.SQLException;
 import java.text.ParseException;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration("file:/Users/egraham/workspace/intelliJ/springapp/WebContent/WEB-INF/springapp-servlet.xml")
-public class HomeControllerTest {
+public class HomeControllerTest{
 
 	@Autowired
 	private WebApplicationContext wac;
@@ -43,7 +45,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void postsByTimestamp() throws Exception {
+	public void postsByTimestamp() throws Exception{
 
 		String url = "/postsByTimestamp.html";
 
@@ -53,7 +55,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void postsByNoOfReplies() throws Exception {
+	public void postsByNoOfReplies() throws Exception{
 
 		String url = "/postsByNoOfReplies.html";
 
@@ -63,7 +65,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void postsByLikes() throws Exception {
+	public void postsByLikes() throws Exception{
 
 		String url = "/postsByLikes.html";
 
@@ -73,7 +75,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void postsByDislikes() throws Exception {
+	public void postsByDislikes() throws Exception{
 
 		String url = "/postsByDislikes.html";
 
@@ -83,7 +85,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void postsByTotal() throws Exception {
+	public void postsByTotal() throws Exception{
 
 		String url = "/postsByTotal.html";
 
@@ -93,7 +95,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void postsByTag() throws Exception {
+	public void postsByTag() throws Exception{
 
 		String url = "/postsByTag.html?tag=tagTest";
 
@@ -103,7 +105,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void submitPost() throws Exception {
+	public void submitPost() throws Exception{
 
 		String url = "/submitPost.html?postText=postTextTest";
 
@@ -113,7 +115,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void incrementLikes() throws Exception {
+	public void incrementLikes() throws Exception{
 
 		String url = "/incrementLikes.html?postId=1";
 
@@ -123,7 +125,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void decrementDisikes() throws Exception {
+	public void decrementDisikes() throws Exception{
 
 		String url = "/decrementDisikes.html?postId=1";
 
@@ -133,7 +135,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void getPostComments() throws Exception {
+	public void getPostComments() throws Exception{
 
 		String url = "/getPostComments.html?postId=1";
 
@@ -143,7 +145,7 @@ public class HomeControllerTest {
 	}
 
 	@Test
-	public void submitPostComment() throws Exception {
+	public void submitPostComment() throws Exception{
 
 		String url = "/submitPostComment.html?postId=1&postText=postTextTest";
 
