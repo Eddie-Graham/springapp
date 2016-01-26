@@ -4,15 +4,15 @@
 
 <t:genericpage>
 	<jsp:attribute name="head">
-	
+
 		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<link rel="stylesheet" type="text/css" href="css/common_components/posts.css">
 		<link rel="stylesheet" type="text/css" href="css/common_components/filter.css">
 		<link rel="stylesheet" type="text/css" href="css/common_components/fixedmain.css">
-		<script src="js/home.js"></script> 
+		<script src="js/home.js"></script>
 		<script src="js/common_components/posts.js"></script>
 		<script src="js/common_components/filter.js"></script>
-		
+
     </jsp:attribute>
 
     <jsp:body>
