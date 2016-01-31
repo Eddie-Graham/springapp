@@ -33,7 +33,7 @@ public class BaseContextConfig{
 	@Before
 	public void setup() throws SQLException, ParseException{
 
-		// Jenkins push test
+		// Jenkins push test 2
 
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 		mockSession = new MockHttpSession(wac.getServletContext());
